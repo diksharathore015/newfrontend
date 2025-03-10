@@ -11,12 +11,20 @@ const config: Config = {
       fontFamily: {
         rowdies: ["Rowdies", "cursive"],
         roboto: ["Roboto", "sans-serif"],
+        rubik: ['var(--font-rubik)'],
+        poppins: ['Poppins', 'sans-serif'],  // Added Poppins font
+        baskervville: ['Baskervville', 'serif'],
+        Tinos: ["Tinos", 'serif'],
+        Cormorant: ["Cormorant Garamond", 'serif'] ,
+        Montserrat :["Montserrat", 'sans-serif']
+     
       },
       colors: {
 
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "#1f2937", // Example primary color (indigo-600 from Tailwind's palette)
+        
+        primary: "#6a0304", // Example primary color (indigo-600 from Tailwind's palette)
       },
       animation: {
         'gradient': 'gradient 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',

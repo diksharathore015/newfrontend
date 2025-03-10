@@ -7,12 +7,13 @@ import apiDataController from "@/controllers/RequestController";
 
 export default async function page({ searchParams }: { searchParams: any }) {
   const param = await searchParams;
- 
+
   const controller = new apiDataController();
   const data = await controller.GetApi(`${Constants.coursesSlug}`);
 
   return (
     <>
+       
       <meta name="robots" content="noindex, nofollow" />
       <Form slug={param.slug} slugdata={data} />
     </>

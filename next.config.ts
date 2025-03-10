@@ -18,7 +18,8 @@ const nextConfig: NextConfig = {
       "65.2.63.7",
       "3.110.189.42", 
       "13.203.78.165",
-      "rdabucket.s3.amazonaws.com"
+      "rdabucket.s3.amazonaws.com" ,
+      "43.204.144.192"
     ],
   },  
   typescript: {

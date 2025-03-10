@@ -18,27 +18,28 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased  w-[100%]  overflow-x-hidden`}
       >
-        <ErrorBoundary>
-          {" "}
-          <Providers>
-            {
-              <Header
-                cityList={cityList}
-                seodata={seodata[0]}
-                courselist={courselist}
-              />
-            }
-            {bannerData && <SocialMediaIcons data={bannerData[0]} />}
-            <MainForm coursesData={courselist} loc={loc} />
-            {children}
+        {/* <ErrorBoundary> */}{" "}
+        <Providers>
+          {cityList && seodata[0] && courselist && (
+            <Header
+              cityList={cityList}
+              seodata={seodata[0]}
+              courselist={courselist}
+            />
+          )}
+          {bannerData && <SocialMediaIcons data={bannerData[0]} />}
+          {courselist && <MainForm coursesData={courselist} loc={loc} />}
+          {children}
+          {seodata[0] && (
             <Footer
               address={seodata[0]?.address}
               contact_number={seodata[0]?.contact_number}
               whatsapp_number={seodata[0]?.whatsapp_number}
               location={seodata[0]?.location}
             />
-          </Providers>
-        </ErrorBoundary>
+          )}
+        </Providers>
+        {/* </ErrorBoundary> */}
       </body>
     </html>
   );

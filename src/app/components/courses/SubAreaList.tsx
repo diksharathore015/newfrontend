@@ -34,21 +34,21 @@ const SubAreaList: React.FC<SubAreaProps> = ({
 }) => {
   // console.log("subareacurrentLocation123", currentLocation);
   const names = [
-    "Royal Defence Online Academy",
-    "Royal Sainik & Military School Coaching",
-    "RIMC & RMS Online Coaching - Royal Defence",
-    "Royal Defence Live Classes for Sainik & Military Schools",
-    "Best Online Coaching for RMS, RIMC & Sainik Schools",
-    "Royal Defence Academy – RIMC, RMS, Sainik School Prep",
-    "Sainik & Military School Online Classes – Royal Defence",
-    "RIMC, RMS & Sainik School Online Coaching Hub",
-    "Royal Defence Live – Sainik, RMS, RIMC Coaching",
-    "Sainik, Military, and RIMC Entrance Coaching Online",
-    "Royal Defence Live Coaching",
-    "RMS, RIMC, Sainik School Online Academy",
-    "Royal Defence Academy Online",
-    "Sainik & Military Entrance Online Classes",
-    "RIMC & RMS Online Training by Royal Defence",
+    "Royal Defence Academy Elite Coaching",
+    "Royal Defence Academy Victory Sainik Coaching",
+    "Royal Defence Academy Defence Scholars",
+    "Royal Defence Academy Bravehearts Military",
+    "Royal Defence Academy Patriot Defence Institute",
+    "Royal Defence Academy Glory Sainik Coaching",
+    "Royal Defence Academy Shield Defence",
+    "Royal Defence Academy National Cadet Training",
+    "Royal Defence Academy Warrior Training",
+    "Royal Defence Academy Future Cadets",
+    "Royal Defence Academy Cadet Prep",
+    "Royal Defence Academy Mission Defence",
+    "Royal Defence Academy Valor Institute",
+    "Royal Defence Academy Guardian Military",
+    "Royal Defence Academy Champions Coaching",
   ];
 
   const locationId = locationdatas?.matchedItem?.id || 0;
@@ -87,12 +87,12 @@ const SubAreaList: React.FC<SubAreaProps> = ({
                     width={140}
                     height={140}
                     src={
-                      item.Image ||
-                      imageArr[i % imageArr.length].image ||
+                      item?.Image ||
+                      imageArr[i % imageArr?.length]?.image ||
                       AppAssets.logo
                     }
                     alt={
-                      item.image_alt || item?.title || "Royal Defence Academy"
+                      item?.image_alt || item?.title || "Royal Defence Academy"
                     }
                     className="w-full h-full rounded object-cover"
                   />
@@ -107,7 +107,7 @@ const SubAreaList: React.FC<SubAreaProps> = ({
                     }
                     className="text-lg hover:cursor-pointer font-bold text-gray-800 flex items-center gap-2"
                   >
-                    {data?.short_title} in {item.title.replaceAll("-", " ")}{" "}
+                    {data?.short_title} in {item?.title.replaceAll("-", " ")}{" "}
                     <br />
                     {item?.short_description
                       ? item?.short_description
@@ -129,12 +129,12 @@ const SubAreaList: React.FC<SubAreaProps> = ({
                   <div className="flex items-center gap-2 text-sm text-gray-600 my-2">
                     <MdLocationOn className="text-gray-500 uppercase" />
                     <span className="uppercase font-semibold">
-                      {names[item.id % names.length]}{" "}
-                      {item.title.replaceAll("-", " ")} ,{" "}
+                      {names[item?.id % names.length]}{" "}
+                      {item?.title.replaceAll("-", " ")} ,{" "}
                       {currentLocation == "na"
                         ? "India ,"
                         : `${currentLocation.replaceAll("-", " ")},`}
-                      {item.pincode ? item.pincode : ""}
+                      {item?.pincode ? item?.pincode : ""}
                     </span>
                   </div>
 
@@ -151,10 +151,10 @@ const SubAreaList: React.FC<SubAreaProps> = ({
                   {/* Buttons */}
                   <div className="md:flex md:items-center gap-2 ">
                     <Link
-                      href={`https://wa.me/${item.contact_number}`}
+                      href={`https://wa.me/${item?.contact_number}`}
                       className="bg-green-500 text-white text-sm px-4 py-2 mb-1 rounded flex items-center justify-center gap-2"
                     >
-                      {item.contact_number || data?.contact_number}
+                      {item?.contact_number || data?.contact_number}
                       <FaWhatsapp />
                     </Link>
                     <button

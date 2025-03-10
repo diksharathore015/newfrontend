@@ -168,7 +168,7 @@ export default async function Home() {
       "Sainik School coaching, Military School coaching, RMS coaching, RIMC coaching, Sainik School entrance exam coaching, Military School entrance exam coaching, RMS entrance exam coaching, RIMC entrance exam coaching, Best Sainik School coaching in India, Best Military School coaching in India, Best RMS coaching in India, Best RIMC coaching in India, Sainik School coaching near me, Military School coaching near me, RMS coaching near me",
   };
 
-  const localBusiness = {
+  const localBusiness = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     image: seoData[0]?.image,
@@ -227,7 +227,7 @@ export default async function Home() {
       closes: "20:00",
     },
   };
-  const structuredData = {
+  const structuredData = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "ItemList",
     itemListElement: coursesData.map((course, index) => ({
@@ -312,7 +312,7 @@ export default async function Home() {
       },
     })),
   };
-  const faqSchema = {
+  const faqSchema = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: faqsData.map((faq: { question: string; answer: string }) => ({
@@ -327,79 +327,83 @@ export default async function Home() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: `Royal defence Academy - ${seoData[0]?.title} `,
-            url: seoData[0]?.canonical_url,
-            description: seoData[0]?.description,
-            logo: {
-              "@type": "ImageObject",
-              url: seoData[0]?.image, // Replace with the correct logo URL
-              width: 512, // Optional, provide actual dimensions if available
-              height: 512, // Optional, provide actual dimensions if available
-            },
+      {seoData[0] && (
+        <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: `Royal defence Academy - ${seoData[0]?.title} `,
+                url: seoData[0]?.canonical_url,
+                description: seoData[0]?.description,
+                logo: {
+                  "@type": "ImageObject",
+                  url: seoData[0]?.image, // Replace with the correct logo URL
+                  width: 512, // Optional, provide actual dimensions if available
+                  height: 512, // Optional, provide actual dimensions if available
+                },
 
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: seoData[0]?.address,
-              addressLocality: "Jaipur",
-              addressRegion: "rajasthan",
-              postalCode: "302024",
-              addressCountry: "India",
-            },
-            sameAs: [
-              "https://www.facebook.com/Sainikschoolentranceexamcoaching/",
-              "https://www.instagram.com/onlinesainikschoolcoaching/",
-              "https://www.youtube.com/@rdajaipur",
-            ],
-            keywords: seoData[0]?.keyword,
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "EducationalOrganization",
-            name: "Royal defence Academy - Rashtriya Military School best coaching  ",
-            url: "https://www.royaldefenceacademy.com/",
-            description:
-              "High-quality education for future defense professionals.",
-            logo: {
-              "@type": "ImageObject",
-              url: seoData[0]?.image, // Replace with the correct logo URL
-              width: 512, // Optional, provide actual dimensions if available
-              height: 512, // Optional, provide actual dimensions if available
-            },
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: seoData[0]?.address,
+                  addressLocality: "Jaipur",
+                  addressRegion: "rajasthan",
+                  postalCode: "302024",
+                  addressCountry: "India",
+                },
+                sameAs: [
+                  "https://www.facebook.com/Sainikschoolentranceexamcoaching/",
+                  "https://www.instagram.com/onlinesainikschoolcoaching/",
+                  "https://www.youtube.com/@rdajaipur",
+                ],
+                keywords: seoData[0]?.keyword,
+              }),
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "EducationalOrganization",
+                name: "Royal defence Academy - Rashtriya Military School best coaching  ",
+                url: "https://www.royaldefenceacademy.com/",
+                description:
+                  "High-quality education for future defense professionals.",
+                logo: {
+                  "@type": "ImageObject",
+                  url: seoData[0]?.image, // Replace with the correct logo URL
+                  width: 512, // Optional, provide actual dimensions if available
+                  height: 512, // Optional, provide actual dimensions if available
+                },
 
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: "major bane singh colony",
-              addressLocality: "Jaipur",
-              addressRegion: "rajasthan",
-              postalCode: "302024",
-              addressCountry: "India",
-            },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
-      />
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "major bane singh colony",
+                  addressLocality: "Jaipur",
+                  addressRegion: "rajasthan",
+                  postalCode: "302024",
+                  addressCountry: "India",
+                },
+              }),
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
+          />
+        </>
+      )}
 
       {/* {<MainForm coursesData={coursesData} />} */}
 
@@ -428,11 +432,11 @@ export default async function Home() {
         </div>
         {blogsData && <Blogs data={blogsData} />}
 
-        <StudyLocation data={stateshomepageData} />
+        {stateshomepageData && <StudyLocation data={stateshomepageData} />}
         {faqsData && (
           <FAQ faqsData={faqsData.filter((item: any) => item.course == null)} />
         )}
-        <CitiesLocation initialData={citiesData} />
+        {citiesData && <CitiesLocation initialData={citiesData} />}
         {/* <UserLocation /> */}
       </div>
     </>

@@ -1,5 +1,5 @@
 export class Constants {
-  static API_URL = "http://13.203.78.165:8000/";
+  static API_URL = "http://43.204.144.192:8000/";
   // static API_URL = "http://127.0.0.1:8000/";
   static X_API_KEY: "X API Key";
   static bannerData = `${this.API_URL}banners/`;
