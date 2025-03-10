@@ -1,6 +1,8 @@
+import { fetchBaseUrl } from '@/Constants/urls';
 import type { MetadataRoute } from 'next'
  
 export default function robots(): MetadataRoute.Robots {
+   const baseURL =  fetchBaseUrl();
   return {
     rules: [
       {
@@ -11,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
       
       
     ],
-    sitemap: 'https://www.royaldefenceacademy.com/sitemap.xml',
+    sitemap: `${baseURL}sitemap.xml`,
   }
 }

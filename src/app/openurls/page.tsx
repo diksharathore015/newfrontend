@@ -1,5 +1,5 @@
 export const dynamic = "force-dynamic";
-import { Constants } from "@/Constants/urls";
+import { Constants, fetchBaseUrl } from "@/Constants/urls";
 import apiDataController from "@/controllers/RequestController";
 import Fetchurls from "../components/forms/Fetchurls";
 
@@ -13,23 +13,24 @@ export default async function Page() {
 
   const blogsData = await controller.getDataApi(`${Constants.blogsSlug}`);
   const courseData = await controller.getDataApi(`${Constants.singlecourses}`);
+  const baseURL = fetchBaseUrl();
   const staticUrls = [
     {
-      url: `https://www.royaldefenceacademy.com`,
+      url: `${baseURL}`,
     },
     {
-      url: `https://www.royaldefenceacademy.com/blogs`,
+      url: `${baseURL}/blogs`,
     },
     {
-      url: `https://www.royaldefenceacademy.com/news`,
+      url: `${baseURL}/news`,
     },
   ];
   // Static routes
   const NewsSitemap = NewsData.map((item: any) => ({
-    url: `https://www.royaldefenceacademy.com/news/${item?.slug_field}`,
+    url: `${baseURL}/news/${item?.slug_field}`,
   }));
   const blogsSitemap = blogsData.map((item: any) => ({
-    url: `https://www.royaldefenceacademy.com/blogs/${item?.slug_field}`,
+    url: `${baseURL}/blogs/${item?.slug_field}`,
   }));
 
   const coursesSitemap = courseData.flatMap((item: any) => {
@@ -40,12 +41,12 @@ export default async function Page() {
 
     const stateUrls =
       item?.states?.map((state: any) => ({
-        url: `https://www.royaldefenceacademy.com/${item.slug_field}/${state?.title}`,
+        url: `${baseURL}/${item.slug_field}/${state?.title}`,
       })) || [];
 
     const cityUrls =
       item?.cities?.map((city: any) => ({
-        url: `https://www.royaldefenceacademy.com/${item.slug_field}/${city?.title}`,
+        url: `${baseURL}/${item.slug_field}/${city?.title}`,
       })) || [];
 
     return [...stateUrls, ...cityUrls];

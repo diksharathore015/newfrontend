@@ -1,6 +1,17 @@
+import { get } from "@/actions/actions";
+
+export async function fetchBaseUrl() {
+  try {
+    const response = await get(`${Constants.API_URL}urls/`); // Replace with your endpoint
+    const data = await response[0]?.url;
+    return data; // Assuming API returns { url: "http://example.com" }
+  } catch (error) {
+    console.error("Error fetching base URL:", error);
+  }
+}
 export class Constants {
-  static API_URL = "http://43.204.144.192:8000/";
-  // static API_URL = "http://127.0.0.1:8000/";
+  // static API_URL = "http://43.204.144.192:8000/";
+  static API_URL = "http://127.0.0.1:8000/";
   static X_API_KEY: "X API Key";
   static bannerData = `${this.API_URL}banners/`;
   static studentsData = `${this.API_URL}topscrollers/`;

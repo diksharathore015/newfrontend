@@ -1,4 +1,4 @@
-import { Constants } from "@/Constants/urls";
+import { Constants, fetchBaseUrl } from "@/Constants/urls";
 import apiDataController from "@/controllers/RequestController";
 
 import { get } from "@/actions/actions";
@@ -17,7 +17,7 @@ import dynamic from "next/dynamic";
 
 // export const dynamic = "force-dynamic"; // Ensure the page is SSR only
 
-export const revalidate = 3600;
+export const revalidate = 600;
 const Banner = dynamic(() => import("./components/home/Banner"));
 const Blogs = dynamic(() => import("./components/home/Blogs"));
 const FeatureCourses = dynamic(
@@ -47,6 +47,8 @@ const LineSlider = dynamic(() => import("./components/home/TextlineBar"), {
 
 export async function generateMetadata({ params, searchParams }) {
   const seoData = await get(Constants.seo);
+  const baseURL = await fetchBaseUrl();
+
   <link rel="icon" href={seoData[0]?.image} type="image/x-icon" sizes="any" />;
   <link rel="canonical" href={seoData[0]?.canonical_url} />;
   // console.log("firstfirstfirstfirstfirst",seoData[0])
@@ -71,7 +73,7 @@ export async function generateMetadata({ params, searchParams }) {
         /(?:\{location\}|\{Location\})/g,
         `${params?.slug?.length > 1 ? params.slug[1] : ""}`
       ),
-      url: "https://www.royaldefenceacademy.com/",
+      url: baseURL,
       siteName: `Home- ${seoData[0]?.title.replaceAll(
         /(?:\{location\}|\{Location\})/g,
         `${params?.slug?.length > 1 ? params.slug[1] : ""}`
@@ -108,8 +110,7 @@ export async function generateMetadata({ params, searchParams }) {
     },
 
     alternates: {
-      canonical:
-        seoData[0]?.canonical_url || "https://www.royaldefenceacademy.com/", // Replace with your default canonical URL
+      canonical: seoData[0]?.canonical_url || baseURL, // Replace with your default canonical URL
     },
   };
 }
@@ -145,11 +146,12 @@ export default async function Home() {
   ]);
   // const loc = await controller.GetApi("http://ip-api.com/json/");
   // console.log("seoDataseoData", seoData);
+  const baseURL = await fetchBaseUrl();
   const homepageSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Sainik School Coaching RIMC RMS Entrance Exam Coaching Center Military School Exam Coaching 2025-2026. Join The Royal Defence Academy for expert coaching in Sainik School, Military School, and RIMC entrance exams.",
-    url: "https://www.royaldefenceacademy.com/",
+    url: baseURL,
     description:
       "Sainik School Coaching RIMC RMS Entrance Exam Coaching Center Military School Exam Coaching 2025-2026. Join The Royal Defence Academy for expert coaching in Sainik School, Military School, and RIMC entrance exams.",
     address: {
@@ -209,7 +211,7 @@ export default async function Home() {
     },
     areaServed: { "@type": "Country", name: "India" },
     priceRange: "₹500-₹20000",
-    url: "https://www.royaldefenceacademy.com/",
+    url: baseURL,
     telephone: seoData[0].contact_number,
     email: "royaldefenceacademyjaipur@gmail.com",
     openingHoursSpecification: {
@@ -249,7 +251,7 @@ export default async function Home() {
         provider: {
           "@type": "Organization",
           name: "Royal defence academy",
-          url: "https://www.royaldefenceacademy.com/",
+          url: baseURL,
         },
         aggregateRating: {
           "@type": "AggregateRating",
@@ -262,7 +264,7 @@ export default async function Home() {
             /(?:\{location\}|\{Location\})/g,
             ""
           ),
-          url: `https://www.royaldefenceacademy.com/${course?.slug_field}`,
+          url: `${baseURL}/${course?.slug_field}`,
           price: "Paid",
           priceCurrency: "₹",
         },
@@ -369,7 +371,7 @@ export default async function Home() {
                 "@context": "https://schema.org",
                 "@type": "EducationalOrganization",
                 name: "Royal defence Academy - Rashtriya Military School best coaching  ",
-                url: "https://www.royaldefenceacademy.com/",
+                url: baseURL,
                 description:
                   "High-quality education for future defense professionals.",
                 logo: {
@@ -408,10 +410,10 @@ export default async function Home() {
       {/* {<MainForm coursesData={coursesData} />} */}
 
       <div className="overflow-x-hidden">
-        {studentsData && <TopStudents students={studentsData} />}
         {bannerData && studentsData && (
           <Banner data={bannerData} studentsData={studentsData} />
         )}
+        {studentsData && <TopStudents students={studentsData} />}
         {seoData[0]?.length > 0 && <HomeInfo seoData={seoData[0]} />}
         {linescrollBarData && <LineSlider data={linescrollBarData} />}
         {homepagecontent.length > 0 && (

@@ -86,7 +86,7 @@ const Footer = ({
             <FaWhatsapp className="text-green-500 w-4 h-4 mt-1" />
             <span>Whatsapp: {whatsapp_number}</span>
           </a>
-
+          
           {/* Location */}
           <a
             href={location}
@@ -95,7 +95,7 @@ const Footer = ({
           >
             <FaMapMarkerAlt className="text-red-500 w-4 h-4 mt-1" />
             <label className=" hover:cursor-pointer">
-              Location: {location.substring(0, 20)}
+              Location: {location?.substring(0, 20)}
             </label>
           </a>
           {/* Social Media Links */}

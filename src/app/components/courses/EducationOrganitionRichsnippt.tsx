@@ -1,4 +1,5 @@
 "use client";
+import { fetchBaseUrl } from "@/Constants/urls";
 import React from "react";
 
 export default function OrganitionRichsnippt({
@@ -10,7 +11,8 @@ export default function OrganitionRichsnippt({
   title,
   date,
 }: any) {
-  const url = `https://www.royaldefenceacademy.com${pathname}`;
+   const baseURL =  fetchBaseUrl();
+  const url = `${baseURL}/${pathname}`;
 
   return (
     <>

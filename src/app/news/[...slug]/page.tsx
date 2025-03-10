@@ -1,6 +1,6 @@
 import BlogsMain from "@/app/components/blogs/BlogsMain";
 
-import { Constants } from "@/Constants/urls";
+import { Constants, fetchBaseUrl } from "@/Constants/urls";
 import apiDataController from "@/controllers/RequestController";
 // import { store } from "@/store";
 // import { setHomepageTitle } from "@/store/homepageSlice";
@@ -87,6 +87,7 @@ export async function generateMetadata({ params, searchParams }: any) {
   const newsData = await controller.getDataApi(
     `${Constants.news}?slug_field=${param.slug[0]}`
   );
+    const baseURL = fetchBaseUrl();
   return {
     title: `${newsData[0]?.title} `,
     description: newsData[0]?.meta_description || newsData[0]?.description,
@@ -96,8 +97,8 @@ export async function generateMetadata({ params, searchParams }: any) {
       title: `${newsData[0]?.meta_title} `,
       url:
         newsData == undefined
-          ? `https://www.royaldefenceacademy.com/news/ `
-          : `https://www.royaldefenceacademy.com/${newsData[0]?.slug_field}`,
+          ? `${baseURL}/news/ `
+          : `${baseURL}/${newsData[0]?.slug_field}`,
       siteName: "Royal defence academy",
       type: "website", // or 'article', 'product', etc.
       images: [
@@ -127,8 +128,8 @@ export async function generateMetadata({ params, searchParams }: any) {
     alternates: {
       canonical:
         newsData == undefined
-          ? `https://www.royaldefenceacademy.com/news/ `
-          : `https://www.royaldefenceacademy.com/news/${newsData[0]?.slug_field}`,
+          ? `${baseURL}/news/ `
+          : `${baseURL}/news/${newsData[0]?.slug_field}`,
     },
   };
 }

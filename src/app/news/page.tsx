@@ -47,32 +47,4 @@ export default async function page({
   );
 }
 
-export const metadata: Metadata = {
-  title:
-    "Defence career tips, defence academy insights, latest news on defence news - Royal Defence Academy",
-  description:
-    "Explore the latest news from the Royal Defence Academy. Stay updated with valuable insights, tips, and expert guidance for your defence career.",
-  keywords:
-    "Royal Defence Academy news, defence career tips, defence academy insights, latest news on defence",
-  openGraph: {
-    title: "Royal Defence Academy news",
-    url: "https://www.royaldefenceacademy.com/news/",
-    siteName: "Royal Defence Academy",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Royal Defence Academy news",
-    description:
-      "Explore the latest news from the Royal Defence Academy. Stay updated with valuable insights, tips, and expert guidance for your defence career.",
-    // Replace with your default image URL
-  },
-  viewport: "width=device-width, initial-scale=1.0",
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: "https://www.royaldefenceacademy.com/news/",
-  },
-};
+ 

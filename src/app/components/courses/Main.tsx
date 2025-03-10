@@ -358,7 +358,7 @@ export default function Main({
 
             {metatitle && (
               <div>
-                <h2 className="text-4xl font-bold font-sans w-[95%] mx-auto">
+                <h2 className="md:text-xl text-sm  font-Cormorant font-semibold font-sans w-[95%] mx-auto">
                   {metatitle}
                 </h2>
                 <p className="text-normal font-sans w-[95%] mx-auto">
@@ -705,7 +705,9 @@ export default function Main({
                 />
               </div>
             }
-            {faqs.length > 0 && <FAQ faqsData={faqs}    locationdatas={locationdatas} />}
+            {faqs.length > 0 && (
+              <FAQ faqsData={faqs} locationdatas={locationdatas} />
+            )}
 
             {
               <div className="mx-auto w-[95%] my-6">

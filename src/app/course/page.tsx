@@ -1,4 +1,4 @@
-import { Constants } from "@/Constants/urls";
+import { Constants, fetchBaseUrl } from "@/Constants/urls";
 import apiDataController from "@/controllers/RequestController";
 import FeatureCourses from "../components/home/FeatureCources";
 import Settitle from "../components/comman/Settitle";
@@ -21,10 +21,10 @@ export async function generateMetadata({
       if (!res.ok) throw new Error("Failed to fetch  metadata");
       return res.json();
     });
-
+    const baseURL = fetchBaseUrl();
     // Return metadata
     // console.log("testseocoursedata", data);
-    <link rel="canonical" href={`https://www.royaldefenceacademy.com/course`} />;
+    <link rel="canonical" href={`${baseURL}/course`} />;
     return {
       title: data[0].meta_title,
       description: data[0].meta_description,
@@ -41,7 +41,7 @@ export async function generateMetadata({
         images: [data[0].og_image],
       },
       alternates: {
-        canonical: `https://www.royaldefenceacademy.com/course`,
+        canonical: `${baseURL}/course`,
       },
     };
   } catch (error) {
@@ -59,6 +59,7 @@ export async function generateMetadata({
 export default async function Page() {
   const controller = new apiDataController();
   // Fetch courses
+  const baseURL = fetchBaseUrl();
   const data = await controller.getDataApi(Constants.courses);
   const seodata = await fetch(`${Constants.coursesSeoData}`).then((res) => {
     if (!res.ok) throw new Error("Failed to fetch  metadata");
@@ -71,7 +72,7 @@ export default async function Page() {
       "@type": "ListItem",
       position: index + 1,
       item: {
-        url: `https://www.royaldefenceacademy.com/course/${course.slug_field}`,
+        url: `${baseURL}/course/${course.slug_field}`,
         "@context": "https://schema.org",
         "@type": "Course",
         name: course.meta_title?.replaceAll(
@@ -87,7 +88,7 @@ export default async function Page() {
         provider: {
           "@type": "Organization",
           name: "Royal defence academy",
-          url: "https://www.royaldefenceacademy.com",
+          url: baseURL,
         },
         aggregateRating: {
           "@type": "AggregateRating",
@@ -100,7 +101,7 @@ export default async function Page() {
             /(?:\{location\}|\{Location\})/g,
             ""
           ),
-          url: `https://www.royaldefenceacademy.com/${course?.slug_field}`,
+          url: `${baseURL}/${course?.slug_field}`,
           price: "Paid",
           priceCurrency: "₹",
         },
@@ -155,7 +156,7 @@ export default async function Page() {
             publisher: {
               "@type": "Organization",
               name: "Royal Defence Academy",
-              sameAs: "https://www.royaldefenceacademy.com",
+              sameAs: baseURL,
             },
           },
         ],
@@ -170,7 +171,7 @@ export default async function Page() {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       image: course.image,
-      "@id": "https://www.royaldefenceacademy.com/course",
+      "@id": `${baseURL}course`,
       name: "Royal Defence Academy",
       logo: course?.image,
       description: course?.short_description?.replaceAll(
@@ -209,7 +210,7 @@ export default async function Page() {
       },
       areaServed: { "@type": "Country", name: "India" },
       priceRange: "₹500-₹20000",
-      url: "https://www.royaldefenceacademy.com/course",
+      url: `${baseURL}/course`,
       telephone: course.contact_number,
       email: "royaldefenceacademyjaipur@gmail.com",
       openingHoursSpecification: {

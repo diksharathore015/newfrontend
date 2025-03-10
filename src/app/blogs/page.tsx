@@ -7,7 +7,7 @@ import { AppAssets } from "@/Constants/assets";
 import { Metadata } from "next";
 import Image from "next/image";
 // import Redirectblog from "../components/blogs/Redirectblog";
-export const revalidate = 3600;
+export const revalidate = 600;
 export const dynamicParams = true; // or false, to 404 on unknown paths
 
 export default async function page() {
@@ -41,33 +41,3 @@ export default async function page() {
     </>
   );
 }
-
-export const metadata: Metadata = {
-  title:
-    "Defence career tips, defence academy insights, latest blogs on defence Blogs - Royal Defence Academy",
-  description:
-    "Explore the latest blogs from the Royal Defence Academy. Stay updated with valuable insights, tips, and expert guidance for your defence career.",
-  keywords:
-    "Royal Defence Academy blogs, defence career tips, defence academy insights, latest blogs on defence",
-  openGraph: {
-    title: "Royal Defence Academy Blogs",
-    url: "https://www.royaldefenceacademy.com/blogs/",
-    siteName: "Royal Defence Academy",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Royal Defence Academy Blogs",
-    description:
-      "Explore the latest blogs from the Royal Defence Academy. Stay updated with valuable insights, tips, and expert guidance for your defence career.",
-    // Replace with your default image URL
-  },
-  viewport: "width=device-width, initial-scale=1.0",
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: "https://www.royaldefenceacademy.com/blogs/",
-  },
-};

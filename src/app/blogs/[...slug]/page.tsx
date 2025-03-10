@@ -1,10 +1,10 @@
 import BlogsMain from "@/app/components/blogs/BlogsMain";
-import { Constants } from "@/Constants/urls";
+import { Constants, fetchBaseUrl } from "@/Constants/urls";
 import apiDataController from "@/controllers/RequestController";
 // import { store } from "@/store";
 // import { setHomepageTitle } from "@/store/homepageSlice";
 export const dynamic = "force-static";
-export const revalidate = 3600;
+export const revalidate = 600;
 // export const dynamicParams = true; // or false, to 404 on unknown paths
 // export async function generateStaticParams({ params, searchParams }: any) {
 //   const controller = new apiDataController();
@@ -87,6 +87,7 @@ export async function generateMetadata({ params, searchParams }: any) {
   const blogsData = await controller.getDataApi(
     `${Constants.allblogs}?slug_field=${param.slug[0]}`
   );
+  const baseURL = await fetchBaseUrl();
   return {
     title: `${blogsData[0]?.title} `,
     description: blogsData[0]?.meta_description || blogsData[0]?.description,
@@ -96,8 +97,8 @@ export async function generateMetadata({ params, searchParams }: any) {
       title: `${blogsData[0]?.meta_title} `,
       url:
         blogsData == undefined
-          ? `https://www.royaldefenceacademy.com/blogs/ `
-          : `https://www.royaldefenceacademy.com/blogs/${blogsData[0]?.slug_field}`,
+          ? `${baseURL}/blogs/ `
+          : `${baseURL}/blogs/${blogsData[0]?.slug_field}`,
       siteName: "Royal defence academy",
       type: "website", // or 'article', 'product', etc.
       images: [
@@ -127,8 +128,8 @@ export async function generateMetadata({ params, searchParams }: any) {
     alternates: {
       canonical:
         blogsData == undefined
-          ? `https://www.royaldefenceacademy.com/blogs/ `
-          : `https://www.royaldefenceacademy.com/blogs/${blogsData[0]?.slug_field}`,
+          ? `${baseURL}/blogs/ `
+          : `${baseURL}/blogs/${blogsData[0]?.slug_field}`,
     },
   };
 }

@@ -6,10 +6,11 @@ import { FaChevronRight } from "react-icons/fa"; // Icon for separator
 
 import Jdata from "../../data/Jdata.json";
 import LineSkeleton from "../skeleton/LineSkeleton";
+import { fetchBaseUrl } from "@/Constants/urls";
 
 export default function Breadcrumbs() {
   const path = usePathname();
-
+  const baseURL = fetchBaseUrl();
   // Generate breadcrumb paths dynamically
   const segments = path.split("/").splice(1);
   const breadcrumbList = [
@@ -20,16 +21,14 @@ export default function Breadcrumbs() {
             "@type": "ListItem",
             position: 2,
             name: "Course",
-            item: "https://www.royaldefenceacademy.com/course",
+            item: `${baseURL}/course`,
           },
         ]),
     ...segments.map((segment, index) => ({
       "@type": "ListItem",
       position: segments.includes("course") ? index + 2 : index + 3, // Adjust position based on whether "Course" is added
       name: decodeURIComponent(segment),
-      item: `https://www.royaldefenceacademy.com/${segments
-        .slice(0, index + 1)
-        .join("/")}`,
+      item: `${baseURL}/${segments.slice(0, index + 1).join("/")}`,
     })),
   ];
 
@@ -38,7 +37,7 @@ export default function Breadcrumbs() {
     "@type": "ListItem",
     position: 1,
     name: Jdata?.home?.title,
-    item: "https://www.royaldefenceacademy.com/",
+    item: `${baseURL}`,
   });
 
   const breadcrumbSchema = {
@@ -60,7 +59,6 @@ export default function Breadcrumbs() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      
 
       {show ? (
         <div className="w-full md:w-[95%] mx-auto  mt-4 md:ml-12 ">

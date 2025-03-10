@@ -1,11 +1,12 @@
 import React from "react";
 import EnquiryForm from "../components/forms/EnquiryForm";
 import apiDataController from "@/controllers/RequestController";
-import { Constants } from "@/Constants/urls";
+import { Constants, fetchBaseUrl } from "@/Constants/urls";
 import { get } from "@/actions/actions";
 import HomeInfo from "../components/home/HomeInfo";
 export async function generateMetadata({ params, searchParams }) {
   const seoData = await get(Constants.seo);
+  const baseURL = fetchBaseUrl();
   <link rel="icon" href={seoData[0]?.image} type="image/x-icon" sizes="any" />;
   <link rel="canonical" href={seoData[0]?.canonical_url} />;
   // console.log("firstfirstfirstfirstfirst",seoData[0])
@@ -30,7 +31,7 @@ export async function generateMetadata({ params, searchParams }) {
         /(?:\{location\}|\{Location\})/g,
         `${params?.slug?.length > 1 ? params.slug[1] : ""}`
       ),
-      url: "https://www.royaldefenceacademy.com/",
+      url: baseURL,
       siteName: `Home- ${seoData[0]?.title.replaceAll(
         /(?:\{location\}|\{Location\})/g,
         `${params?.slug?.length > 1 ? params.slug[1] : ""}`
@@ -68,7 +69,7 @@ export async function generateMetadata({ params, searchParams }) {
 
     alternates: {
       canonical:
-        seoData[0]?.canonical_url || "https://www.royaldefenceacademy.com/", // Replace with your default canonical URL
+        seoData[0]?.canonical_url || baseURL, // Replace with your default canonical URL
     },
   };
 }

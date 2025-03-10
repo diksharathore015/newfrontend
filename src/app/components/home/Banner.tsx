@@ -1,18 +1,13 @@
 "use client";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { useState } from "react";
 import { BiLogoWhatsapp, BiPhone } from "react-icons/bi";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
+import "react-loading-skeleton/dist/skeleton.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import { AppAssets } from "@/Constants/assets";
-import { usePathname } from "next/navigation";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-import BannerSkeleton from "../skeleton/BannerSkeleton";
-import { useEffect, useState } from "react";
 export default function Banner({ data }: any) {
   const settings = {
     dots: false,
@@ -20,6 +15,7 @@ export default function Banner({ data }: any) {
     autoplay: true,
     autoplaySpeed: 1500,
     speed: 500,
+    fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,
   };

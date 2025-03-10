@@ -1,6 +1,6 @@
 import Main from "@/app/components/courses/Main";
 import { AppAssets } from "@/Constants/assets";
-import { Constants } from "@/Constants/urls";
+import { Constants, fetchBaseUrl } from "@/Constants/urls";
 import apiDataController from "@/controllers/RequestController";
 
 export const dynamic = "force-static";
@@ -17,13 +17,11 @@ export async function generateMetadata({
   const course = await controller.getDataApi(
     `${Constants.singlecourses}?slug_field=${slug[0]}`
   );
+  const baseURL = fetchBaseUrl();
   const replaceLocation = (str: string) =>
     str?.replaceAll(/\{location\}/gi, location);
 
-  <link
-    rel="canonical"
-    href={`https://www.royaldefenceacademy.com/${slug.join("/")}`}
-  />;
+  <link rel="canonical" href={`${baseURL}/${slug.join("/")}`} />;
 
   return {
     title: replaceLocation(course[0]?.meta_title) || "Royal defence Academy",
@@ -34,7 +32,7 @@ export async function generateMetadata({
       replaceLocation(course[0]?.meta_keyword) || "Royal defence Academy",
     openGraph: {
       title: replaceLocation(course[0]?.meta_title) || "Royal defence Academy",
-      url: `https://www.royaldefenceacademy.com/${slug.join("/")}`,
+      url: `${baseURL}/${slug.join("/")}`,
       siteName: "Royal Defence Academy",
       type: "website",
       images: [
@@ -54,7 +52,7 @@ export async function generateMetadata({
       images: [course[0]?.image],
     },
     alternates: {
-      canonical: `https://www.royaldefenceacademy.com/${slug.join("/")}`,
+      canonical: `${baseURL}/${slug.join("/")}`,
     },
     viewport: "width=device-width, initial-scale=1.0",
     robots: {
@@ -63,7 +61,7 @@ export async function generateMetadata({
     },
   };
 }
-export const revalidate = 3600;
+export const revalidate = 600;
 
 export const dynamicParams = true; // or false, to 404 on unknown paths
 
@@ -93,7 +91,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   const [course]: any = await controller.getDataApi(
     `${Constants.singlecourses}?slug_field=${slug[0].toLowerCase()}`
   );
-
+  const baseURL = fetchBaseUrl();
   const faqs =
     course &&
     (await controller.getDataApi(`${Constants.faqsData}?course=${course?.id}`));
@@ -201,7 +199,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         locationdata?.matchedItem?.title
       ) || "Royal defence academy"
     } `,
-    url: `https://www.royaldefenceacademy.com/${slug.join("/")}`,
+    url: `${baseURL}/${slug.join("/")}`,
     description:
       course?.meta_description.replaceAll(
         /\{location\}/gi,
@@ -242,7 +240,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     image: course?.image || AppAssets.logo,
-    "@id": `https://www.royaldefenceacademy.com/${slug.join("/")}`,
+    "@id": `${baseURL}/${slug.join("/")}`,
     name: `Royal Defence Academy - ${
       course?.meta_title.replaceAll(
         /\{location\}/gi,
@@ -296,7 +294,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         `${locationdata?.matchedItem?.title || "india"}`
       )
       .split(","),
-    url: `https://www.royaldefenceacademy.com/${slug.join("/")}`,
+    url: `${baseURL}/${slug.join("/")}`,
     telephone: course?.contact_number,
     additionalType: "https://schema.org/EducationalOrganization",
     email: "royaldefenceacademyjaipur@gmail.com",
@@ -333,7 +331,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     name:
       course?.meta_title?.replaceAll(/\{location\}/gi, location) ||
       "Royal defence academy",
-    url: `https://www.royaldefenceacademy.com/${slug[0]}`,
+    url: `${baseURL}/${slug[0]}`,
 
     image: course?.image,
     description: course?.meta_description?.replaceAll(
@@ -348,7 +346,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     provider: {
       "@type": "Organization",
       name: "Royal Defence Academy",
-      url: "https://www.royaldefenceacademy.com",
+      url: baseURL,
     },
 
     aggregateRating: {
@@ -361,7 +359,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       category:
         course?.title?.replaceAll(/\{location\}/gi, location) ||
         "Royal defence academy",
-      url: `https://www.royaldefenceacademy.com/${slug?.join("/")}`,
+      url: `${baseURL}/${slug?.join("/")}`,
       price: "Paid",
       priceCurrency: "₹",
     },
@@ -417,7 +415,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     publisher: {
       "@type": "Organization",
       name: "Royal Defence Academy",
-      sameAs: "https://www.royaldefenceacademy.com/",
+      sameAs: baseURL,
     },
   };
 
@@ -462,7 +460,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     author: {
       "@type": "Person",
       name: "Royal Defence Academy", // Replace with the author's name
-      url: `https://www.royaldefenceacademy.com/${slug[0]}`,
+      url: `${baseURL}/${slug[0]}`,
     },
     publisher: {
       "@type": "Organization",
@@ -472,9 +470,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     dateModified: currentDate.toISOString(), // Replace with actual dateModified
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id":
-        `https://www.royaldefenceacademy.com/${slug[0]}` ||
-        "https://www.royaldefenceacademy.com", // Replace with the canonical URL
+      "@id": `${baseURL}/${slug[0]}` || `${baseURL}`, // Replace with the canonical URL ,
       image: course?.images.map((item: any) => ({
         "@type": "ImageObject",
         url: item?.Image ?? item?.image ?? item?.imagess,
@@ -526,7 +522,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
                 /\{location\}/gi,
                 item?.title
               ),
-              url: `https://www.royaldefenceacademy.com/${slug[0]}/${item?.title}`,
+              url: `${baseURL}/${slug[0]}/${item?.title}`,
               image: item.Image,
               priceRange: "₹₹₹",
               address: {
@@ -563,9 +559,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
                 author: {
                   "@type": "Person",
                   name: "Royal defence academy",
-                  sameAs: [
-                    `https://www.royaldefenceacademy.com/${slug[0]}/${item?.title}`,
-                  ],
+                  sameAs: [`${baseURL}/${slug[0]}/${item?.title}`],
                 },
                 reviewBody:
                   "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",
@@ -604,7 +598,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
                 /\{location\}/gi,
                 item?.title
               ),
-              url: `https://www.royaldefenceacademy.com/${slug[0]}/${item?.title}`,
+              url: `${baseURL}/${slug[0]}/${item?.title}`,
               image: item.Image,
               priceRange: "₹₹₹",
               address: {
@@ -642,9 +636,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
                 author: {
                   "@type": "Person",
                   name: "Royal defence academy",
-                  sameAs: [
-                    `https://www.royaldefenceacademy.com/${slug[0]}/${item?.title}`,
-                  ],
+                  sameAs: [`${baseURL}/${slug[0]}/${item?.title}`],
                 },
                 reviewBody:
                   "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",
@@ -684,7 +676,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
                 /\{location\}/gi,
                 item?.title
               ),
-              url: `https://www.royaldefenceacademy.com/${slug[0]}/${item?.title}`,
+              url: `${baseURL}/${slug[0]}/${item?.title}`,
               image: item?.Image,
               priceRange: "₹₹₹",
               address: {
@@ -721,9 +713,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
                 author: {
                   "@type": "Person",
                   name: "Royal defence academy",
-                  sameAs: [
-                    `https://www.royaldefenceacademy.com/${slug[0]}/${item?.title}`,
-                  ],
+                  sameAs: [`${baseURL}/${slug[0]}/${item?.title}`],
                 },
                 reviewBody:
                   "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",
@@ -746,7 +736,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
             course?.title?.replaceAll(/\{location\}/gi, location) ||
             "Royal defence academy",
           description: course?.meta_description,
-          url: `https://www.royaldefenceacademy.com/${slug[0]}`,
+          url: `${baseURL}/${slug[0]}`,
           image: course?.image,
           priceRange: "₹₹₹",
           address: {
@@ -783,7 +773,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
             author: {
               "@type": "Person",
               name: "Royal Defence Academy",
-              sameAs: [`https://www.royaldefenceacademy.com/${slug[0]}`],
+              sameAs: [`${baseURL}/${slug[0]}`],
             },
             reviewBody:
               "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",

@@ -44,7 +44,7 @@ export default async function RootLayout({
     </html>
   );
 }
-import { Constants } from "@/Constants/urls";
+import { Constants, fetchBaseUrl } from "@/Constants/urls";
 import apiDataController from "@/controllers/RequestController";
 import Providers from "@/store/Providers";
 import localFont from "next/font/local";
