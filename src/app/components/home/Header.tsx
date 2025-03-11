@@ -14,28 +14,16 @@ import { FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
 export default function Header({ cityList, seodata, courselist }: any) {
   const [showDropdown, setShowDropdown] = useState<any>();
   const [isScrolled, setIsScrolled] = useState(false);
-  // console.log("courselistcourselistcourselistcourselist",courselist)
-  // const homepagedata = useAppSelector((state) => state.HomepageReducer.seoData);
-  // console.log("homepageseo", seodata);
-  const pathmane = usePathname();
-  // console.log("testpathname", pathmane);
-  const [currentLocation, setCurrentLocation] = useState("");
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    const pathSegments = pathname.split("/").filter(Boolean);
-    // console.log("114444");
-
-    setCurrentLocation(pathSegments[1]);
-  }, [pathname]);
-
-  useEffect(() => {
     store.dispatch(setHomepageTitle(seodata.title));
   }, []);
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -55,121 +43,52 @@ export default function Header({ cityList, seodata, courselist }: any) {
     },
     { title: "Blog", hasDropdown: false, href: "/blogs" },
     { title: "News", hasDropdown: false, href: "/news" },
-    { title: "ContactUs", hasDropdown: false, href: "/contactus" },
-    { title: "AboutUs", hasDropdown: false, href: "/aboutus" },
+    { title: "Contact Us", hasDropdown: false, href: "/contactus" },
+    { title: "About Us", hasDropdown: false, href: "/aboutus" },
   ];
+
   const [show, setShow] = useState(false);
   const logo = useAppSelector((state) => state.HomepageReducer.seoData.logo);
+
   return (
     <header
-      className={`sticky top-0    z-50 w-full ${
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ease-in-out ${
         isScrolled
-          ? "bg-primary text-white backdrop-blur-sm "
-          : "bg-white text-primary"
+          ? "bg-blue-800 text-white shadow-lg"
+          : "bg-white text-blue-900"
       }`}
     >
-      <div
-        className={`  md:flex md:items-center md:justify-between flex items-start justify-between w-full shadow-lg ${
-          isScrolled
-            ? "bg-primary text-white backdrop-blur-sm "
-            : "bg-white text-primary"
-        } transition-all ease-in-out`}
-      >
-        {/* Logo */}
-        <div className="flex flex-col  md:w-[50%]">
-          <div className="md:flex md:items-center md:justify-start flex   justify-center items-center   w-full  ">
-            <Image
-              onClick={() => (window.location.href = "/")}
-              src={logo || AppAssets.logo}
-              alt="logo"
-              width={150}
-              height={200}
-              className="object-contain h-14 md:h-24 hover:cursor-pointer   md-w-full w-20"
-              title="Royal Defence Academy"
-            />
-            <span
-              className={`   w-full ${
-                isScrolled ? "text-white" : ""
-              } text-gray-900 hover:text-primary text-[25px] font-rowdies  transition-all duration-300 md:font-bold 2xl:text-6xl xl:text-3xl lg:text-4xl `}
-            >
-              Royal Defence Academy
-            </span>
-          </div>
-          <div className="flex md:hidden     justify-center gap-3  my-2 pl-10 w-full  mx-auto    ">
-            <a
-              href="tel:6377871603"
-              className={`flex items-center justify-center px-8 hover:text-gray-400 transition-colors   2xl:text-3xl     font-bold rounded-md md:p-2 border-4 border-red-700 animate-pulse ${
-                isScrolled ? "bg-red-600 text-white" : "bg-white text-red-600"
-              }`}
-            >
-              <FaPhoneAlt className="mr-2" />
-              Call Us
-            </a>
-            <a
-              href="https://wa.me/+918619453001?text=Hey%20Royal%20Defence%20Academy%2C%20I%20want%20more%20information."
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center justify-center  px-4  hover:text-gray-400 transition-colors  md:text-3xl   font-bold rounded-md md:p-2 border-4 border-green-700 animate-pulse    ${
-                isScrolled
-                  ? "bg-green-600 text-white"
-                  : "bg-white text-green-600"
-              }`}
-            >
-              <FaWhatsapp className="mr-2" />
-              WhatsApp
-            </a>
-          </div>
+      <div className="flex items-center justify-between px-4 py-3 md:px-8 md:py-4">
+        {/* Logo Section */}
+        <div className="flex items-center gap-4">
+          <Image
+            onClick={() => router.push("/")}
+            src={logo || AppAssets.logo}
+            alt="Royal Defence Academy Logo"
+            width={50}
+            height={50}
+            className="cursor-pointer object-contain"
+          />
+          <h1 className="text-lg font-bold uppercase font-Tinos tracking-wide md:text-2xl">
+            Royal Defence Academy
+          </h1>
         </div>
 
         {/* Mobile Menu Icon */}
-        <div className="flex justify-end  md:hidden text-white pr-2 mt-5  ">
+        <div className="flex items-center md:hidden">
           <BiMenu
-            className={`h-5 w-5 ${!show ? "block" : "hidden"} ${
-              isScrolled ? "text-white" : "text-primary"
-            }`}
+            className={`h-6 w-6 cursor-pointer ${show ? "hidden" : "block"}`}
             onClick={() => setShow(true)}
           />
           <CgClose
-            className={`h-5 w-5 ${show ? "block" : "hidden"} text-primary  ${
-              isScrolled ? "text-white" : "text-primary"
-            }`}
+            className={`h-6 w-6 cursor-pointer ${show ? "block" : "hidden"}`}
             onClick={() => setShow(false)}
           />
         </div>
 
-        {/* Desktop Navigation */}
-        <div className="md:flex hidden  2xl:gap-9 gap-3 md:justify-between  md:py-0 pt-3  md:ml-0 ">
-          {/* <a 
-            href="mailto:info@example.com"
-            className="flex items-center hover:text-gray-400 transition-colors"
-          >
-            <FaEnvelope className="mr-2" />
-            Email Us6377871603
-          </a> */}
-          <a
-            href="tel:6377871603"
-            className={`flex items-center justify-center w-28 2xl:w-36   hover:text-gray-400 transition-colors  2xl:text-2xl text-lg  font-bold rounded-md md:px-1 border-4 border-red-700 animate-pulse    ${
-              isScrolled ? "bg-red-600 text-white" : "bg-white text-red-600"
-            }`}
-          >
-            <FaPhoneAlt className="mr-2" />
-            Call Us
-          </a>
-          <a
-            href="https://wa.me/+918619453001?text=Hey%20Royal%20Defence%20Academy%2C%20I%20want%20more%20information."
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center hover:text-gray-400 transition-colors  2xl:text-2xl   font-bold rounded-md md:p-2 border-4 border-green-700 animate-pulse    ${
-              isScrolled ? "bg-green-600 text-white" : "bg-white text-green-600"
-            }`}
-          >
-            <FaWhatsapp className="mr-2" />
-            WhatsApp
-          </a>
-        </div>
-
-        <nav className="hidden md:flex md:items-center md:justify-end   2xl:px-10">
-          {navItems.map((item: any, index: any) => (
+        {/* Navigation for Desktop */}
+        <nav className="hidden md:flex md:items-center md:gap-8">
+          {navItems.map((item, index) => (
             <div
               key={index}
               className="relative group"
@@ -177,40 +96,21 @@ export default function Header({ cityList, seodata, courselist }: any) {
               onMouseLeave={() => item.hasDropdown && setShowDropdown(null)}
             >
               <a
-                href={item?.href}
-                className={`py-1 mr-1  2xl:px-3   text-[1.4rem] rounded-t-md px-1 border-primary  hover:border-1 transition-all ease-linear hover:bg-primary hover:text-white ${
-                  item.hasDropdown
-                    ? "border-transparent"
-                    : "hover:border-primary"
-                } hover:cursor-pointer   font-medium   transition-all duration-200 ${
-                  isScrolled
-                    ? "text-white hover:text-amber-400"
-                    : "text-primary hover:text-blue-600"
-                }
-                ${showDropdown === index ? "border-primary" : ""}
-                `}
+                href={item.href}
+                className="text-base font-medium hover:text-blue-500 transition-colors"
               >
-                {item.title.replaceAll(/(?:\{location\}|\{Location\})/g, "")}
+                {item.title.replaceAll(/\{location\}/gi, "")}
               </a>
 
-              {/* Dropdown */}
               {item.hasDropdown && showDropdown === index && (
-                <div
-                  className={`absolute top-full  left-0 w-96 bg-white  shadow-lg border-t-2 border-primary z-50 rounded-b-md transition-all duration-300`}
-                >
+                <div className="absolute left-0 top-full -mt-1 w-48 bg-white shadow-lg rounded-md">
                   {item.submenu.map((subItem, subIndex) => (
                     <a
                       key={subIndex}
                       href={`/${subItem?.slug_field}`}
-                      className={`block px-4 pb-3 capitalize  text-primary tracking-tight pt-2  hover:cursor-pointer font-semibold hover:bg-primary hover:text-white transition-all ease-linear text-gray-70 ${
-                        isScrolled ? "text-white" : ""
-                      }0 `}
+                      className="block px-4 py-2 text-sm font-poppins hover:bg-blue-500 hover:text-white transition"
                     >
-                      {subItem.title.replaceAll(
-                        /(?:\{location\}|\{Location\})/g,
-                        ""
-                      )}
-                      <hr />
+                      {subItem.title}
                     </a>
                   ))}
                 </div>
@@ -219,39 +119,50 @@ export default function Header({ cityList, seodata, courselist }: any) {
           ))}
         </nav>
 
-        {/* Mobile Dropdown */}
-        <nav
-          className={`absolute top-14 left-0 w-full bg-white px-2 py-1 transition-transform duration-300 ease-in-out md:hidden ${
-            show ? "translate-x-0 " : "-translate-x-[100%]  w-0"
-          }`}
-        >
+        {/* Call to Action Buttons */}
+        <div className="hidden md:flex items-center gap-4">
+          <a
+            href="tel:6377871603"
+            className="flex items-center px-5 py-2 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 shadow-md transition-transform transform hover:scale-105"
+          >
+            <FaPhoneAlt className="mr-2 text-lg" /> Call Us
+          </a>
+          <a
+            href="https://wa.me/+918619453001?text=Hey%20Royal%20Defence%20Academy%2C%20I%20want%20more%20information."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center px-5 py-2 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 shadow-md transition-transform transform hover:scale-105"
+          >
+            <FaWhatsapp className="mr-2 text-lg" /> WhatsApp
+          </a>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden bg-transparent   fixed shadow-lg transition-transform duration-300 ${
+          show ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <nav className="flex flex-col px-4 py-3 border-t   bg-white">
           {navItems.map((item, index) => (
-            <div
-              key={index}
-              className="relative group  "
-              onMouseEnter={() => setShowDropdown(index)}
-              onMouseLeave={() => setShowDropdown(null)}
-            >
+            <div key={index} className="relative group">
               <a
-                href={item?.href}
-                className="text-primary border-b block px-5 py-1 text-lg font-semibold hover:text-blue-600 transition-all duration-200"
+                href={item.href}
+                className="block py-2 text-base font-medium border-b hover:text-blue-500"
               >
                 {item.title}
               </a>
 
-              {/* Dropdown */}
-              {item.hasDropdown && showDropdown === index && (
-                <div className="absolute z-[9999] left-0 mt-2 w-64   text-gray-800 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+              {item.hasDropdown && (
+                <div className="pl-4 ">
                   {item.submenu.map((subItem, subIndex) => (
                     <a
                       key={subIndex}
                       href={`/${subItem?.slug_field}`}
-                      className="block px-5 py-3 capitalize   text-sm font-medium hover:bg-blue-500 hover:text-white rounded-md transition-all duration-200"
+                      className="block py-1 text-sm hover:text-blue-500"
                     >
-                      {subItem.title.replaceAll(
-                        /(?:\{location\}|\{Location\})/g,
-                        ""
-                      )}
+                      {subItem.title}
                     </a>
                   ))}
                 </div>
@@ -259,22 +170,6 @@ export default function Header({ cityList, seodata, courselist }: any) {
             </div>
           ))}
         </nav>
-
-        {/* Placeholder for Right Side Content */}
-
-        {/* Animation for Dropdowns */}
-
-        {/* {
-          <Popup showSidebar={showFlyOut} setShowSidebar={setShowFlyOut}>
-            <div className="h-full w-full">
-              <EnquiryForm
-                list={list}
-                setList={setList}
-                setShowFlyOut={setShowFlyOut}
-              />
-            </div>
-          </Popup>
-        } */}
       </div>
     </header>
   );

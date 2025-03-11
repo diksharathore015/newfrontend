@@ -22,10 +22,12 @@ const CourseDescription: React.FC<DescriptionProps> = ({
   };
   const [count, setcount] = useState<any>(450);
   return (
-    <div className="w-[95%] mx-auto">
+    <div className="  mx-auto">
       <div
         onClick={handleToggle}
-        className={`${isExpanded ? "" : ""} transition-all duration-300`}
+        className={`${
+          isExpanded ? "" : ""
+        } text-center transition-all duration-300`}
       >
         <RawHtmlRenderer
           htmlContent={description.substring(0, count)}

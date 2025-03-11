@@ -18,19 +18,27 @@ const StudyLocation = ({ data }) => {
 
   return (
     <>
-      <div className="px-11 w-full py-16 bg-gray-50">
+      <div className="md:px-11 mt-20 w-full  relative py-20 bg-white border-blue-800 border-2">
         {/* Section Title */}
-        <h2 className="text-4xl font-bold text-center mb-10 text-gray-900">
+        <h2 className="text-2xl md:text-4xl  pb-10 font-extrabold text-center font-Montserrat italic capitalize   text-blue-800">
           Discover Top Study Hubs In India
         </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-6 gap-8 w-full">
+        <div className="absolute md:block hidden -z-1 top-28">
+          <Image
+            src={AppAssets.indiamap}
+            width={1900}
+            height={1900}
+            className="w-full h-full"
+            alt="Royal Defence academy"
+          />
+        </div>
+        <div className="grid grid-cols-2 bg-white md:grid-cols-6 lg:grid-cols-7 md:gap-8 w-full">
           {data.map((hub, index) => (
             <div
               onMouseEnter={() => setShow(index)} // Set the hovered index
               onMouseLeave={() => setShow(null)} // Reset hover state when mouse leaves
               key={index}
-              className="relative 2xl:py-3 hover:cursor-pointer bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform transition duration-300 hover:scale-105"
+              className="relative 2xl:py-3 hover:cursor-pointer overflow-hidden   hover:shadow-xl transform transition duration-300 hover:scale-105"
             >
               {/* Image */}
               <div
@@ -47,18 +55,18 @@ const StudyLocation = ({ data }) => {
                     alt={hub?.image_alt || hub?.title}
                     width={150}
                     height={150}
-                    className="w-full h-full rounded-md object-cover"
+                    className="w-full h-full -md object-cover"
                   />
                 )}
               </div>
 
               {/* Overlay on Hover */}
               {show != index && (
-                <div className="absolute z-10 w-full h-full top-0 text-center bg-gradient-to-b from-gray-800 via-gray-900 to-gray-500 hover:opacity-0  transition duration-300 text-white font-bold text-3xl uppercase flex flex-col items-center justify-center">
+                <div className="absolute  bg-white/60 hover:bg-white  backdrop-blur-md z-10 w-full h-full top-0 text-center  hover:opacity-0 capitalize  transition duration-300 text-blue-800 font-bold text-xl md:text-2xl   flex flex-col items-center justify-center">
                   {hub?.title}
                   <label
                     htmlFor="info"
-                    className="text-sm mt-4 bg-white text-gray-600 p-2 rounded-md"
+                    className="text-sm mt-2 mb-2 bg-white text-blue-900 p-2 -md"
                   >
                     {" "}
                     Get More Details
@@ -72,7 +80,7 @@ const StudyLocation = ({ data }) => {
                         )
                       }
                       // href={`/${item?.slug_field}/${data[index]?.title}`}
-                      className="block bg-gray-100 font-semibold hover:bg-gray-200 text-gray-700 px-2 py-1 rounded-lg  text-xs transition-all duration-200 hover:shadow-lg mt-2 mx-1"
+                      className="block bg-white font-semibold hover:bg-white text-blue-800 px-1 text-xs transition-all duration-200 hover:shadow-lg mt-1 mx-1"
                     >
                       {" "}
                       {item?.short_title} in {data[index]?.title}
@@ -83,52 +91,12 @@ const StudyLocation = ({ data }) => {
 
               {/* Card Content */}
               <div className="p-2">
-                <h3 className="text-xl text-center uppercase font-semibold text-primary mb-2">
+                <h3 className="text-xl text-center uppercase font-Montserrat  text-blue-800 mb-2">
                   {hub?.title}
                 </h3>
                 <p className="text-gray-600 text-sm line-clamp-2">
                   {hub?.short_description}
                 </p>
-              </div>
-              <div className="flex justify-center items-center space-x-4 mt-2">
-                {/* Facebook Button */}
-                {hub?.facebook_link && (
-                  <a
-                    href={hub?.facebook_link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button className="bg-green-500 text-white p-3 rounded-md hover:bg-green-600 transition duration-200 ease-in-out transform hover:scale-110">
-                      <BsFacebook className="h-6 w-6" />
-                    </button>
-                  </a>
-                )}
-
-                {/* Phone Button */}
-                {hub?.contact_number && (
-                  <a
-                    href={`tel:${hub?.contact_number}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button className="bg-gray-900 text-red-500 p-3 rounded-md hover:bg-primary transition duration-200 ease-in-out transform hover:scale-110">
-                      <IoIosCall className="h-6 w-6" />
-                    </button>
-                  </a>
-                )}
-
-                {/* Instagram Button */}
-                {hub?.instagram_link && (
-                  <a
-                    href={hub?.instagram_link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button className="bg-pink-600 text-white p-3 rounded-md hover:bg-pink-700 transition duration-200 ease-in-out transform hover:scale-110">
-                      <BsInstagram className="h-6 w-6" />
-                    </button>
-                  </a>
-                )}
               </div>
             </div>
           ))}
@@ -140,28 +108,28 @@ const StudyLocation = ({ data }) => {
           onClick={closePopup}
         >
           <div
-            className="relative bg-white rounded-2xl shadow-xl w-full max-w-lg transition-all duration-500 transform scale-100 opacity-100"
+            className="relative bg-white -2xl   w-full max-w-lg transition-all duration-500 transform scale-100 opacity-100"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="absolute top-4 right-4 bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-800 rounded-full w-8 h-8 flex items-center justify-center"
+              className="absolute top-4 right-4 bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-800 -full w-8 h-8 flex items-center justify-center"
               onClick={closePopup}
             >
               ✕
             </button>
 
             {/* Top heading with gradient background */}
-            <h3 className="text-2xl font-bold text-white text-center mb-6 p-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-t-lg">
+            <h3 className="text-2xl font-bold text-white text-center mb-6 p-4 bg-gradient-to-r from-indigo-500 to-purple-600 -t-lg">
               Top Courses in {data[index]?.title}
             </h3>
 
-            <ol className="space-y-4 px-3">
+            <ol className="space-y-4 px-3 overflow-y-auto">
               {data[index]?.courses.map((item, i) => (
                 <li key={i}>
                   <Link
                     target="_blank"
                     href={`/${item?.slug_field}/${data[index]?.title}`}
-                    className="block bg-gray-100 font-medium hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg shadow transition-all duration-200 hover:shadow-lg"
+                    className="block bg-gray-100 font-medium hover:bg-gray-200 text-gray-700 px-4 py-2 -lg   transition-all duration-200 hover:shadow-lg"
                   >
                     {item?.short_title} in {data[index]?.title}
                   </Link>
@@ -171,7 +139,7 @@ const StudyLocation = ({ data }) => {
             <div className="mt-6 text-center mx-3 flex items-center justify-center">
               <button
                 onClick={closePopup}
-                className="bg-gradient-to-r from-indigo-500 to-purple-600 mb-2 w-full text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors duration-200"
+                className="bg-gradient-to-r from-indigo-500 to-purple-600 mb-2 w-full text-white px-4 py-2 -lg   hover:bg-blue-700 transition-colors duration-200"
               >
                 Close
               </button>

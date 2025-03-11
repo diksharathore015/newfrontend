@@ -12,7 +12,7 @@ const FAQ = ({ faqsData, locationdatas = "india" }: any) => {
 
   return (
     <div className=" md:w-[95%]  mx-auto py-12 px-6">
-      <h2 className="text-3xl font-bold text-center mb-3 text-gray-900">
+      <h2 className="text-2xl md:text-4xl  pb-10 font-extrabold text-center font-Montserrat italic capitalize   text-blue-800">
         Frequently Asked Questions
       </h2>
       <div className="  ">

@@ -145,7 +145,7 @@ export default async function Home() {
     controller.getDataApi(Constants.homepagefeaturecourses),
   ]);
   // const loc = await controller.GetApi("http://ip-api.com/json/");
-  // console.log("seoDataseoData", seoData);
+  console.log("seoDataseoData", seoData);
   const baseURL = await fetchBaseUrl();
   const homepageSchema = {
     "@context": "https://schema.org",
@@ -413,9 +413,6 @@ export default async function Home() {
         {bannerData && studentsData && (
           <Banner data={bannerData} studentsData={studentsData} />
         )}
-        {studentsData && <TopStudents students={studentsData} />}
-        {seoData[0]?.length > 0 && <HomeInfo seoData={seoData[0]} />}
-        {linescrollBarData && <LineSlider data={linescrollBarData} />}
         {homepagecontent.length > 0 && (
           <div className="md:w-[95%] md:mx-auto mx-1">
             <CourseDescription
@@ -424,8 +421,10 @@ export default async function Home() {
             />
           </div>
         )}
+        {studentsData && <TopStudents students={studentsData} />}
+        {linescrollBarData && <LineSlider data={linescrollBarData} />}
+        {seoData && <HomeInfo seoData={seoData[0]} />}{" "}
         {/* <SocialMediaIcons data={bannerData[0]} /> */}
-
         <div className="md:my-16">
           {homepagefeaturecourses &&
             homepagefeaturecourses.map((item: any, i: number) => (
@@ -433,7 +432,6 @@ export default async function Home() {
             ))}
         </div>
         {blogsData && <Blogs data={blogsData} />}
-
         {stateshomepageData && <StudyLocation data={stateshomepageData} />}
         {faqsData && (
           <FAQ faqsData={faqsData.filter((item: any) => item.course == null)} />

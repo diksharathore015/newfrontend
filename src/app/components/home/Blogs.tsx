@@ -8,8 +8,8 @@ const Blogs = ({ data }: any) => {
 
   return (
     <>
-      <div className="p-8 py-16">
-        <h2 className="text-4xl font-bold font-roboto mb-4 text-center text-gray-900">
+      <div className="mt-20  ">
+        <h2 className="text-2xl md:text-4xl font-extrabold text-center font-Montserrat italic capitalize   text-blue-800">
           Popular Blogs
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -46,7 +46,7 @@ const Blogs = ({ data }: any) => {
         <div className="flex justify-center mt-6">
           <button
             onClick={() => router.push("/blogs")}
-            className="bg-gray-800 text-white px-6 py-2 rounded-md text-lg font-medium hover:bg-gray-700 transition"
+            className="bg-blue-900 text-white px-6 py-2 text-lg font-medium hover:bg-gray-700 transition"
           >
             View All Blogs
           </button>

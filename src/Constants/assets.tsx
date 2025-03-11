@@ -41,11 +41,12 @@ import offer3 from "../../public/offers/offer5.png";
 
 import offer5 from "../../public/offers/offer4.jpeg";
 import offer6 from "../../public/offers/offer5.png";
-
+import indiamap from "../../public/india.jpg";
 export class AppAssets {
   static s1 = s1;
   static s2 = s2;
 
+  static indiamap = indiamap;
   static s3 = s3;
   static offer1 = offer1;
   static offer2 = offer2;

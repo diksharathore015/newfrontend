@@ -19,7 +19,7 @@ export default function TopStudents({ students }: any) {
 
   return (
     <>
-      <div className="py-2 bg-gradient-to-b from-amber-500 via-white to-lime-500 w-full  ">
+      <div className="pt-20 bg-white w-full  ">
         <Head>
           {students && (
             <script
@@ -62,15 +62,12 @@ export default function TopStudents({ students }: any) {
           )}
         </Head>
 
-        <h2
-          className="text-xl md:text
-      -4xl font-bold text-center font-rowdies  text-black"
-        >
+        <h2 className="text-2xl md:text-3xl font-extrabold text-center font-Montserrat italic capitalize   text-blue-800">
           {/*         Our Brightest Achievers */}
           {/* {data} */}
-          {Jdata?.home?.title}
+          &quot; {Jdata?.home?.title} &quot;
         </h2>
-        <div className="w-full md:px-4 px-2">
+        <div className="w-full md:px-0 px-2 pt-5">
           {/* {data ?  */}
 
           {!loading ? (
@@ -104,7 +101,7 @@ export default function TopStudents({ students }: any) {
                 >
                   <div className="group flex flex-col items-center justify-center w-full text-center relative">
                     {/* Image Container */}
-                    <div className="relative   w-full  h-96    md:w-64 md:h-64 bg-transparent shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 rounded-md flex items-center justify-center overflow-hidden">
+                    <div className="relative   w-full  h-96    md:w-64 md:h-64 bg-transparent shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105   flex items-center justify-center overflow-hidden">
                       {item.Image && (
                         <Image
                           title={
@@ -124,7 +121,7 @@ export default function TopStudents({ students }: any) {
                           }
                           width={150}
                           height={150}
-                          className="object-fill h-96 p-1 rounded-md bg-gradient-to-r from-red-400 to-pink-500  md:mt-0 mt-1 shadow-md transition-transform duration-300 ease-in-out transform hover:scale-105  w-full  md:w-64 md:h-64  mx-auto"
+                          className="object-fill h-96 p-1 bg-gradient-to-r from-red-400 to-pink-500  md:mt-0 mt-1 shadow-md transition-transform duration-300 ease-in-out transform hover:scale-105  w-full  md:w-64 md:h-64  mx-auto"
                         />
                       )}
                       <p className="absolute inset-x-0 bottom-0 bg-blue-50 font-semibold leading-4   px-1 text-[8px] md:text-[12px] text-primary   opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out text-center capitalize">

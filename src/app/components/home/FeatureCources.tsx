@@ -18,12 +18,12 @@ export default function FeatureCourses({ data }: any) {
 
   return (
     <>
-      <div className="md:py-16 py-5 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 w-full md:px-8 px-2 overflow-x-hidden ">
-        <div className="text-lg md:text-4xl font-extrabold leading-relaxed  hover:cursor-pointer hover:underline text-gray-900 mb-6   uppercase">
+      <div className="mt-20 py-20  w-full md:px-8 px-2 overflow-x-hidden bg-blue-800 text-white">
+        <div className="text-2xl md:text-4xl font-extrabold font-Montserrat italic capitalize    ">
           <Link
             target="_blank"
             href={`/${data?.slug_field}`}
-            className="underline px-1"
+            className=" font-Montserrat px-1 text-white hover:text-gray-500"
           >
             {data?.title.replaceAll(/(?:\{location\}|\{Location\})/g, "")}
           </Link>

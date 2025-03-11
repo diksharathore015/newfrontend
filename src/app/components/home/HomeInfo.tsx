@@ -8,17 +8,17 @@ const HomeInfo = ({ seoData }: any) => {
   const router = useRouter();
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 via-white to-blue-50 md:py-10">
-      <div className="  mx-auto md:px-4">
+    <div className="bg-white mt-20 ">
+      <div className="  mx-auto 4">
         {/* Header Section */}
-        <div className="bg-white shadow-lg rounded-lg md:p-8 p-4">
-          <h1 className=" text-xl md:text-4xl font-extrabold text-gray-800 md:text-center mb-6">
+        <div className="bg-white    ">
+          <h1 className="text-2xl md:text-4xl font-extrabold text-center font-Montserrat italic capitalize   text-blue-800">
             {data?.title}
           </h1>
           <div className="border-t border-gray-300 mb-6"></div>
 
           {/* Description Section */}
-          <p className="text-gray-600 md:text-lg text-sm leading-relaxed ">
+          <p className="text-gray-600 md:text-sm  text-sm leading-relaxed ">
             {data?.description}
           </p>
 
@@ -26,7 +26,7 @@ const HomeInfo = ({ seoData }: any) => {
           <div className="md:mt-8  mt-3 md:text-center">
             <button
               onClick={() => router.push("/course")}
-              className="bg-gray-900 hover:bg-gray-700 text-white font-semibold md:py-3 md:px-6 px-2 py-1 rounded-lg shadow-md transition-transform transform hover:scale-105"
+              className="bg-blue-800 hover:bg-gray-700 text-white text-sm font-semibold md:py-3 md:px-6 px-2 py-1  transition-transform transform hover:scale-105"
             >
               Explore Courses
             </button>
