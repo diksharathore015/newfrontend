@@ -17,7 +17,7 @@ export async function generateMetadata({
   const course = await controller.getDataApi(
     `${Constants.singlecourses}?slug_field=${slug[0]}`
   );
-  const baseURL = fetchBaseUrl();
+  const baseURL = await fetchBaseUrl();
   const replaceLocation = (str: string) =>
     str?.replaceAll(/\{location\}/gi, location);
 
@@ -91,7 +91,8 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   const [course]: any = await controller.getDataApi(
     `${Constants.singlecourses}?slug_field=${slug[0].toLowerCase()}`
   );
-  const baseURL = fetchBaseUrl();
+  const baseURL = await fetchBaseUrl();
+
   const faqs =
     course &&
     (await controller.getDataApi(`${Constants.faqsData}?course=${course?.id}`));

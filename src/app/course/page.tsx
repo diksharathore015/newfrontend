@@ -21,7 +21,7 @@ export async function generateMetadata({
       if (!res.ok) throw new Error("Failed to fetch  metadata");
       return res.json();
     });
-    const baseURL = fetchBaseUrl();
+    const baseURL = await fetchBaseUrl();
     // Return metadata
     // console.log("testseocoursedata", data);
     <link rel="canonical" href={`${baseURL}/course`} />;
@@ -59,7 +59,7 @@ export async function generateMetadata({
 export default async function Page() {
   const controller = new apiDataController();
   // Fetch courses
-  const baseURL = fetchBaseUrl();
+  const baseURL = await fetchBaseUrl();
   const data = await controller.getDataApi(Constants.courses);
   const seodata = await fetch(`${Constants.coursesSeoData}`).then((res) => {
     if (!res.ok) throw new Error("Failed to fetch  metadata");
