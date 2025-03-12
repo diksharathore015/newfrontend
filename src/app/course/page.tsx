@@ -247,7 +247,7 @@ export default async function Page() {
       <Settitle data={seodata[0]?.meta_title} />
       {data &&
         data.map((item: any, i: number) => (
-          <div className="mb-10">
+          <div className="mb-10" key={i}>
             <FeatureCourses data={item} key={i} test={item} />
           </div>
         ))}
