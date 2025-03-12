@@ -33,8 +33,7 @@ export default function SubCategoryCard({ data }: any) {
       {/* Contact Button */}
       <div className="mt-4">
         <a
-        
-          href={`https://wa.me/${data.contact_number}`}
+          href={`https://wa.me/${data?.contact_number}`}
           target="_blank"
           rel="noopener noreferrer"
           className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg block text-center"

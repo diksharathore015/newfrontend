@@ -26,19 +26,19 @@ export async function generateMetadata({
     // console.log("testseocoursedata", data);
     <link rel="canonical" href={`${baseURL}/course`} />;
     return {
-      title: data[0].meta_title,
-      description: data[0].meta_description,
-      keywords: data[0].meta_keywords, // Custom field (not officially supported but still useful for manual meta tags)
+      title: data[0]?.meta_title,
+      description: data[0]?.meta_description,
+      keywords: data[0]?.meta_keywords, // Custom field (not officially supported but still useful for manual meta tags)
       openGraph: {
-        title: data[0].og_title,
-        description: data[0].og_description,
-        images: [data[0].og_image],
+        title: data[0]?.og_title,
+        description: data[0]?.og_description,
+        images: [data[0]?.og_image],
       },
       twitter: {
-        card: data[0].twitter_card,
-        title: data[0].og_title,
-        description: data[0].og_description,
-        images: [data[0].og_image],
+        card: data[0]?.twitter_card,
+        title: data[0]?.og_title,
+        description: data[0]?.og_description,
+        images: [data[0]?.og_image],
       },
       alternates: {
         canonical: `${baseURL}/course`,
@@ -206,12 +206,12 @@ export default async function Page() {
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "Booking & Support",
-        telephone: course.contact_number,
+        telephone: course?.contact_number,
       },
       areaServed: { "@type": "Country", name: "India" },
       priceRange: "₹500-₹20000",
       url: `${baseURL}/course`,
-      telephone: course.contact_number,
+      telephone: course?.contact_number,
       email: "royaldefenceacademyjaipur@gmail.com",
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
