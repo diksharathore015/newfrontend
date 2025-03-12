@@ -215,7 +215,7 @@ export default function Main({
 
         {!isLoading ? (
           <div>
-            <h1 className="md:text-5xl text-lg tracking-normal mt-3  capitalize font-extrabold text-gray-900  mx-auto w-[95%]">
+            <h1 className="md:text-5xl text-lg tracking-normal mt-3  capitalize font-extrabold font-Montserrat text-blue-950  mx-auto w-[100%]">
               {randomTitle
                 .replaceAll(
                   /(?:\{location\}|\{Location\}|\{royal defence \})/g,
@@ -263,7 +263,7 @@ export default function Main({
                   className="flex justify-center items-center w-full my-1 md:my-4 overflow-x-hidden"
                 >
                   <div className="group overflow-hidden flex flex-col items-center justify-center w-full text-center relative">
-                    <div className="relative w-full md:w-64 md:h-64 bg-transparent shadow-lg rounded-lg">
+                    <div className="relative w-full md:w-64 md:h-64 bg-transparent  ">
                       <Image
                         priority={false} // Lazy loading
                         quality={100}
@@ -322,9 +322,9 @@ export default function Main({
                         }
                         width={170}
                         height={170}
-                        className="object-fill bg-gradient-to-r from-red-400 to-pink-500 p-1 rounded-lg shadow-md w-full md:w-64 md:h-64 mx-auto"
+                        className="object-fill bg-blue-800 p-1 -lg -md w-full md:w-64 md:h-64 mx-auto"
                       />
-                      <p className="absolute inset-x-0 bottom-0 bg-white p-1 text-[12px] md:text-[12.5px] leading-[14px] text-gray-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md capitalize">
+                      <p className="absolute inset-x-0 bottom-0 bg-white p-1 text-[12px] md:text-[12.5px] leading-[14px] text-gray-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 -md capitalize">
                         {item?.short_description?.replaceAll(
                           /\{location\}/gi,
                           locationType?.matchedItem?.title.replaceAll(
@@ -334,7 +334,7 @@ export default function Main({
                         )}
                       </p>
                     </div>
-                    <p className="md:mt-2 mt-2 px-2 text-xs md:text-xs text-center text-gray-400 font-semibold capitalize tracking-wide">
+                    <p className="md:mt-2 mt-2 px-2 text-xs md:text-xs text-center text-blue-800 font-semibold capitalize tracking-wide">
                       {item?.meta_title
                         ?.replaceAll(/\{location\}/gi, newLocation || "india")
                         .replaceAll(
@@ -358,10 +358,10 @@ export default function Main({
 
             {metatitle && (
               <div>
-                <h2 className="md:text-xl text-sm  font-Cormorant font-semibold font-sans w-[95%] mx-auto">
+                <h2 className="md:text-xl text-sm font-semibold font-sans w-[100%] mx-auto">
                   {metatitle}
                 </h2>
-                <p className="text-normal font-sans w-[95%] mx-auto">
+                <p className="text-normal font-sans  mx-auto">
                   {data?.meta_description
                     .replaceAll(
                       /(?:\{location\}|\{Location\})/g,
@@ -380,7 +380,7 @@ export default function Main({
               </div>
             )}
             {!currentLocation && (
-              <h3 className="w-[95%] mx-auto py-3 md:text-xl text-sm capitalize">
+              <h3 className="  mx-auto py-3 md:text-xl text-sm capitalize">
                 {data?.short_description
                   ? data?.short_description
                       .replaceAll(
@@ -435,14 +435,14 @@ export default function Main({
               </div>
             )}
             {
-              <div className=" md:w-[98%]   mx-auto md:grid  md:grid-cols-5 grid grid-cols-1 md:mx-auto md:gap-y-9 r  my-10">
+              <div className=" md:w-full   mx-auto md:grid  md:grid-cols-5 grid grid-cols-1 md:mx-auto md:gap-y-9 r  my-10">
                 {currentLocation
                   ? multipleImage.map((item: any, i: any) => (
                       <div
                         key={i}
                         className="group flex flex-col   w-full   items-center justify-center   text-center relative"
                       >
-                        <div className="relative mb-2 md:px-3 w-full  bg-transparent shadow-lg transform md:hover:scale-105 rounded-lg">
+                        <div className="relative mb-2 md:px-3 w-full  bg-transparent -lg transform md:hover:scale-105 -lg">
                           {
                             <Image
                               priority={false} // Keep `false` for lazy loading
@@ -543,10 +543,10 @@ export default function Main({
                               }
                               width={170}
                               height={170}
-                              className="object-fill   bg-gradient-to-r from-red-400 to-pink-500  hover:cursor-pointer rounded-lg shadow-md transform md:hover:scale-105 w-[98%] md:h-full  md:px-1 p-2 mx-auto "
+                              className="object-fill   bg-gradient-to-r from-red-400 to-pink-500  hover:cursor-pointer -lg -md transform md:hover:scale-105 w-[98%] md:h-full  md:px-1 p-2 mx-auto "
                             />
                           }
-                          <p className="absolute inset-x-0 bottom-2 font-bold  md:bottom-0 bg-white p-1 text-[12px] md:text-[12.5px] leading-[14px] text-gray-600  opacity-0 group-hover:opacity-100 transition-opacity duration-300  rounded-md capitalize  flex justify-start ">
+                          <p className="absolute inset-x-0 bottom-2 font-bold  md:bottom-0 bg-white p-1 text-[12px] md:text-[12.5px] leading-[14px] text-gray-600  opacity-0 group-hover:opacity-100 transition-opacity duration-300  -md capitalize  flex justify-start ">
                             {item?.description
                               ? item?.meta_description
                                   .replaceAll(
@@ -595,7 +595,7 @@ export default function Main({
                           key={i}
                           className="group flex flex-col md:gap-2 w-full     items-center justify-center   text-center relative"
                         >
-                          <div className="relative mb-5 md:mb-2  w-[92%]  md:mx-2 bg-transparent shadow-lg transform md:hover:scale-105 rounded-lg">
+                          <div className="relative mb-5 md:mb-2    md:mx-2 bg-transparent -lg transform md:hover:scale-105  ">
                             {
                               <Image
                                 priority={false} // Keep `false` for lazy loading
@@ -641,10 +641,10 @@ export default function Main({
                                 }
                                 width={170}
                                 height={170}
-                                className="md:object-fill  bg-gradient-to-r from-red-400 to-pink-500 p-1 hover:cursor-pointer rounded-lg shadow-md transform  md:hover:scale-105 w-full mx-auto "
+                                className="md:object-fill  bg-gradient-to-r from-red-400 to-pink-500 p-1 hover:cursor-pointer -lg -md transform  md:hover:scale-105 w-full mx-auto "
                               />
                             }
-                            <p className="absolute inset-x-0 bottom-1  font-bold md:bottom-0  bg-white p-1 text-[14px] md:text-[15px] leading-[14px] text-gray-600 mx-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300  rounded-md capitalize  flex justify-start ">
+                            <p className="absolute inset-x-0 bottom-1  font-bold md:bottom-0  bg-white p-1 text-[14px] md:text-[15px] leading-[14px] text-gray-600 mx-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300  -md capitalize  flex justify-start ">
                               {item?.description
                                 ? item?.meta_description.replaceAll(
                                     /(?:\{location\}|\{Location\})/g,
@@ -695,7 +695,7 @@ export default function Main({
               />
             )}
             {
-              <div className="mx-auto w-[95%] my-6">
+              <div className="mx-auto w-full my-6">
                 <CourseTable
                   locationdatas={locationdatas}
                   course={data}
@@ -710,7 +710,7 @@ export default function Main({
             )}
 
             {
-              <div className="mx-auto w-[95%] my-6">
+              <div className="mx-auto w-full my-6">
                 <SubAreaList
                   locationdatas={locationdatas}
                   imageArr={data?.images}

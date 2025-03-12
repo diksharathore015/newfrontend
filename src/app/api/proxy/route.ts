@@ -10,7 +10,7 @@ export async function POST(req: Request) {
       'Access-Control-Allow-Headers': 'Content-Type', // Allow specific headers
     };
     // Example: Forwarding the request to an external API
-    const apiUrl = "http://13.203.78.165:8000/enquiry/"; // Replace with your API URL
+    const apiUrl = "http://43.204.144.192:8000/enquiry/"; // Replace with your API URL
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {

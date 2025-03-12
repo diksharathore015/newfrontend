@@ -54,8 +54,8 @@ export default function Header({ cityList, seodata, courselist }: any) {
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ease-in-out ${
         isScrolled
-          ? "bg-blue-800 text-white shadow-lg"
-          : "bg-white text-blue-900"
+          ? "  bg-blue-700 text-white  shadow-lg"
+          : "bg-blue-800 text-white "
       }`}
     >
       <div className="flex items-center justify-between px-4 py-3 md:px-8 md:py-4">

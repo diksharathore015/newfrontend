@@ -5,7 +5,7 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const page = searchParams.get("page") || "1";
 
-    const apiUrl = `http://13.203.78.165:8000/cities-with-courses/?page=${page}`;
+    const apiUrl = `http://43.204.144.192:8000/cities-with-courses/?page=${page}`;
 
     const response = await fetch(apiUrl, {
       method: "GET",

@@ -74,7 +74,7 @@ const SubAreaList: React.FC<SubAreaProps> = ({
             .map((item, i) => (
               <div
                 key={i}
-                className="border rounded-lg shadow-md p-4 md:flex md:justify-start  md:items-start   gap-4 bg-white w-full"
+                className="border  p-4 md:flex md:justify-start  md:items-start   gap-4 bg-white w-full"
               >
                 {/* Left Section: Image */}
                 <div
@@ -94,7 +94,7 @@ const SubAreaList: React.FC<SubAreaProps> = ({
                     alt={
                       item?.image_alt || item?.title || "Royal Defence Academy"
                     }
-                    className="w-full h-full rounded object-cover"
+                    className="w-full h-full   object-cover"
                   />
                 </div>
 
@@ -117,7 +117,7 @@ const SubAreaList: React.FC<SubAreaProps> = ({
                           )
                           .replaceAll("-", " ")
                       : data?.short_title}{" "}
-                    <span className="text-blue-500 text-sm font-medium bg-blue-100 px-2 rounded">
+                    <span className="text-blue-500 text-sm font-medium bg-blue-100 px-2 ">
                       Verified
                     </span>
                   </h2>
@@ -140,10 +140,10 @@ const SubAreaList: React.FC<SubAreaProps> = ({
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-2">
-                    <h2 className="bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded-md">
+                    <h2 className="bg-gray-200 text-gray-800 text-xs px-2 py-1 -md">
                       Tutorials For {data?.short_title}
                     </h2>
-                    <span className="bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded-md">
+                    <span className="bg-gray-200 text-gray-800 text-xs px-2 py-1 -md">
                       Coaching
                     </span>
                   </div>
@@ -152,7 +152,7 @@ const SubAreaList: React.FC<SubAreaProps> = ({
                   <div className="md:flex md:items-center gap-2 ">
                     <Link
                       href={`https://wa.me/${item?.contact_number}`}
-                      className="bg-green-500 text-white text-sm px-4 py-2 mb-1 rounded flex items-center justify-center gap-2"
+                      className="bg-green-500 text-white text-sm px-4 py-2 mb-1  flex items-center justify-center gap-2"
                     >
                       {item?.contact_number || data?.contact_number}
                       <FaWhatsapp />
@@ -161,7 +161,7 @@ const SubAreaList: React.FC<SubAreaProps> = ({
                       onClick={() => {
                         store.dispatch(setShowForm(true));
                       }}
-                      className="bg-blue-500 text-white text-sm px-4 py-2 mb-1 rounded md:w-auto w-full "
+                      className="bg-blue-500 text-white text-sm px-4 py-2 mb-1  md:w-auto w-full "
                     >
                       Send Enquiry
                     </button>
@@ -170,7 +170,7 @@ const SubAreaList: React.FC<SubAreaProps> = ({
                       onClick={() => {
                         window.open(item?.youtube_link);
                       }}
-                      className="bg-red-800 text-white text-sm px-4 py-2 mb-1 rounded flex items-center  justify-center gap-2  md:w-auto w-full"
+                      className="bg-red-800 text-white text-sm px-4 py-2 mb-1  flex items-center  justify-center gap-2  md:w-auto w-full"
                     >
                       <FaYoutube size={18} /> {/* YouTube Icon */}
                       YouTube
@@ -179,7 +179,7 @@ const SubAreaList: React.FC<SubAreaProps> = ({
                       onClick={() => {
                         window.open(item?.instagram_link);
                       }}
-                      className="bg-red-400 text-white text-sm px-4 py-2 rounded mb-1 flex items-center  justify-center  gap-2  md:w-auto w-full"
+                      className="bg-red-400 text-white text-sm px-4 py-2  mb-1 flex items-center  justify-center  gap-2  md:w-auto w-full"
                     >
                       <FaInstagram size={18} /> {/* Instagram Icon */}
                       Instagram

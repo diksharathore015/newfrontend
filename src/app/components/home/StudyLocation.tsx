@@ -38,11 +38,11 @@ const StudyLocation = ({ data }) => {
               onMouseEnter={() => setShow(index)} // Set the hovered index
               onMouseLeave={() => setShow(null)} // Reset hover state when mouse leaves
               key={index}
-              className="relative 2xl:py-3 hover:cursor-pointer overflow-hidden   hover:shadow-xl transform transition duration-300 hover:scale-105"
+              className="relative 2xl:py-3 bg-white hover:cursor-pointer overflow-hidden   hover:shadow-xl transform transition duration-300 hover:scale-105"
             >
               {/* Image */}
               <div
-                className="relative h-40 w-40 flex justify-center mx-auto "
+                className="relative bg-white h- w-40 flex justify-center mx-auto "
                 onClick={() => {
                   setIndex(index);
                   setShowPopup(true);
@@ -62,11 +62,11 @@ const StudyLocation = ({ data }) => {
 
               {/* Overlay on Hover */}
               {show != index && (
-                <div className="absolute  bg-white/60 hover:bg-white  backdrop-blur-md z-10 w-full h-full top-0 text-center  hover:opacity-0 capitalize  transition duration-300 text-blue-800 font-bold text-xl md:text-2xl   flex flex-col items-center justify-center">
+                <div className="absolute border-blue-800 border bg-white/60 hover:bg-white  backdrop-blur-md z-10 w-full h-full top-0 text-center  hover:opacity-0 capitalize  transition duration-300 text-blue-800 font-bold text-xl md:text-2xl   flex flex-col items-center justify-center">
                   {hub?.title}
                   <label
                     htmlFor="info"
-                    className="text-sm mt-2 mb-2 bg-white text-blue-900 p-2 -md"
+                    className="text-sm mt-2 mb-2 bg- text-blue-900 p-2 -md"
                   >
                     {" "}
                     Get More Details
@@ -90,7 +90,7 @@ const StudyLocation = ({ data }) => {
               )}
 
               {/* Card Content */}
-              <div className="p-2">
+              <div className="p-2 bg-white">
                 <h3 className="text-xl text-center uppercase font-Montserrat  text-blue-800 mb-2">
                   {hub?.title}
                 </h3>

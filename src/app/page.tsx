@@ -413,15 +413,15 @@ export default async function Home() {
         {bannerData && studentsData && (
           <Banner data={bannerData} studentsData={studentsData} />
         )}
+        {studentsData && <TopStudents students={studentsData} />}
         {homepagecontent.length > 0 && (
-          <div className="md:w-[95%] md:mx-auto mx-1">
+          <div className="md:w-[100%] pt-10 md:mx-auto mx-1">
             <CourseDescription
               description={homepagecontent[0].details}
               currentLocation={""}
             />
           </div>
         )}
-        {studentsData && <TopStudents students={studentsData} />}
         {linescrollBarData && <LineSlider data={linescrollBarData} />}
         {seoData && <HomeInfo seoData={seoData[0]} />}{" "}
         {/* <SocialMediaIcons data={bannerData[0]} /> */}

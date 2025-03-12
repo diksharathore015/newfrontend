@@ -19,7 +19,7 @@ export default function TopStudents({ students }: any) {
 
   return (
     <>
-      <div className="pt-20 bg-white w-full  ">
+      <div className="mt-20 py-10  w-full   bg-blue-800  ">
         <Head>
           {students && (
             <script
@@ -62,12 +62,12 @@ export default function TopStudents({ students }: any) {
           )}
         </Head>
 
-        <h2 className="text-2xl md:text-3xl font-extrabold text-center font-Montserrat italic capitalize   text-blue-800">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-center font-Montserrat italic capitalize  text-white bg-blue-800">
           {/*         Our Brightest Achievers */}
           {/* {data} */}
           &quot; {Jdata?.home?.title} &quot;
         </h2>
-        <div className="w-full md:px-0 px-2 pt-5">
+        <div className="w-full bg-blue-800 md:px-0 px-2 pt-5">
           {/* {data ?  */}
 
           {!loading ? (

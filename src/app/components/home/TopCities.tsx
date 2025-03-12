@@ -11,29 +11,35 @@ const CitiesLocation = ({ initialData }: any) => {
   ); // Initially visible cities
   const [loadedCount, setLoadedCount] = useState(chunkSize); // Number of cities currently loaded
   const [searchQuery, setSearchQuery] = useState(""); // Search query
+  const [showAll, setShowAll] = useState(false); // Flag to show all cities
 
   // Load more cities when "Show More" button is clicked
   const loadMoreCities = () => {
     setVisibleData((prevData) => [
       ...prevData,
-      ...initialData.slice(loadedCount, initialData.length),
+      ...initialData.slice(loadedCount, loadedCount + chunkSize),
     ]);
-    setLoadedCount(initialData.length);
+    setLoadedCount((prevCount) => prevCount + chunkSize);
+  };
+
+  // Show all cities when "Show All" button is clicked
+  const showAllCities = () => {
+    setVisibleData(initialData);
+    setShowAll(true);
   };
 
   // Filter cities based on search query
-  const filteredData = visibleData.filter((hub) =>
+  const filteredData = initialData.filter((hub) =>
     hub.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <>
-      <div className="md:py-4 mt-20 md:px-6   relative w-full">
-        <h2 className="text-2xl md:text-4xl  pb-10 font-extrabold text-center font-Montserrat italic capitalize   text-blue-800">
+      <div className="md:py-4 mt-20 md:px-6 relative w-full">
+        <h2 className="text-2xl md:text-4xl pb-10 font-extrabold text-center font-Montserrat italic capitalize text-blue-800">
           Discover Top Cities Study Hubs
         </h2>
 
-      
         {/* Search Bar */}
         <div className="mb-6 text-center">
           <input
@@ -41,20 +47,20 @@ const CitiesLocation = ({ initialData }: any) => {
             placeholder="Search by city name"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full md:w-1/2 p-3 border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-indigo-400 transition-all duration-300"
+            className="w-full md:w-1/2 p-3 border border-gray-300 -lg shadow-md focus:ring-2 focus:ring-blue-800 transition-all duration-300"
           />
         </div>
 
         {/* City Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 lg:grid-cols-10 gap-3 font-roboto">
-          {filteredData.length > 0 ? (
-            filteredData.map((hub, index) => (
+          {(searchQuery ? filteredData : visibleData).length > 0 ? (
+            (searchQuery ? filteredData : visibleData).map((hub, index) => (
               <div
                 key={index}
-                className="relative cursor-pointer bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:bg-gradient-to-r hover:from-indigo-300 hover:via-purple-300 hover:to-pink-300 ease-in-out group"
+                className="relative cursor-pointer bg-gradient-to-r from-blue-800 via-blue-700 to-blue-800 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 group"
               >
                 <div className="p-2 flex flex-col justify-between h-full">
-                  <h3 className="text-sm font-semibold text-center text-gray-800 uppercase tracking-wide hover:text-indigo-600">
+                  <h3 className="text-sm font-Montserrat text-center text-white capitalize tracking-wide hover:text-blue-800">
                     {hub.title}
                   </h3>
                   <ol className="space-y-1 px-3 h-0 overflow-hidden group-hover:h-full transition-opacity duration-300">
@@ -64,8 +70,7 @@ const CitiesLocation = ({ initialData }: any) => {
                           onClick={() =>
                             window.open(`/${item?.slug_field}/${hub.title}`)
                           }
-                          // href={`/${item?.slug_field}/${hub.title}`}
-                          className="block bg-white text-sm font-medium hover:bg-gray-200 text-blue-600 px-4 py-1 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
+                          className="block bg-white text-sm hover:bg-gray-200 text-blue-800 px-4 py-1 -lg shadow-md transition-all duration-200 hover:shadow-lg"
                         >
                           {item.short_title} in {hub.title}
                         </div>
@@ -81,13 +86,15 @@ const CitiesLocation = ({ initialData }: any) => {
         </div>
 
         {/* Show More Button */}
-        {loadedCount < initialData.length && (
+
+        {/* Show All Button */}
+        {!searchQuery && !showAll && (
           <div className="text-center mt-6">
             <button
-              onClick={loadMoreCities}
-              className="px-6 py-2 text-white bg-indigo-500 rounded-lg shadow-md hover:bg-indigo-600 transition-all duration-300"
+              onClick={showAllCities}
+              className="px-6 py-2 text-white bg-blue-800 -lg shadow-md hover:bg-blue-700 transition-all duration-300"
             >
-              Show More
+              Show All Cities
             </button>
           </div>
         )}

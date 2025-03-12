@@ -42,7 +42,7 @@
 //   return (
 //     <div
 //       key={index}
-//       className="relative overflow-hidden rounded-lg md:h-[300px] flex flex-col items-end justify-end"
+//       className="relative overflow-hidden -lg md:h-[300px] flex flex-col items-end justify-end"
 //       onMouseEnter={() => handleMouseEnter(index)}
 //       onMouseLeave={handleMouseLeave}
 //     >
@@ -64,7 +64,7 @@
 //         <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-60  z-10 md:p-4">
 //           <a
 //             href={`tel:${contactNumber}`}
-//             className="flex flex-col justify-center items-center md:items-center md:justify-center md:gap-2 cursor-pointer bg-green-600 md:mb-0 mb-1 md:p-3 md:text-2xl text-white md:font-bold  animate-pulse duration-75 ease-out rounded hover:scale-105 transition-transform  "
+//             className="flex flex-col justify-center items-center md:items-center md:justify-center md:gap-2 cursor-pointer bg-green-600 md:mb-0 mb-1 md:p-3 md:text-2xl text-white md:font-bold  animate-pulse duration-75 ease-out  hover:scale-105 transition-transform  "
 //             onClick={() => window.open(`tel:${contactNumber}`)}
 //           >
 //             <FaPhoneAlt className="md:black hidden" />
@@ -93,22 +93,22 @@
 //               target="_blank"
 //               rel="noopener noreferrer"
 //             >
-//               <button className="bg-green-500 text-white py-1 md:mx-3 md:my-1 px-2 md:px-4 rounded hover:bg-green-600">
+//               <button className="bg-green-500 text-white py-1 md:mx-3 md:my-1 px-2 md:px-4  hover:bg-green-600">
 //                 <BsWhatsapp />
 //               </button>
 //             </a>
 //             <a href={facebookLink} target="_blank" rel="noopener noreferrer">
-//               <button className="bg-blue-600 text-white py-1   px-2  md:px-4  rounded hover:bg-blue-700">
+//               <button className="bg-blue-600 text-white py-1   px-2  md:px-4   hover:bg-blue-700">
 //                 <FaFacebook />
 //               </button>
 //             </a>
 //             <a href={instagramLink} target="_blank" rel="noopener noreferrer">
-//               <button className="bg-pink-600 text-white py-1  px-2   md:px-4  rounded hover:bg-pink-700">
+//               <button className="bg-pink-600 text-white py-1  px-2   md:px-4   hover:bg-pink-700">
 //                 <BsInstagram />
 //               </button>
 //             </a>
 //             <a href={youtubeLink} target="_blank" rel="noopener noreferrer">
-//               <button className="bg-red-600 text-white py-1  px-2   md:px-3  rounded hover:bg-pink-700">
+//               <button className="bg-red-600 text-white py-1  px-2   md:px-3   hover:bg-pink-700">
 //                 <BsYoutube />
 //               </button>
 //             </a>
@@ -169,7 +169,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
 
   return (
     <div
-      className="relative overflow-hidden rounded-lg md:h-[300px] w-full flex flex-col items-end justify-end"
+      className="relative overflow-hidden -lg md:h-[300px] w-full flex flex-col items-end justify-end"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -180,14 +180,14 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
           alt={sanitizedTitle}
           width={140}
           height={140}
-          className="md:h-[300px] md:w-[300px] w-full object-fill py-1 px-1 bg-gradient-to-r from-red-400 to-pink-500 transform transition duration-300 hover:scale-105"
+          className="md:h-[300px] md:w-[300px] w-full object-fill py-1 px-1  bg-white transform transition duration-300 hover:scale-105"
         />
       )}
       {show === index && (
         <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-60 z-10 md:p-4">
           <a
             href={`tel:${contactNumber}`}
-            className="flex flex-col justify-center items-center md:gap-2 cursor-pointer bg-green-600 mb-1 md:mb-0 p-3 text-white font-bold animate-pulse rounded hover:scale-105 transition-transform"
+            className="flex flex-col justify-center items-center md:gap-2 cursor-pointer bg-green-600 mb-1 md:mb-0 p-3 text-white font-bold animate-pulse  hover:scale-105 transition-transform"
           >
             <FaPhoneAlt className="hidden md:block" />
             <span className="md:text-base text-sm">{contactNumber}</span>
@@ -199,7 +199,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-500 text-white py-1 px-2 md:px-4 rounded hover:bg-green-600"
+              className="bg-green-500 text-white py-1 px-2 md:px-4  hover:bg-green-600"
             >
               <BsWhatsapp />
             </a>
@@ -207,7 +207,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
               href={facebookLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-600 text-white py-1 px-2 md:px-4 rounded hover:bg-blue-700"
+              className="bg-blue-600 text-white py-1 px-2 md:px-4  hover:bg-blue-700"
             >
               <FaFacebook />
             </a>
@@ -215,7 +215,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
               href={instagramLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-pink-600 text-white py-1 px-2 md:px-4 rounded hover:bg-pink-700"
+              className="bg-pink-600 text-white py-1 px-2 md:px-4  hover:bg-pink-700"
             >
               <BsInstagram />
             </a>
@@ -223,7 +223,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
               href={youtubeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-red-600 text-white py-1 px-2 md:px-3 rounded hover:bg-red-700"
+              className="bg-red-600 text-white py-1 px-2 md:px-3  hover:bg-red-700"
             >
               <BsYoutube />
             </a>

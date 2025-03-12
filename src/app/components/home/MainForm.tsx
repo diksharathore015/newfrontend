@@ -25,7 +25,7 @@ export default function MainForm({ coursesData, loc }: any) {
         (window.scrollY /
           (document.documentElement.scrollHeight - window.innerHeight)) *
         100;
-      [40, 80].forEach((threshold) => {
+      [5, 20, 50, 80].forEach((threshold) => {
         if (scrollPercentage >= threshold && !scrollTriggered[threshold]) {
           if (submitted == false) {
             // console.log("firstsubmitted", submitted);

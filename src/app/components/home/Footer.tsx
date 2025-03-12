@@ -10,12 +10,14 @@ const Footer = ({
   location,
 }: any) => {
   return (
-    <footer className="bg-gray-900 text-white py-10 overflow-hidden">
+    <footer className="bg-blue-800 text-white py-10 overflow-hidden">
       <div className="container mx-auto px-4 md:flex md:justify-between">
         {/* Logo & Description */}
         <div className="mb-6 md:mb-0 md:w-1/3">
-          <h2 className="text-2xl font-bold">Royal Defence Acedemy</h2>
-          <p className="mt-2 text-gray-400">
+          <h2 className="text-2xl font-bold font-Cormorant">
+            Royal Defence Acedemy
+          </h2>
+          <p className="mt-2 text-sm text-white md:pr-20">
             Empowering students with a strong foundation and the skills needed
             for lifelong success.
           </p>
@@ -23,13 +25,13 @@ const Footer = ({
 
         {/* Quick Links */}
         <div className="mb-6 md:mb-0 md:w-1/3">
-          <h3 className="text-xl font-semibold">Quick Links</h3>
+          <h3 className="text-xl font-semibold  font-Cormorant">Quick Links</h3>
           <ul className="mt-4 space-y-2">
             <li>
               <Link
                 hrefLang="en"
                 href="/aboutus"
-                className="hover:underline text-gray-300"
+                className="hover:underline text-white"
               >
                 About Us
               </Link>
@@ -38,7 +40,7 @@ const Footer = ({
               <Link
                 hrefLang="en"
                 href="/course"
-                className="hover:underline text-gray-300"
+                className="hover:underline text-white"
               >
                 Admissions
               </Link>
@@ -47,7 +49,7 @@ const Footer = ({
               <Link
                 hrefLang="en"
                 href="/course"
-                className="hover:underline text-gray-300"
+                className="hover:underline text-white"
               >
                 Academics
               </Link>
@@ -56,7 +58,7 @@ const Footer = ({
               <Link
                 hrefLang="en"
                 href="/contactus"
-                className="hover:underline text-gray-300"
+                className="hover:underline text-white"
               >
                 Contact
               </Link>
@@ -66,12 +68,12 @@ const Footer = ({
 
         {/* Contact Information */}
         <div className="md:w-1/3 flex flex-col">
-          <h3 className="text-xl font-semibold">Contact Us</h3>
-          <label className="mt-4 text-gray-300">Address :{address}</label>
+          <h3 className="text-xl font-semibold   font-Cormorant">Contact Us</h3>
+          <label className="mt-4 text-white">Address :{address}</label>
           <a
             href={`tel:${contact_number}`}
             target="_black"
-            className="mt-2 text-gray-300 underline flex items-start gap-2"
+            className="mt-2 text-white underline flex items-start gap-2"
           >
             <FaPhoneAlt className="text-blue-500 w-4 h-4 mt-1" />
             <span>Phone: {contact_number}</span>
@@ -81,17 +83,17 @@ const Footer = ({
           <a
             href={`https://wa.me/${whatsapp_number}`}
             target="_black"
-            className="mt-2 text-gray-300 underline flex items-start gap-2 hover:cursor-pointer"
+            className="mt-2 text-white underline flex items-start gap-2 hover:cursor-pointer"
           >
             <FaWhatsapp className="text-green-500 w-4 h-4 mt-1" />
             <span>Whatsapp: {whatsapp_number}</span>
           </a>
-          
+
           {/* Location */}
           <a
             href={location}
             target="_black"
-            className="mt-2 text-gray-300 hover:cursor-pointer flex items-start gap-2"
+            className="mt-2 text-white hover:cursor-pointer flex items-start gap-2"
           >
             <FaMapMarkerAlt className="text-red-500 w-4 h-4 mt-1" />
             <label className=" hover:cursor-pointer">
@@ -104,7 +106,7 @@ const Footer = ({
               hrefLang="en"
               href="https://www.facebook.com"
               target="_blank"
-              className="text-gray-400 hover:text-white"
+              className="text-white hover:text-white"
             >
               <i className="fab fa-facebook-f"></i>
             </Link>
@@ -112,7 +114,7 @@ const Footer = ({
               hrefLang="en"
               href="https://www.twitter.com"
               target="_blank"
-              className="text-gray-400 hover:text-white"
+              className="text-white hover:text-white"
             >
               <i className="fab fa-twitter"></i>
             </Link>
@@ -120,7 +122,7 @@ const Footer = ({
               hrefLang="en"
               href="https://www.instagram.com"
               target="_blank"
-              className="text-gray-400 hover:text-white"
+              className="text-white hover:text-white"
             >
               <i className="fab fa-instagram"></i>
             </Link>
@@ -129,7 +131,7 @@ const Footer = ({
       </div>
 
       {/* Bottom Bar */}
-      <div className="mt-8 border-t border-gray-700 pt-4 text-center text-gray-400">
+      <div className="mt-8 border-t border-white pt-4 text-center text-white">
         <p>
           &copy; {new Date("04/02/2025").getFullYear()} Royal Defence Academy.
           All rights reserved.

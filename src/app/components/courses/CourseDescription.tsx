@@ -25,9 +25,7 @@ const CourseDescription: React.FC<DescriptionProps> = ({
     <div className="  mx-auto">
       <div
         onClick={handleToggle}
-        className={`${
-          isExpanded ? "" : ""
-        } text-center transition-all duration-300`}
+        className={`${isExpanded ? "" : ""}  transition-all duration-300`}
       >
         <RawHtmlRenderer
           htmlContent={description.substring(0, count)}

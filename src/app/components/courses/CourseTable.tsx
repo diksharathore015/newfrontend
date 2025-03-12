@@ -42,13 +42,13 @@ const CourseTable: React.FC<CourseTableProps> = ({
 
   const locationId = locationdatas?.matchedItem?.id || 0;
   const selectedCourseName = names[locationId % names.length];
-  
+
   const googleMapUrl = `https://www.google.com/maps/search/?api=1&query=${
     locationdatas?.matchedItem?.latitude || "26.933927084173696"
   },${locationdatas?.matchedItem?.logitude || "75.74766294048028"}`;
 
   return (
-    <table className="table-auto w-full border-collapse rounded-lg shadow-lg overflow-hidden">
+    <table className="table-auto w-full border-collapse  overflow-hidden">
       <thead className="bg-gray-100 text-gray-700">
         <tr>
           <th className="border p-3 text-left font-semibold text-sm sm:text-base">

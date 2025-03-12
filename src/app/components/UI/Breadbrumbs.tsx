@@ -61,7 +61,7 @@ export default function Breadcrumbs() {
       />
 
       {show ? (
-        <div className="w-full md:w-[95%] mx-auto  mt-4 md:ml-12 ">
+        <div className="w-full md:w-[100%] mx-auto  mt-4  ">
           <nav className=" inline items-center space-x-2 text-xs md:text-lg text-gray-700">
             {/* Home Link */}
             <Link

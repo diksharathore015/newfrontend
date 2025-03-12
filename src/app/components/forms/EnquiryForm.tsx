@@ -21,6 +21,7 @@ export default function EnquiryForm({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const location = useAppSelector((state) => state.HomepageReducer.location);
+  const [locationdata, setLocationData] = useState<any>();
   const pathname = usePathname();
   // console.log("pathnamepathname", pathname);
   const fetchCourse = async () => {
@@ -32,7 +33,14 @@ export default function EnquiryForm({
     }
   };
 
+  const loc = async () => {
+    await controller.GetApi("http://ip-api.com/json/").then((res) => {
+      setLocationData(res);
+      // console.log("location", res);
+    });
+  };
   useEffect(() => {
+    loc();
     if (!coursesData) fetchCourse();
   }, []);
   const handleSubmit = async (e: any) => {
@@ -43,8 +51,9 @@ export default function EnquiryForm({
     const data = Object.fromEntries(formData.entries());
 
     const finalData: any = {
-      states: location?.state || location?.regionName || pathname || "NA",
-      cities: location?.city || "NA",
+      states:
+        locationdata?.regionName || location?.regionName || pathname || "NA",
+      cities: locationdata?.city || "NA",
       type: list,
       message: "Call me",
       email: "verificationpending@test.com",
@@ -94,9 +103,9 @@ export default function EnquiryForm({
   return !isSubmitting ? (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="relative w-[90%] md:w-[55%] mx-auto md:mt-[6%] mt-20 bg-white rounded-xl overflow-hidden  shadow-xl  transition-transform transform duration-800 "
+      className="relative w-[90%] md:w-[55%] mx-auto md:mt-[6%] mt-20 bg-white -xl overflow-hidden  shadow-xl  transition-transform transform duration-800 "
     >
-      <div className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 flex justify-between px-8 py-4">
+      <div className="w-full bg-blue-800 flex justify-between px-8 py-4">
         <span className="text-white md:text-2xl md:font-bold">
           Select the Exam You Need Guidance
         </span>
@@ -106,7 +115,7 @@ export default function EnquiryForm({
               setShowSidebar(false);
               store.dispatch(setShowForm(false));
             }}
-            className="bg-white text-gray-700 p-1  rounded-full hover:bg-gray-200 transition duration-200"
+            className="bg-white text-gray-700 p-1  -full hover:bg-gray-200 transition duration-200"
           >
             <CgClose className="md:w-6 md:h-6 h-3 w-3" />
           </button>
@@ -115,7 +124,7 @@ export default function EnquiryForm({
 
       {isSubmitted ? (
         <div className="flex items-center justify-center py-10">
-          <div className="max-w-md w-full bg-green-100 text-center p-8 rounded-lg shadow-lg animate-bounce">
+          <div className="max-w-md w-full bg-green-100 text-center p-8 -lg shadow-lg animate-bounce">
             <h2 className="text-3xl text-green-600 font-semibold">
               Thank You!
             </h2>
@@ -138,14 +147,14 @@ export default function EnquiryForm({
               {coursesdata?.map((option, index) => (
                 <label
                   key={index}
-                  className="flex items-start bg-gray-100 p-1 md:p-2 rounded-lg cursor-pointer shadow-sm hover:bg-gray-200 transition-transform transform "
+                  className="flex items-start bg-gray-100 p-1 md:p-2 -lg cursor-pointer shadow-sm hover:bg-gray-200 transition-transform transform "
                 >
                   <input
                     type="checkbox"
                     name="coaching"
                     value={option.id}
                     onChange={(e) => handleChange(e.target.value)}
-                    className="form-checkbox text-indigo-500 md:h-4 md:w-4 md:mt-0 mt-1.5"
+                    className="form-checkbox text-blue-800 md:h-4 md:w-4 md:mt-0 mt-1.5"
                   />
                   <span className="ml-3 text-gray-800 capitalize md:text-sm text-xs">
                     {option?.short_title}
@@ -163,7 +172,7 @@ export default function EnquiryForm({
             <input
               type="text"
               name="name"
-              className="w-full  p-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
+              className="w-full  p-1 border border-gray-300 -md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
               placeholder="Enter your name"
               required
             />
@@ -177,7 +186,7 @@ export default function EnquiryForm({
             <input
               type="email"
               name="email"
-              className="w-full  md:p-3 p-1  border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
+              className="w-full  md:p-3 p-1  border border-gray-300 -lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
               placeholder="Enter your email"
               required
             />
@@ -192,7 +201,7 @@ export default function EnquiryForm({
             <input
               type="number"
               name="phone"
-              className="w-full   p-1  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
+              className="w-full   p-1  border border-gray-300 -md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
               placeholder="Enter your phone number"
               required
             />
@@ -201,7 +210,7 @@ export default function EnquiryForm({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full duration-800 ease-linear bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-1 md:py-3 rounded-lg shadow-md hover:shadow-lg transition-all hover:bg-gradient-to-l hover:from-purple-500 hover:to-indigo-600"
+            className="w-full duration-800 ease-linear bg-blue-800 text-white py-1 md:py-3 -lg shadow-md hover:shadow-lg transition-all hover:bg-gradient-to-l hover:from-blue-500 hover:to-blue-600"
           >
             {isSubmitting ? "Submitting..." : "Send Enquiry"}
           </button>
