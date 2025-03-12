@@ -23,7 +23,7 @@ export default function FeatureCourses({ data }: any) {
           <Link
             target="_blank"
             href={`/${data?.slug_field}`}
-            className=" font-Montserrat px-1 text-white hover:text-gray-500"
+            className=" font-Montserrat px-1 text-white hover:text-gray-50"
           >
             {data?.title.replaceAll(/(?:\{location\}|\{Location\})/g, "")}
           </Link>

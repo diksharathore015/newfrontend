@@ -410,9 +410,7 @@ export default async function Home() {
       {/* {<MainForm coursesData={coursesData} />} */}
 
       <div className="overflow-x-hidden">
-        {bannerData && studentsData && (
-          <Banner data={bannerData} studentsData={studentsData} />
-        )}
+        {bannerData && <Banner data={bannerData} />}
         {studentsData && <TopStudents students={studentsData} />}
         {homepagecontent.length > 0 && (
           <div className="md:w-[100%] pt-10 md:mx-auto mx-1">

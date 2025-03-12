@@ -19,7 +19,7 @@ export default function TopStudents({ students }: any) {
 
   return (
     <>
-      <div className="mt-20 py-10  w-full   bg-blue-800  ">
+      <div className="  py-10  w-full   bg-blue-800  ">
         <Head>
           {students && (
             <script

@@ -789,15 +789,17 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       </script>
 
       {course && (
-        <Main
-          locationdatas={locationdata}
-          faqs={faqs}
-          data={course}
-          params={para}
-          loc={loc}
-          currentDate={currentDate}
-          matchinglocation={matchingState?.title || "india"}
-        />
+        <div className="pb-20">
+          <Main
+            locationdatas={locationdata}
+            faqs={faqs}
+            data={course}
+            params={para}
+            loc={loc}
+            currentDate={currentDate}
+            matchinglocation={matchingState?.title || "india"}
+          />
+        </div>
       )}
     </>
   );

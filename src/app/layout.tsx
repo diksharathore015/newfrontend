@@ -29,7 +29,8 @@ export default async function RootLayout({
           )}
           {bannerData && <SocialMediaIcons data={bannerData[0]} />}
           {courselist && <MainForm coursesData={courselist} loc={loc} />}
-          <div className="md:w-[90%] mx-auto ">{children}</div>
+   
+          <div>{children}</div>
           {seodata[0] && (
             <Footer
               address={seodata[0]?.address}
@@ -54,6 +55,7 @@ import "./globals.css";
 import MainForm from "./components/home/MainForm";
 import ErrorBoundary from "./components/home/ErrorBoundary";
 import SocialMediaIcons from "./components/home/TopOffers";
+import Banner from "./components/home/Banner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

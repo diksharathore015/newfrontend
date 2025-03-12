@@ -240,13 +240,16 @@ export default async function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
       />
-
-      <Breadbrumbs />
+      <div className="px-10">
+        <Breadbrumbs />
+      </div>
 
       <Settitle data={seodata[0]?.meta_title} />
       {data &&
         data.map((item: any, i: number) => (
-          <FeatureCourses data={item} key={i} test={item} />
+          <div className="mb-10">
+            <FeatureCourses data={item} key={i} test={item} />
+          </div>
         ))}
     </>
   );
