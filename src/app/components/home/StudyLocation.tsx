@@ -38,11 +38,13 @@ const StudyLocation = ({ data }) => {
               onMouseEnter={() => setShow(index)} // Set the hovered index
               onMouseLeave={() => setShow(null)} // Reset hover state when mouse leaves
               key={index}
-              className="relative 2xl:py-3 bg-white hover:cursor-pointer overflow-hidden   hover:shadow-xl transform transition duration-300 hover:scale-105"
+              className={`relative 2xl:py-3 ${
+                show != index && "bg-white"
+              }  hover:cursor-pointer overflow-hidden   hover:shadow-xl transform transition duration-300 hover:scale-105`}
             >
               {/* Image */}
               <div
-                className="relative bg-white h- w-40 flex justify-center mx-auto "
+                className="relative bg-transparent h- w-40 flex justify-center mx-auto "
                 onClick={() => {
                   setIndex(index);
                   setShowPopup(true);
@@ -62,7 +64,7 @@ const StudyLocation = ({ data }) => {
 
               {/* Overlay on Hover */}
               {show != index && (
-                <div className="absolute border-blue-800 border bg-white/60 hover:bg-white  backdrop-blur-md z-10 w-full h-full top-0 text-center  hover:opacity-0 capitalize  transition duration-300 text-blue-800 font-bold text-xl md:text-2xl   flex flex-col items-center justify-center">
+                <div className="absolute border-blue-800 border bg-white/80 hover:bg-white  backdrop-blur-md z-10 w-full h-full top-0 text-center  hover:opacity-0 capitalize  transition duration-300 text-blue-800 font-bold text-xl md:text-2xl   flex flex-col items-center justify-center">
                   {hub?.title}
                   <label
                     htmlFor="info"
@@ -80,22 +82,29 @@ const StudyLocation = ({ data }) => {
                         )
                       }
                       // href={`/${item?.slug_field}/${data[index]?.title}`}
-                      className="block bg-white font-semibold hover:bg-white text-blue-800 px-1 text-xs transition-all duration-200 hover:shadow-lg mt-1 mx-1"
+                      className="block bg-transparent font-semibold hover:bg-white text-blue-800 px-1 text-xs transition-all duration-200 hover:shadow-lg mt-1 mx-1"
                     >
                       {" "}
-                      {item?.short_title} in {data[index]?.title}
+                      {item?.short_title
+                        .replaceAll("{Location}", "")
+                        .replaceAll("{location}", "")}{" "}
+                      in {data[index]?.title}
                     </div>
                   ))}
                 </div>
               )}
 
               {/* Card Content */}
-              <div className="p-2 bg-white">
+              <div className="p-2 bg-white/60">
                 <h3 className="text-xl text-center uppercase font-Montserrat  text-blue-800 mb-2">
-                  {hub?.title}
+                  {hub?.title
+                    .replaceAll("{Location}", "")
+                    .replaceAll("{location}", "")}
                 </h3>
                 <p className="text-gray-600 text-sm line-clamp-2">
-                  {hub?.short_description}
+                  {hub?.short_description
+                    .replaceAll("{Location}", "")
+                    .replaceAll("{location}", "")}
                 </p>
               </div>
             </div>
@@ -119,7 +128,7 @@ const StudyLocation = ({ data }) => {
             </button>
 
             {/* Top heading with gradient background */}
-            <h3 className="text-2xl font-bold text-white text-center mb-6 p-4 bg-gradient-to-r from-indigo-500 to-purple-600 -t-lg">
+            <h3 className="text-2xl font-bold text-white text-center mb-6 p-4 bg-blue-800   -t-lg">
               Top Courses in {data[index]?.title}
             </h3>
 
@@ -129,7 +138,7 @@ const StudyLocation = ({ data }) => {
                   <Link
                     target="_blank"
                     href={`/${item?.slug_field}/${data[index]?.title}`}
-                    className="block bg-gray-100 font-medium hover:bg-gray-200 text-gray-700 px-4 py-2 -lg   transition-all duration-200 hover:shadow-lg"
+                    className="block bg-white text-blue-800 px-4 py-2 -lg border-b  transition-all duration-200 hover:shadow-lg"
                   >
                     {item?.short_title} in {data[index]?.title}
                   </Link>
@@ -139,7 +148,7 @@ const StudyLocation = ({ data }) => {
             <div className="mt-6 text-center mx-3 flex items-center justify-center">
               <button
                 onClick={closePopup}
-                className="bg-gradient-to-r from-indigo-500 to-purple-600 mb-2 w-full text-white px-4 py-2 -lg   hover:bg-blue-700 transition-colors duration-200"
+                className="bg-blue-800 mb-2 w-full text-white px-4 py-2 -lg   hover:bg-blue-700 transition-colors duration-200"
               >
                 Close
               </button>
