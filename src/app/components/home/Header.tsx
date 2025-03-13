@@ -149,7 +149,7 @@ export default function Header({ cityList, seodata, courselist }: any) {
             <div key={index} className="relative group">
               <a
                 href={item.href}
-                className="block py-2 text-base font-medium border-b hover:text-blue-500"
+                className="block py-2 text-blue-800 font-medium border-b hover:text-blue-500"
               >
                 {item.title}
               </a>
@@ -160,7 +160,7 @@ export default function Header({ cityList, seodata, courselist }: any) {
                     <a
                       key={subIndex}
                       href={`/${subItem?.slug_field}`}
-                      className="block py-1 text-sm hover:text-blue-500"
+                      className="block py-1 text-sm text-blue-800 hover:text-blue-500"
                     >
                       {subItem.title}
                     </a>
