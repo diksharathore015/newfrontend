@@ -283,15 +283,15 @@ export default async function Home() {
               "@type": "Person",
               name: "Rajendra Singh Rathore", // Replace with actual instructor name
             },
-            location: course.cities.map((loc) => ({
+            location: {
               "@type": "Place",
-              name: loc.title,
+              name: "India",
               address: {
                 "@type": "PostalAddress",
-                addressLocality: loc.title,
-                addressRegion: loc.title,
+                addressLocality: "india",
+                addressRegion: "india",
               },
-            })),
+            },
             courseMode: "blended",
             courseWorkload: "PT288H",
             courseSchedule: {
