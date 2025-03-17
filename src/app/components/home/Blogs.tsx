@@ -8,7 +8,7 @@ const Blogs = ({ data }: any) => {
 
   return (
     <>
-      <div className="mt-20  ">
+      <div className="mt-20  px-2 ">
         <h2 className="text-2xl md:text-4xl font-extrabold text-center font-Montserrat italic capitalize   text-blue-800">
           Popular Blogs
         </h2>
@@ -19,7 +19,7 @@ const Blogs = ({ data }: any) => {
                 window.open(`/blogs/${blog?.slug_field}`, "_blank")
               }
               key={id}
-              className="bg-white mb-3 hover:cursor-pointer hover:bg-gray-50 rounded-lg shadow-md p-4 w-full"
+              className="bg-white mb-3 hover:cursor-pointer hover:bg-gray-50  p-4 w-full"
             >
               {blog?.image && (
                 <Image
@@ -28,11 +28,11 @@ const Blogs = ({ data }: any) => {
                   title={blog?.title}
                   width={200}
                   height={200}
-                  className="w-full h-60 object-fill rounded-md mb-4"
+                  className="w-full h-60 object-fill -md mb-4"
                 />
               )}
 
-              <h3 className="text-lg font-semibold mb-2 text-primary capitalize font-roboto">
+              <h3 className="text-lg font-semibold mb-2 text-blue-800 capitalize font-roboto">
                 {blog?.title}
               </h3>
               <div className="text-sm text-gray-500 flex justify-between">

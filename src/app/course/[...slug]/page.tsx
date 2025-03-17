@@ -2,6 +2,7 @@ import Main from "@/app/components/courses/Main";
 import { AppAssets } from "@/Constants/assets";
 import { Constants, fetchBaseUrl } from "@/Constants/urls";
 import apiDataController from "@/controllers/RequestController";
+import Head from "next/head";
 
 export const dynamic = "force-static";
 // const Main = dynamic(() => import("@/app/components/courses/Main"));
@@ -21,45 +22,52 @@ export async function generateMetadata({
   const replaceLocation = (str: string) =>
     str?.replaceAll(/\{location\}/gi, location);
 
-  <link rel="canonical" href={`${baseURL}/${slug.join("/")}`} />;
+  // <link rel="canonical" href={`${baseURL}/${slug.join("/")}`} />;
 
-  return {
-    title: replaceLocation(course[0]?.meta_title) || "Royal defence Academy",
-    description:
-      replaceLocation(course[0]?.meta_description || course[0]?.description) ||
-      "Royal defence Academy",
-    keywords:
-      replaceLocation(course[0]?.meta_keyword) || "Royal defence Academy",
-    openGraph: {
-      title: replaceLocation(course[0]?.meta_title) || "Royal defence Academy",
-      url: `${baseURL}/${slug.join("/")}`,
-      siteName: "Royal Defence Academy",
-      type: "website",
-      images: [
-        {
-          url: course[0]?.image,
-          width: 1200,
-          height: 630,
-          alt: replaceLocation(course[0]?.image_alt) || "Royal Defence Academy",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
+  return (
+    baseURL && {
       title: replaceLocation(course[0]?.meta_title) || "Royal defence Academy",
       description:
-        replaceLocation(course[0]?.meta_description) || "Royal defence Academy",
-      images: [course[0]?.image],
-    },
-    alternates: {
-      canonical: `${baseURL}/${slug.join("/")}`,
-    },
-    viewport: "width=device-width, initial-scale=1.0",
-    robots: {
-      index: true,
-      follow: true,
-    },
-  };
+        replaceLocation(
+          course[0]?.meta_description || course[0]?.description
+        ) || "Royal defence Academy",
+      keywords:
+        replaceLocation(course[0]?.meta_keyword) || "Royal defence Academy",
+      openGraph: {
+        title:
+          replaceLocation(course[0]?.meta_title) || "Royal defence Academy",
+        url: `${baseURL}/${slug.join("/")}`,
+        siteName: "Royal Defence Academy",
+        type: "website",
+        images: [
+          {
+            url: course[0]?.image,
+            width: 1200,
+            height: 630,
+            alt:
+              replaceLocation(course[0]?.image_alt) || "Royal Defence Academy",
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title:
+          replaceLocation(course[0]?.meta_title) || "Royal defence Academy",
+        description:
+          replaceLocation(course[0]?.meta_description) ||
+          "Royal defence Academy",
+        images: [course[0]?.image],
+      },
+      alternates: {
+        canonical: `${baseURL}/${slug.join("/")}`,
+      },
+      viewport: "width=device-width, initial-scale=1.0",
+      robots: {
+        index: true,
+        follow: true,
+      },
+    }
+  );
 }
 export const revalidate = 600;
 
@@ -269,12 +277,12 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       addressCountry: "India",
     },
 
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      bestRating: "5",
-      ratingCount: "505",
-    },
+    // aggregateRating: {
+    //   "@type": "AggregateRating",
+    //   ratingValue: "5",
+    //   bestRating: "5",
+    //   ratingCount: "505",
+    // },
     geo: {
       "@type": "GeoCoordinates",
       latitude: locationdata?.matchedItem?.latitude,
@@ -347,7 +355,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     provider: {
       "@type": "Organization",
       name: "Royal Defence Academy",
-      url: baseURL,
+      url: `${baseURL}/${slug?.join("/")}`,
     },
 
     aggregateRating: {
@@ -416,7 +424,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     publisher: {
       "@type": "Organization",
       name: "Royal Defence Academy",
-      sameAs: baseURL,
+      sameAs: `${baseURL}/${slug?.join("/")}`,
     },
   };
 
@@ -461,7 +469,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     author: {
       "@type": "Person",
       name: "Royal Defence Academy", // Replace with the author's name
-      url: `${baseURL}/${slug[0]}`,
+      url: `${baseURL}/${slug?.join("/")}`,
     },
     publisher: {
       "@type": "Organization",
@@ -471,7 +479,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     dateModified: currentDate.toISOString(), // Replace with actual dateModified
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${baseURL}/${slug[0]}` || `${baseURL}`, // Replace with the canonical URL ,
+      "@id": `${baseURL}/${slug[0]}` || `${baseURL}`,
       image: course?.images.map((item: any) => ({
         "@type": "ImageObject",
         url: item?.Image ?? item?.image ?? item?.imagess,
@@ -486,322 +494,327 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   };
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData2) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData3) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesschema) }}
-      />
+    baseURL && (
+      <>
+        <Head>
+          <link rel="canonical" href={`${baseURL}/${slug.join("/")}`} />
+        </Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData2) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData3) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesschema) }}
+        />
 
-      {!location &&
-        course?.states.map((item: any, i: any) => (
-          <script key={i} type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "EducationalOrganization",
-              name:
-                course?.short_title?.replaceAll(
+        {!location &&
+          course?.states.map((item: any, i: any) => (
+            <script key={i} type="application/ld+json">
+              {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "EducationalOrganization",
+                name:
+                  course?.short_title?.replaceAll(
+                    /\{location\}/gi,
+                    item?.title
+                  ) || "Royal defence academy",
+                description: course?.meta_description.replaceAll(
                   /\{location\}/gi,
                   item?.title
-                ) || "Royal defence academy",
-              description: course?.meta_description.replaceAll(
-                /\{location\}/gi,
-                item?.title
-              ),
-              url: `${baseURL}/${slug[0]}/${item?.title}`,
-              image: item.Image,
-              priceRange: "₹₹₹",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: item?.title || "India",
-                addressLocality: item?.title || "India",
-                addressRegion: item?.title || "India",
+                ),
+                url: `${baseURL}/${slug[0]}/${item?.title}`,
+                image: item.Image,
+                priceRange: "₹₹₹",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: item?.title || "India",
+                  addressLocality: item?.title || "India",
+                  addressRegion: item?.title || "India",
 
-                addressCountry: "IN",
-              },
-              geo: {
-                "@type": "GeoCoordinates",
-                latitude: item.latitude,
-                longitude: item.logitude,
-              },
-              telephone: item?.contact_number,
-              openingHoursSpecification: [
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                  ],
-                  opens: "08:00",
-                  closes: "20:00",
+                  addressCountry: "IN",
                 },
-              ],
-              review: {
-                "@type": "Review",
-                author: {
-                  "@type": "Person",
-                  name: "Royal defence academy",
-                  sameAs: [`${baseURL}/${slug[0]}/${item?.title}`],
+                geo: {
+                  "@type": "GeoCoordinates",
+                  latitude: item.latitude,
+                  longitude: item.logitude,
                 },
-                reviewBody:
-                  "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",
-                datePublished: currentDate,
-                reviewRating: {
-                  "@type": "Rating",
-                  ratingValue: 5,
-                  bestRating: 5,
-                  worstRating: 5,
+                telephone: item?.contact_number,
+                openingHoursSpecification: [
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: [
+                      "Monday",
+                      "Tuesday",
+                      "Wednesday",
+                      "Thursday",
+                      "Friday",
+                      "Saturday",
+                    ],
+                    opens: "08:00",
+                    closes: "20:00",
+                  },
+                ],
+                review: {
+                  "@type": "Review",
+                  author: {
+                    "@type": "Person",
+                    name: "Royal defence academy",
+                    sameAs: [`${baseURL}/${slug[0]}/${item?.title}`],
+                  },
+                  reviewBody:
+                    "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",
+                  datePublished: currentDate,
+                  reviewRating: {
+                    "@type": "Rating",
+                    ratingValue: 5,
+                    bestRating: 5,
+                    worstRating: 5,
+                  },
                 },
-              },
-            })}
-          </script>
-        ))}
-      {course?.cities
-        .filter(
-          (city: any) =>
-            city.state ===
-            course?.states.find(
-              (state: any) =>
-                state.title.toLowerCase().replace(/[^a-z0-9]/g, "") ===
-                location.toLowerCase().replace(/[^a-z0-9]/g, "")
-            )?.id
-        )
-        .map((item: any, i: any) => (
-          <script key={i} type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "EducationalOrganization",
-              name:
-                course?.short_title?.replaceAll(
+              })}
+            </script>
+          ))}
+        {course?.cities
+          .filter(
+            (city: any) =>
+              city.state ===
+              course?.states.find(
+                (state: any) =>
+                  state.title.toLowerCase().replace(/[^a-z0-9]/g, "") ===
+                  location.toLowerCase().replace(/[^a-z0-9]/g, "")
+              )?.id
+          )
+          .map((item: any, i: any) => (
+            <script key={i} type="application/ld+json">
+              {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "EducationalOrganization",
+                name:
+                  course?.short_title?.replaceAll(
+                    /\{location\}/gi,
+                    item?.title
+                  ) || "Royal defence academy",
+                description: course?.meta_description.replaceAll(
                   /\{location\}/gi,
                   item?.title
-                ) || "Royal defence academy",
-              description: course?.meta_description.replaceAll(
-                /\{location\}/gi,
-                item?.title
-              ),
-              url: `${baseURL}/${slug[0]}/${item?.title}`,
-              image: item.Image,
-              priceRange: "₹₹₹",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: item?.title || "India",
-                addressLocality: item?.title || "India",
-                addressRegion: item?.title || "India",
+                ),
+                url: `${baseURL}/${slug[0]}/${item?.title}`,
+                image: item.Image,
+                priceRange: "₹₹₹",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: item?.title || "India",
+                  addressLocality: item?.title || "India",
+                  addressRegion: item?.title || "India",
 
-                addressCountry: "IN",
-              },
-              geo: {
-                "@type": "GeoCoordinates",
-                latitude: item.latitude,
-                longitude: item.logitude,
-              },
+                  addressCountry: "IN",
+                },
+                geo: {
+                  "@type": "GeoCoordinates",
+                  latitude: item.latitude,
+                  longitude: item.logitude,
+                },
 
-              telephone: item?.contact_number,
-              openingHoursSpecification: [
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                  ],
-                  opens: "08:00",
-                  closes: "20:00",
+                telephone: item?.contact_number,
+                openingHoursSpecification: [
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: [
+                      "Monday",
+                      "Tuesday",
+                      "Wednesday",
+                      "Thursday",
+                      "Friday",
+                      "Saturday",
+                    ],
+                    opens: "08:00",
+                    closes: "20:00",
+                  },
+                ],
+                review: {
+                  "@type": "Review",
+                  author: {
+                    "@type": "Person",
+                    name: "Royal defence academy",
+                    sameAs: [`${baseURL}/${slug[0]}/${item?.title}`],
+                  },
+                  reviewBody:
+                    "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",
+                  datePublished: currentDate,
+                  reviewRating: {
+                    "@type": "Rating",
+                    ratingValue: 5,
+                    bestRating: 5,
+                    worstRating: 5,
+                  },
                 },
-              ],
-              review: {
-                "@type": "Review",
-                author: {
-                  "@type": "Person",
-                  name: "Royal defence academy",
-                  sameAs: [`${baseURL}/${slug[0]}/${item?.title}`],
-                },
-                reviewBody:
-                  "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",
-                datePublished: currentDate,
-                reviewRating: {
-                  "@type": "Rating",
-                  ratingValue: 5,
-                  bestRating: 5,
-                  worstRating: 5,
-                },
-              },
-            })}
-          </script>
-        ))}
+              })}
+            </script>
+          ))}
 
-      {course?.localities
-        .filter(
-          (local: any) =>
-            local.city ===
-            course?.cities.find(
-              (city: any) =>
-                city.title.toLowerCase().replace(/[^a-z0-9]/g, "") ===
-                location.toLowerCase().replace(/[^a-z0-9]/g, "")
-            )?.id
-        )
-        .map((item: any, i: any) => (
-          <script key={i} type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "EducationalOrganization",
-              name:
-                course?.short_title?.replaceAll(
+        {course?.localities
+          .filter(
+            (local: any) =>
+              local.city ===
+              course?.cities.find(
+                (city: any) =>
+                  city.title.toLowerCase().replace(/[^a-z0-9]/g, "") ===
+                  location.toLowerCase().replace(/[^a-z0-9]/g, "")
+              )?.id
+          )
+          .map((item: any, i: any) => (
+            <script key={i} type="application/ld+json">
+              {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "EducationalOrganization",
+                name:
+                  course?.short_title?.replaceAll(
+                    /\{location\}/gi,
+                    item?.title
+                  ) || "Royal defence academy",
+                description: course?.meta_description.replaceAll(
                   /\{location\}/gi,
                   item?.title
-                ) || "Royal defence academy",
-              description: course?.meta_description.replaceAll(
-                /\{location\}/gi,
-                item?.title
-              ),
-              url: `${baseURL}/${slug[0]}/${item?.title}`,
-              image: item?.Image,
-              priceRange: "₹₹₹",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: item?.title || "India",
-                addressLocality: item?.title || "India",
-                addressRegion: item?.title || "India",
+                ),
+                url: `${baseURL}/${slug[0]}/${item?.title}`,
+                image: item?.Image,
+                priceRange: "₹₹₹",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: item?.title || "India",
+                  addressLocality: item?.title || "India",
+                  addressRegion: item?.title || "India",
 
-                addressCountry: "IN",
+                  addressCountry: "IN",
+                },
+                // geo: {
+                //   "@type": "GeoCoordinates",
+                //   latitude: courseLoc.lat,
+                //   longitude: courseLoc.lon,
+                // },
+                telephone: item?.contact_number || "+91-8769422006",
+                openingHoursSpecification: [
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: [
+                      "Monday",
+                      "Tuesday",
+                      "Wednesday",
+                      "Thursday",
+                      "Friday",
+                      "Saturday",
+                    ],
+                    opens: "08:00",
+                    closes: "20:00",
+                  },
+                ],
+                review: {
+                  "@type": "Review",
+                  author: {
+                    "@type": "Person",
+                    name: "Royal defence academy",
+                    sameAs: [`${baseURL}/${slug[0]}/${item?.title}`],
+                  },
+                  reviewBody:
+                    "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",
+                  datePublished: currentDate,
+                  reviewRating: {
+                    "@type": "Rating",
+                    ratingValue: 5,
+                    bestRating: 5,
+                    worstRating: 5,
+                  },
+                },
+              })}
+            </script>
+          ))}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "EducationalOrganization",
+            name:
+              course?.title?.replaceAll(/\{location\}/gi, location) ||
+              "Royal defence academy",
+            description: course?.meta_description,
+            url: `${baseURL}/${slug[0]}`,
+            image: course?.image,
+            priceRange: "₹₹₹",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: location || "India",
+              addressLocality: location || "India",
+              addressRegion: location || "India",
+
+              addressCountry: "IN",
+            },
+            // geo: {
+            //   "@type": "GeoCoordinates",
+            //   latitude: courseLoc.lat,
+            //   longitude: courseLoc.lon,
+            // },
+            telephone: "+91-8769422006",
+            openingHoursSpecification: [
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                ],
+                opens: "08:00",
+                closes: "20:00",
               },
-              // geo: {
-              //   "@type": "GeoCoordinates",
-              //   latitude: courseLoc.lat,
-              //   longitude: courseLoc.lon,
-              // },
-              telephone: item?.contact_number || "+91-8769422006",
-              openingHoursSpecification: [
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                  ],
-                  opens: "08:00",
-                  closes: "20:00",
-                },
-              ],
-              review: {
-                "@type": "Review",
-                author: {
-                  "@type": "Person",
-                  name: "Royal defence academy",
-                  sameAs: [`${baseURL}/${slug[0]}/${item?.title}`],
-                },
-                reviewBody:
-                  "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",
-                datePublished: currentDate,
-                reviewRating: {
-                  "@type": "Rating",
-                  ratingValue: 5,
-                  bestRating: 5,
-                  worstRating: 5,
-                },
+            ],
+            review: {
+              "@type": "Review",
+              author: {
+                "@type": "Person",
+                name: "Royal Defence Academy",
+                sameAs: [`${baseURL}/${slug[0]}`],
               },
-            })}
-          </script>
-        ))}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "EducationalOrganization",
-          name:
-            course?.title?.replaceAll(/\{location\}/gi, location) ||
-            "Royal defence academy",
-          description: course?.meta_description,
-          url: `${baseURL}/${slug[0]}`,
-          image: course?.image,
-          priceRange: "₹₹₹",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: location || "India",
-            addressLocality: location || "India",
-            addressRegion: location || "India",
+              reviewBody:
+                "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",
+              datePublished: currentDate,
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: 5,
+                bestRating: 5,
+                worstRating: 5,
+              },
+            },
+          })}
+        </script>
 
-            addressCountry: "IN",
-          },
-          // geo: {
-          //   "@type": "GeoCoordinates",
-          //   latitude: courseLoc.lat,
-          //   longitude: courseLoc.lon,
-          // },
-          telephone: "+91-8769422006",
-          openingHoursSpecification: [
-            {
-              "@type": "OpeningHoursSpecification",
-              dayOfWeek: [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-              ],
-              opens: "08:00",
-              closes: "20:00",
-            },
-          ],
-          review: {
-            "@type": "Review",
-            author: {
-              "@type": "Person",
-              name: "Royal Defence Academy",
-              sameAs: [`${baseURL}/${slug[0]}`],
-            },
-            reviewBody:
-              "The coaching provided by Royal Defence Academy is excellent. The faculty is highly experienced, and the environment is conducive to learning.",
-            datePublished: currentDate,
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: 5,
-              bestRating: 5,
-              worstRating: 5,
-            },
-          },
-        })}
-      </script>
-
-      {course && (
-        <div className="pb-20">
-          <Main
-            locationdatas={locationdata}
-            faqs={faqs}
-            data={course}
-            params={para}
-            loc={loc}
-            currentDate={currentDate}
-            matchinglocation={matchingState?.title || "india"}
-          />
-        </div>
-      )}
-    </>
+        {course && (
+          <div className="pb-20">
+            <Main
+              locationdatas={locationdata}
+              faqs={faqs}
+              data={course}
+              params={para}
+              loc={loc}
+              currentDate={currentDate}
+              matchinglocation={matchingState?.title || "india"}
+            />
+          </div>
+        )}
+      </>
+    )
   );
 }

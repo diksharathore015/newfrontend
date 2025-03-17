@@ -110,7 +110,7 @@ export default function Header({ cityList, seodata, courselist }: any) {
                       href={`/${subItem?.slug_field}`}
                       className="block px-4 py-2 text-sm text-blue-800 font-poppins hover:bg-blue-500 hover:text-white transition"
                     >
-                      {subItem.title.replaceAll("{location}", "")}
+                      {subItem.title.replaceAll(/{(location|Location)}/g, "")}
                     </a>
                   ))}
                 </div>

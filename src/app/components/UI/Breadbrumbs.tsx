@@ -10,7 +10,17 @@ import { fetchBaseUrl } from "@/Constants/urls";
 
 export default function Breadcrumbs() {
   const path = usePathname();
-  const baseURL = fetchBaseUrl();
+  const baseURL = async () =>
+    await fetchBaseUrl().then((res) => {
+      console.log("qqqqqqqqqqqqqq", res);
+      setMainUrl(res);
+    });
+  const [mainUrl, setMainUrl] = useState<any>(() => baseURL());
+
+  useEffect(() => {
+    console.log("mainUrl", mainUrl);
+  }, [mainUrl]);
+
   // Generate breadcrumb paths dynamically
   const segments = path.split("/").splice(1);
   const breadcrumbList = [
@@ -21,14 +31,14 @@ export default function Breadcrumbs() {
             "@type": "ListItem",
             position: 2,
             name: "Course",
-            item: `${baseURL}/course`,
+            item: `${mainUrl}/course`,
           },
         ]),
     ...segments.map((segment, index) => ({
       "@type": "ListItem",
       position: segments.includes("course") ? index + 2 : index + 3, // Adjust position based on whether "Course" is added
       name: decodeURIComponent(segment),
-      item: `${baseURL}/${segments.slice(0, index + 1).join("/")}`,
+      item: `${mainUrl}/${segments.slice(0, index + 1).join("/")}`,
     })),
   ];
 
@@ -37,7 +47,7 @@ export default function Breadcrumbs() {
     "@type": "ListItem",
     position: 1,
     name: Jdata?.home?.title,
-    item: `${baseURL}`,
+    item: `${mainUrl}`,
   });
 
   const breadcrumbSchema = {

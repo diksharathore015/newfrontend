@@ -17,8 +17,8 @@ export default async function page() {
   return (
     <>
       {/* <Redirectblog data={blogsData} /> */}
-      <div className=" w-[95%] mx-auto my-5">
-        <h1 className="md:text-4xl text-base md:font-extrabold flex items-center  bg-gray-200 rounded-md">
+      <div className=" w-[100%]  mx-3 my-5">
+        <h1 className="md:text-4xl text-base md:font-extrabold flex items-center  bg-gray-200 -md">
           <span className="inline-block">
             {" "}
             <Image
@@ -31,7 +31,7 @@ export default async function page() {
           </span>{" "}
           Insights & Inspiration: Browse Our Blog Collection
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-4 ">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-4 mx-4">
           {blogsData &&
             blogsData?.map((blog: any, i: number) => (
               <BlogCard blog={blog} key={i} />

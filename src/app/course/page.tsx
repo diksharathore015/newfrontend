@@ -240,9 +240,7 @@ export default async function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
       />
-      <div className="px-10">
-        <Breadbrumbs />
-      </div>
+      <div className="px-10"><Breadbrumbs /></div>
 
       <Settitle data={seodata[0]?.meta_title} />
       {data &&

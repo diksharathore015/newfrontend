@@ -15,19 +15,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogSiteurl = blogsData.map((item: any) => ({
     url: `${baseURL}/blogs/${item?.slug_field}`,
     lastModified:  new Date("04/02/2025"),
-    changeFrequency: 'hourly',
+    changeFrequency: 'weekly',
     priority: 0.9,
   }));
   // const newsSitemap = newsData.map((item: any) => ({
   //   url: `${baseURL}news?news=${item?.slug_field}`,
   //   lastModified:  new Date("04/02/2025"),
-  //   changeFrequency: 'hourly',
+  //   changeFrequency: 'weekly',
   //   priority: 0.9,
   // }));
   const newsSiteurl = newsData.map((item: any) => ({
     url: `${baseURL}/news/${item?.slug_field}`,
     lastModified:  new Date("04/02/2025"),
-    changeFrequency: 'hourly',
+    changeFrequency: 'weekly',
     priority: 0.9,
   }));
 
@@ -35,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // const blogsSitemap = blogsData.map((item: any) => ({
   //   url: `${baseURL}blogs?blog=${item?.slug_field}`,
   //   lastModified:  new Date("04/02/2025"),
-  //   changeFrequency: 'hourly',
+  //   changeFrequency: 'weekly',
   //   priority: 0.9,
   // }));
 
@@ -48,19 +48,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       {
         url: `${baseURL}/course`,
         lastModified:  new Date("04/02/2025"),
-        changeFrequency: "hourly",
+        changeFrequency: "weekly",
         priority: 0.9,
       },
       {
         url: `${baseURL}/${item?.slug_field}`,
         lastModified:  new Date("04/02/2025"),
-        changeFrequency: "hourly",
+        changeFrequency: "weekly",
         priority: 0.9,
       },
       {
         url: `${baseURL}/aboutus`,
         lastModified:  new Date("04/02/2025"),
-        changeFrequency: "hourly",
+        changeFrequency: "weekly",
         priority: 0.9,
       },
 
@@ -71,20 +71,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       item?.states?.map((state: any) => ({
         url: `${baseURL}/${item?.slug_field}/${state?.title}`,
         lastModified:  new Date("04/02/2025"),
-        changeFrequency: "hourly",
+        changeFrequency: "weekly",
         priority: 0.9,
       })) || [];
   
     const cityUrls = item?.cities?.map((city: any) => ({
         url: `${baseURL}/${item?.slug_field}/${city?.title}`,
         lastModified:  new Date("04/02/2025"),
-        changeFrequency: "hourly",
+        changeFrequency: "weekly",
         priority: 0.9,
       })) || [];
       const localityUrls = item?.localities?.map((localities: any) => ({
         url: `${baseURL}/${item?.slug_field}/${localities?.title}`,
         lastModified:  new Date("04/02/2025"),
-        changeFrequency: "hourly",
+        changeFrequency: "weekly",
         priority: 0.9,
       })) || [];
       // localities
@@ -98,7 +98,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: baseURL,
       lastModified:  new Date("04/02/2025"),
-      changeFrequency: 'hourly',
+      changeFrequency: 'weekly',
       priority: 1.0, 
     },
     // ... other static routes (if any)

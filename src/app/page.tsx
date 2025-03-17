@@ -50,7 +50,7 @@ export async function generateMetadata({ params, searchParams }) {
   const baseURL = await fetchBaseUrl();
 
   <link rel="icon" href={seoData[0]?.image} type="image/x-icon" sizes="any" />;
-  <link rel="canonical" href={seoData[0]?.canonical_url} />;
+  // <link rel="canonical" href={seoData[0]?.canonical_url} />;
   // console.log("firstfirstfirstfirstfirst",seoData[0])
   return {
     title: ` ${seoData[0]?.title}`,
@@ -109,9 +109,9 @@ export async function generateMetadata({ params, searchParams }) {
       follow: true, // or false
     },
 
-    alternates: {
-      canonical: seoData[0]?.canonical_url || baseURL, // Replace with your default canonical URL
-    },
+    // alternates: {
+    //   canonical: seoData[0]?.canonical_url || baseURL, // Replace with your default canonical URL
+    // },
   };
 }
 
@@ -191,12 +191,12 @@ export default async function Home() {
       postalCode: "302012",
       addressCountry: "India",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      bestRating: "5",
-      ratingCount: "505",
-    },
+    // aggregateRating: {
+    //   "@type": "AggregateRating",
+    //   ratingValue: "5",
+    //   bestRating: "5",
+    //   ratingCount: "450",
+    // },
     geo: {
       "@type": "GeoCoordinates",
       latitude: 26.93392,
