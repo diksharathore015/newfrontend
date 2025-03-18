@@ -15,7 +15,7 @@ export default function Breadcrumbs() {
       console.log("qqqqqqqqqqqqqq", res);
       setMainUrl(res);
     });
-  const [mainUrl, setMainUrl] = useState<any>(null);
+  const [mainUrl, setMainUrl] = useState<any>("https://royaldefenceacademy.in");
 
   useEffect(() => {
     baseURL();
