@@ -146,7 +146,7 @@ export default async function Home() {
     controller.getDataApi(Constants.homepagefeaturecourses),
   ]);
   // const loc = await controller.GetApi("http://ip-api.com/json/");
-  console.log("seoDataseoData", seoData);
+  // console.log("seoDataseoData", seoData);
   const baseURL = await fetchBaseUrl();
   // const homepageSchema = {
   //   "@context": "https://schema.org",
@@ -230,7 +230,28 @@ export default async function Home() {
       closes: "20:00",
     },
   };
-  console.log("localbusiness", localBusiness);
+
+  const images = coursesData.map((item: any) => item.images).flat();
+
+  // console.log("coursesData", images);
+
+  const instagramsnippt = {
+    "@context": "https://schema.org",
+    "@graph": images.map((image) => ({
+      "@type": "ImageObject",
+      contentUrl: image.image,
+      author: {
+        "@type": "Person",
+        name: image.image_alt,
+        url: image.image_alt,
+      },
+      // "datePublished": image.datePublished,
+      // "description": image.description,
+      name: image.meta_title,
+    })),
+  };
+
+  // console.log("localbusiness", localBusiness);
   const structuredData = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -245,7 +266,7 @@ export default async function Home() {
           ""
         ),
         url: `${baseURL}/${course?.slug_field}`,
-        image: course.image,
+        image: course.image || AppAssets.logo,
         description: course.meta_description?.replaceAll(
           /(?:\{location\}|\{Location\})/g,
           ""
@@ -399,6 +420,13 @@ export default async function Home() {
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
           />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(instagramsnippt),
+            }}
+          />
+
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
