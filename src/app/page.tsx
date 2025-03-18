@@ -145,7 +145,7 @@ export default async function Home() {
     controller.getDataApi(Constants.homepagefeaturecourses),
   ]);
   // const loc = await controller.GetApi("http://ip-api.com/json/");
-  // console.log("seoDataseoData", seoData);
+  console.log("seoDataseoData", seoData);
   const baseURL = await fetchBaseUrl();
   // const homepageSchema = {
   //   "@context": "https://schema.org",
@@ -229,7 +229,7 @@ export default async function Home() {
       closes: "20:00",
     },
   };
-  console.log("localbusiness",localBusiness)
+  console.log("localbusiness", localBusiness);
   const structuredData = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -243,6 +243,7 @@ export default async function Home() {
           /(?:\{location\}|\{Location\})/g,
           ""
         ),
+        url: `${baseURL}/${course?.slug_field}`,
         image: course.image,
         description: course.meta_description?.replaceAll(
           /(?:\{location\}|\{Location\})/g,
