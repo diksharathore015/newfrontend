@@ -250,8 +250,25 @@ export default async function Home() {
       name: image.meta_title,
     })),
   };
+  const instagramsnippt2 = coursesData.map((course) => ({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: course.name, // Dynamic course name
+    description: course.description, // Dynamic course description
+    hasPart: course.images.map((image) => ({
+      "@type": "ImageObject",
+      contentUrl: image.image,
+      author: {
+        "@type": "Person",
+        name: "Royal Defence Academy",
+        url: image.instagram_link || "",
+      },
+      description: image.image_alt,
+      name: image.meta_title,
+    })),
+  }));
 
-  // console.log("localbusiness", localBusiness);
+  console.log("instagramsnippt2", instagramsnippt2);
   const structuredData = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -388,6 +405,12 @@ export default async function Home() {
               }),
             }}
           />
+          {instagramsnippt2.map((item:any , i:any)=> (
+             <script key={i}
+             type="application/ld+json"
+             dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+           />
+          ))}
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
