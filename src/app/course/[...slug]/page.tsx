@@ -333,7 +333,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   };
   const loc = await controller.GetApi("http://ip-api.com/json/");
   const currentDate = new Date("04/02/2025");
-
+  // console.log("qazxcv",baseURL )
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Course",
@@ -355,7 +355,9 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     provider: {
       "@type": "Organization",
       name: "Royal Defence Academy",
-      url: `${baseURL}/${slug?.join("/")}`,
+      url: `${
+        baseURL ? baseURL : "https://royaldefenceacademy.in"
+      }/${slug?.join("/")}`,
     },
 
     aggregateRating: {

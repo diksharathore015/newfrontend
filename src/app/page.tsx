@@ -7,6 +7,7 @@ import CourseDescription from "./components/courses/CourseDescription";
 import FAQ from "./components/home/Faqs";
 import HomeInfo from "./components/home/HomeInfo";
 import dynamic from "next/dynamic";
+import { AppAssets } from "@/Constants/assets";
 // import Banner from "./components/home/Banner";
 // import Blogs from "./components/home/Blogs";
 // import FeatureCourses from "./components/home/FeatureCources";
@@ -173,7 +174,7 @@ export default async function Home() {
   const localBusiness = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    image: seoData[0]?.image,
+    image: seoData[0]?.image || AppAssets.logo,
     "@id": seoData[0]?.canonical_url,
     name: "Royal Defence Academy",
     logo: seoData[0]?.image,
@@ -253,7 +254,7 @@ export default async function Home() {
         provider: {
           "@type": "Organization",
           name: "Royal defence academy",
-          url: baseURL,
+          url: `${baseURL}/${course?.slug_field}`,
         },
         aggregateRating: {
           "@type": "AggregateRating",
