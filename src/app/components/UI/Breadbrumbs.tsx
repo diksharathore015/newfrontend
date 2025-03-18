@@ -15,9 +15,10 @@ export default function Breadcrumbs() {
       console.log("qqqqqqqqqqqqqq", res);
       setMainUrl(res);
     });
-  const [mainUrl, setMainUrl] = useState<any>(() => baseURL());
+  const [mainUrl, setMainUrl] = useState<any>(null);
 
   useEffect(() => {
+    baseURL();
     console.log("mainUrl", mainUrl);
   }, [mainUrl]);
 
@@ -61,60 +62,62 @@ export default function Breadcrumbs() {
       setShow(true);
     }, 300);
   }, []);
-
+  console.log("breadcrumbSchema", breadcrumbSchema);
   return (
-    <>
-      {/* Inject JSON-LD for rich snippet */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+    mainUrl != null && (
+      <>
+        {/* Inject JSON-LD for rich snippet */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
 
-      {show ? (
-        <div className="w-full md:w-[100%] mx-auto  mt-4  ">
-          <nav className=" inline items-center space-x-2 text-xs md:text-lg text-gray-700">
-            {/* Home Link */}
-            <Link
-              hrefLang="en"
-              href="/"
-              className="text-blue-600 inline hover:text-blue-800 font-semibold transition-all ease-in-out text-sm md:text-xl capitalize"
-            >
-              {Jdata?.home?.title}
-            </Link>
-            {segments[0] != "course" && (
+        {show ? (
+          <div className="w-full md:w-[100%] mx-auto  mt-4  ">
+            <nav className=" inline items-center space-x-2 text-xs md:text-lg text-gray-700">
+              {/* Home Link */}
               <Link
                 hrefLang="en"
-                href="/course"
+                href="/"
                 className="text-blue-600 inline hover:text-blue-800 font-semibold transition-all ease-in-out text-sm md:text-xl capitalize"
               >
-                <FaChevronRight className="text-blue-700      font-bold mt-1 text-sm md:text-xl md:-mt-1 inline" />
-                courses
+                {Jdata?.home?.title}
               </Link>
-            )}
-
-            <FaChevronRight className="text-blue-700 mt-1 md:-mt-1 inline" />
-
-            {/* Dynamic Breadcrumbs */}
-            {segments.map((item: string, i: number) => (
-              <React.Fragment key={i}>
+              {segments[0] != "course" && (
                 <Link
                   hrefLang="en"
-                  href={`/${segments.slice(0, i + 1).join("/")}`}
-                  className="text-blue-600 hover:text-blue-800  inline font-semibold transition-all ease-in-out text-sm md:text-xl"
+                  href="/course"
+                  className="text-blue-600 inline hover:text-blue-800 font-semibold transition-all ease-in-out text-sm md:text-xl capitalize"
                 >
-                  {decodeURIComponent(item.replaceAll("-", " "))}
+                  <FaChevronRight className="text-blue-700      font-bold mt-1 text-sm md:text-xl md:-mt-1 inline" />
+                  courses
                 </Link>
-                {/* Display separator unless it's the last breadcrumb */}
-                {i < segments.length - 1 && (
-                  <FaChevronRight className="text-blue-700   mt-1 text-sm md:text-xl font-semibold  md:-mt-1 inline" />
-                )}
-              </React.Fragment>
-            ))}
-          </nav>
-        </div>
-      ) : (
-        <LineSkeleton />
-      )}
-    </>
+              )}
+
+              <FaChevronRight className="text-blue-700 mt-1 md:-mt-1 inline" />
+
+              {/* Dynamic Breadcrumbs */}
+              {segments.map((item: string, i: number) => (
+                <React.Fragment key={i}>
+                  <Link
+                    hrefLang="en"
+                    href={`/${segments.slice(0, i + 1).join("/")}`}
+                    className="text-blue-600 hover:text-blue-800  inline font-semibold transition-all ease-in-out text-sm md:text-xl"
+                  >
+                    {decodeURIComponent(item.replaceAll("-", " "))}
+                  </Link>
+                  {/* Display separator unless it's the last breadcrumb */}
+                  {i < segments.length - 1 && (
+                    <FaChevronRight className="text-blue-700   mt-1 text-sm md:text-xl font-semibold  md:-mt-1 inline" />
+                  )}
+                </React.Fragment>
+              ))}
+            </nav>
+          </div>
+        ) : (
+          <LineSkeleton />
+        )}
+      </>
+    )
   );
 }
