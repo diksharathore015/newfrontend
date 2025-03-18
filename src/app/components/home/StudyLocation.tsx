@@ -32,7 +32,7 @@ const StudyLocation = ({ data }) => {
             alt="Royal Defence academy"
           />
         </div>
-        <div className="grid grid-cols-2 bg-white md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 md:gap-8 w-full">
+        <div className="grid grid-cols-2 bg-white md:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-6 md:gap-8 w-full">
           {data.map((hub, index) => (
             <div
               onMouseEnter={() => setShow(index)} // Set the hovered index
