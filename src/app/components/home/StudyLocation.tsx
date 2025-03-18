@@ -18,7 +18,7 @@ const StudyLocation = ({ data }) => {
 
   return (
     <>
-      <div className="md:px-11 mt-20 w-full overflow-y-hidden   relative py-16 bg-white border-blue-800 border-2">
+      <div className="md:px-11 mt-20 w-full overflow-y-hidden   relative py-16 bg-white border-blue-800 overflow-hidden border-2">
         {/* Section Title */}
         <h2 className="text-2xl md:text-4xl  pb-8 font-extrabold text-center font-Montserrat italic capitalize   text-blue-800">
           Discover Top Study Hubs In India
@@ -32,7 +32,7 @@ const StudyLocation = ({ data }) => {
             alt="Royal Defence academy"
           />
         </div>
-        <div className="grid grid-cols-2 bg-white md:grid-cols-6 lg:grid-cols-7 md:gap-8 w-full">
+        <div className="grid grid-cols-2 bg-white md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 md:gap-8 w-full">
           {data.map((hub, index) => (
             <div
               onMouseEnter={() => setShow(index)} // Set the hovered index
@@ -64,30 +64,33 @@ const StudyLocation = ({ data }) => {
 
               {/* Overlay on Hover */}
               {show != index && (
-                <div className="absolute border-blue-800 border bg-white/80 hover:bg-white  backdrop-blur-md z-10 w-full h-full top-0 text-center  hover:opacity-0 capitalize overflow-y-auto  transition duration-300 text-blue-800 font- text-lg   md:text-xl   flex flex-col items-start justify-start ">
+                <div className="absolute border-blue-800 border bg-white/80 hover:bg-white  backdrop-blur-md z-10 w-full h-[100%] top-0 text-center  hover:opacity-0 capitalize overflow-y-auto  transition duration-300 text-blue-800 text-lg   md:text-lg   flex flex-col items-start justify-start ">
                   <h2 className="font-semibold uppercase text-blue-800  text-center h-9 w-full line-clamp-1">
                     {" "}
                     {hub?.title}
                   </h2>
 
-                  {hub?.courses.map((item, i) => (
-                    <div
-                      key={i}
-                      onClick={() =>
-                        window.open(
-                          `/${item?.slug_field}/${data[index]?.title}`
-                        )
-                      }
-                      // href={`/${item?.slug_field}/${data[index]?.title}`}
-                      className="block border-b pt-1  leading-4 bg-transparent   hover:bg-white text-blue-800 px-1 text-xs transition-all duration-200   "
-                    >
-                      {" "}
-                      {item?.short_title
-                        .replaceAll("{Location}", "")
-                        .replaceAll("{location}", "")}{" "}
-                      in {data[index]?.title}
-                    </div>
-                  ))}
+                  <div className="overflow-y-auto">
+                    {" "}
+                    {hub?.courses.map((item, i) => (
+                      <div
+                        key={i}
+                        onClick={() =>
+                          window.open(
+                            `/${item?.slug_field}/${data[index]?.title}`
+                          )
+                        }
+                        // href={`/${item?.slug_field}/${data[index]?.title}`}
+                        className="block border-b   leading-4 bg-transparent   hover:bg-white text-blue-800 px-1 text-xs transition-all duration-200   "
+                      >
+                        {" "}
+                        {item?.short_title
+                          .replaceAll("{Location}", "")
+                          .replaceAll("{location}", "")}{" "}
+                        in {data[index]?.title}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
