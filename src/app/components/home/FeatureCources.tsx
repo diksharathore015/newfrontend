@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import MainSlider from "../UI/MainSlider";
 import SliderSkeleton from "../skeleton/SliderSkeleton";
 import GalleryCard from "./Gallerycard";
+import CourseTable from "../courses/CourseTable";
 
 export default function FeatureCourses({ data }: any) {
   // console.log("testdata", data);
@@ -15,7 +16,22 @@ export default function FeatureCourses({ data }: any) {
       setShow(true);
     }, 300);
   }, [data]);
-
+  const currentDate = new Date("04/02/2025");
+  const [dateArr, setDateArr] = useState<any>(() => {
+    return {
+      date: currentDate.toISOString().slice(0, 19),
+      startDate: currentDate.toISOString().split("T"),
+      newDate: new Date(currentDate.setMonth(currentDate.getMonth() + 3))
+        .toISOString()
+        .split("T"),
+    };
+  });
+  const locationdatas = {
+    type: "none",
+    matchedItem: "india",
+    cityName: "india",
+    stateName: "india",
+  };
   return (
     <>
       <div className="mt-20 py-20  w-full md:px-8 px-2 overflow-x-hidden bg-blue-800 text-white">
@@ -36,7 +52,14 @@ export default function FeatureCourses({ data }: any) {
             )}
           </p>
 
-          <div className=" w-full  mx-auto overflow-hidden ">
+          <CourseTable
+            locationdatas={locationdatas}
+            course={data}
+            currentLocation={"india"}
+            newDate={dateArr.newDate}
+            startDate={dateArr.startDate}
+          />
+          <div className=" w-full mt-5  mx-auto overflow-hidden ">
             {show ? (
               <MainSlider
                 responsive={[

@@ -493,6 +493,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       .split(","),
   };
 
+  console.log("servicesschema", servicesschema);
   return (
     baseURL && (
       <>

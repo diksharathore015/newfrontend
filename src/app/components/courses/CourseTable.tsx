@@ -3,6 +3,7 @@ import { BiSolidStar, BiSolidStarHalf } from "react-icons/bi";
 
 interface CourseTableProps {
   course: {
+    title?: any;
     meta_title: string;
     short_description: string;
     rating?: string | number;
@@ -22,6 +23,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
   newDate,
   startDate,
 }) => {
+  console.log("coursecoursecoursecourse", course);
   const names = [
     "Royal Defence Online Academy",
     "Royal Sainik & Military School Coaching",
@@ -61,17 +63,25 @@ const CourseTable: React.FC<CourseTableProps> = ({
       </thead>
       <tbody>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">Course Title</td>
-          <td className="border p-3 text-sm sm:text-base">
-            {course?.meta_title.replaceAll(
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Course Title
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            {course?.meta_title?.replaceAll(
               /(?:\{location\}|\{Location\})/g,
-              `${currentLocation || ""}`
-            )}
+              `${currentLocation || "india"}`
+            ) ||
+              course?.title?.replaceAll(
+                /(?:\{location\}|\{Location\})/g,
+                `${currentLocation || "india"}`
+              )}
           </td>
         </tr>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">Description</td>
-          <td className="border p-3 text-sm sm:text-base">
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Description
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
             {course?.short_description.replaceAll(
               /(?:\{location\}|\{Location\})/g,
               `${currentLocation || ""}`
@@ -79,36 +89,58 @@ const CourseTable: React.FC<CourseTableProps> = ({
           </td>
         </tr>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">Instructor</td>
-          <td className="border p-3 text-sm sm:text-base">
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Instructor
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
             Rajendra Singh Rathore
           </td>
         </tr>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">Course Mode</td>
-          <td className="border p-3 text-sm sm:text-base">Blended</td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Course Mode
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Blended
+          </td>
         </tr>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">Duration</td>
-          <td className="border p-3 text-sm sm:text-base">24 hours per week</td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Duration
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            24 hours per week
+          </td>
         </tr>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">Start Date</td>
-          <td className="border p-3 text-sm sm:text-base">{startDate}</td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Start Date
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            {startDate}
+          </td>
         </tr>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">End Date</td>
-          <td className="border p-3 text-sm sm:text-base">{newDate}</td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            End Date
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            {newDate}
+          </td>
         </tr>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">Opening Hours</td>
-          <td className="border p-3 text-sm sm:text-base">
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Opening Hours
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
             Monday to Saturday: 8:00 AM - 8:00 PM
           </td>
         </tr>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">Rating</td>
-          <td className="border p-3 text-sm sm:text-base flex items-center">
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Rating
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600 flex items-center">
             {course?.rating || "4.5"}
             {[1, 2, 3, 4].map((_, i) => (
               <BiSolidStar key={i} className="text-yellow-400" />
@@ -117,14 +149,18 @@ const CourseTable: React.FC<CourseTableProps> = ({
           </td>
         </tr>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">Contact Number</td>
-          <td className="border p-3 text-sm sm:text-base">
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Contact Number
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
             {course?.contact_number || "N/A"}
           </td>
         </tr>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">Location on Map</td>
-          <td className="border p-3 text-sm sm:text-base">
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Location on Map
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
             <a
               href={googleMapUrl}
               target="_blank"
@@ -136,8 +172,10 @@ const CourseTable: React.FC<CourseTableProps> = ({
           </td>
         </tr>
         <tr className="bg-white hover:bg-gray-50">
-          <td className="border p-3 text-sm sm:text-base">Address</td>
-          <td className="border p-3 text-sm sm:text-base capitalize">
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
+            Address
+          </td>
+          <td className="border p-3 text-sm sm:text-gray-500 text-gray-600 capitalize">
             {selectedCourseName}{" "}
             {locationdatas?.matchedItem?.title
               ? `, ${locationdatas?.matchedItem?.title.replaceAll("-", " ")}`
