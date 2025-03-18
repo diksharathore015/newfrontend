@@ -189,7 +189,7 @@ export default async function Home() {
       addressLocality: "Jaipur",
       addressRegion: "Rajasthan",
       postalCode: "302012",
-      addressCountry: "India",
+      addressCountry: "IN",
     },
     // aggregateRating: {
     //   "@type": "AggregateRating",
@@ -355,7 +355,7 @@ export default async function Home() {
                   addressLocality: "Jaipur",
                   addressRegion: "rajasthan",
                   postalCode: "302024",
-                  addressCountry: "India",
+                  addressCountry: "IN",
                 },
                 sameAs: [
                   "https://www.facebook.com/Sainikschoolentranceexamcoaching/",
@@ -389,7 +389,7 @@ export default async function Home() {
                   addressLocality: "Jaipur",
                   addressRegion: "rajasthan",
                   postalCode: "302024",
-                  addressCountry: "India",
+                  addressCountry: "IN",
                 },
               }),
             }}

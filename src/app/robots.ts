@@ -8,8 +8,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: ['/'],
-        disallow: '/private/',
+        disallow: ['/private/', '/_next/'],
       },
+      
       
       
     ],
