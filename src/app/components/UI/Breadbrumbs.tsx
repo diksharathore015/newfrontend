@@ -12,14 +12,14 @@ export default function Breadcrumbs() {
   const path = usePathname();
   const baseURL = async () =>
     await fetchBaseUrl().then((res) => {
-      console.log("qqqqqqqqqqqqqq", res);
+      // console.log("qqqqqqqqqqqqqq", res);
       setMainUrl(res);
     });
   const [mainUrl, setMainUrl] = useState<any>("https://royaldefenceacademy.in");
 
   useEffect(() => {
     baseURL();
-    console.log("mainUrl", mainUrl);
+    // console.log("mainUrl", mainUrl);
   }, [mainUrl]);
 
   // Generate breadcrumb paths dynamically
@@ -62,7 +62,7 @@ export default function Breadcrumbs() {
       setShow(true);
     }, 300);
   }, []);
-  console.log("breadcrumbSchema", breadcrumbSchema);
+  // console.log("breadcrumbSchema", breadcrumbSchema);
   return (
     mainUrl != null && (
       <>

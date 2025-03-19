@@ -23,7 +23,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
   newDate,
   startDate,
 }) => {
-  console.log("coursecoursecoursecourse", course);
+  // console.log("coursecoursecoursecourse", course);
   const names = [
     "Royal Defence Online Academy",
     "Royal Sainik & Military School Coaching",

@@ -68,16 +68,16 @@ export async function generateMetadata({ params, searchParams }) {
     openGraph: {
       title: seoData[0]?.title.replaceAll(
         /(?:\{location\}|\{Location\})/g,
-        `${params?.slug?.length > 1 ? params.slug[1] : ""}`
+        `${params?.slug?.length > 1 ? params.slug[1] : "india"}`
       ),
       description: seoData[0]?.og_description.replaceAll(
         /(?:\{location\}|\{Location\})/g,
-        `${params?.slug?.length > 1 ? params.slug[1] : ""}`
+        `${params?.slug?.length > 1 ? params.slug[1] : "india"}`
       ),
       url: baseURL,
       siteName: `Home- ${seoData[0]?.title.replaceAll(
         /(?:\{location\}|\{Location\})/g,
-        `${params?.slug?.length > 1 ? params.slug[1] : ""}`
+        `${params?.slug?.length > 1 ? params.slug[1] : "india"}`
       )}`,
       type: "website", // or 'article', 'product', etc.
       images: [
@@ -88,7 +88,7 @@ export async function generateMetadata({ params, searchParams }) {
           alt:
             seoData[0]?.og_title.replaceAll(
               /(?:\{location\}|\{Location\})/g,
-              `${params?.slug?.length > 1 ? params.slug[1] : ""}`
+              `${params?.slug?.length > 1 ? params.slug[1] : "india"}`
             ) || "Default OG Image Alt",
         },
       ],
@@ -98,7 +98,7 @@ export async function generateMetadata({ params, searchParams }) {
       card: seoData[0]?.twitter_card,
       title: seoData[0]?.title.replaceAll(
         /(?:\{location\}|\{Location\})/g,
-        `${params?.slug?.length > 1 ? params.slug[1] : ""}`
+        `${params?.slug?.length > 1 ? params.slug[1] : "india"}`
       ),
       description: seoData[0]?.description,
       images: [seoData[0]?.og_image],
@@ -267,8 +267,19 @@ export default async function Home() {
       name: image.meta_title,
     })),
   }));
+  const data2 = coursesData.map((item) =>
+    item?.images?.map((item2) => ({
+      "@type": "ImageObject",
+      contentUrl: item2.image,
+      author: {
+        "@type": "Person",
+        name: item2.image_alt,
+        url: item2.image_alt,
+      },
+    }))
+  );
 
-  console.log("instagramsnippt2", instagramsnippt2);
+  console.log("coursesDatacoursesData", data2);
   const structuredData = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -280,19 +291,19 @@ export default async function Home() {
         "@type": "Course",
         name: course.meta_title?.replaceAll(
           /(?:\{location\}|\{Location\})/g,
-          ""
+         "india"
         ),
-        url: `${baseURL}/${course?.slug_field}`,
+        url: `${baseURL}`,
         image: course.image || AppAssets.logo,
         description: course.meta_description?.replaceAll(
           /(?:\{location\}|\{Location\})/g,
-          ""
+          "india"
         ),
         courseWorkload: "4 hours per day",
         provider: {
           "@type": "Organization",
           name: "Royal defence academy",
-          url: `${baseURL}/${course?.slug_field}`,
+          url: `${baseURL}`,
         },
         aggregateRating: {
           "@type": "AggregateRating",
@@ -303,9 +314,9 @@ export default async function Home() {
           "@type": "Offer",
           category: course?.title?.replaceAll(
             /(?:\{location\}|\{Location\})/g,
-            ""
+            "india"
           ),
-          url: `${baseURL}/${course?.slug_field}`,
+          url: `${baseURL}`,
           price: "Paid",
           priceCurrency: "₹",
         },
@@ -314,11 +325,11 @@ export default async function Home() {
             "@type": "CourseInstance",
             name: course.meta_title?.replaceAll(
               /(?:\{location\}|\{Location\})/g,
-              ""
+              "india"
             ),
             description: course.meta_keyword?.replaceAll(
               /(?:\{location\}|\{Location\})/g,
-              ""
+              "india"
             ),
             instructor: {
               "@type": "Person",
@@ -367,6 +378,25 @@ export default async function Home() {
       },
     })),
   };
+  const image_list_schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: coursesData.map((item) =>
+      item?.images?.map((item) => ({
+        "@type": "ImageObject",
+        contentUrl: item.image,
+        author: {
+          "@type": "Person",
+          name: item.image_alt,
+          url: item.image_alt,
+        },
+
+        // "datePublished": image.datePublished,
+        description: item.meta_keyword,
+        name: item.meta_title,
+      }))
+    ),
+  };
 
   return (
     <>
@@ -405,11 +435,19 @@ export default async function Home() {
               }),
             }}
           />
-          {instagramsnippt2.map((item:any , i:any)=> (
-             <script key={i}
-             type="application/ld+json"
-             dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
-           />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(image_list_schema),
+            }}
+          />
+
+          {instagramsnippt2.map((item: any, i: any) => (
+            <script
+              key={i}
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+            />
           ))}
           <script
             type="application/ld+json"

@@ -20,22 +20,22 @@ export async function generateMetadata({
   );
   const baseURL = await fetchBaseUrl();
   const replaceLocation = (str: string) =>
-    str?.replaceAll(/\{location\}/gi, location);
+    str?.replaceAll(/(?:\{location\}|\{Location\})/g, location);
 
   // <link rel="canonical" href={`${baseURL}/${slug.join("/")}`} />;
 
   return (
     baseURL && {
-      title: replaceLocation(course[0]?.meta_title) || "Royal defence Academy",
+      title: replaceLocation(course[0]?.meta_title) || "india",
       description:
         replaceLocation(
           course[0]?.meta_description || course[0]?.description
-        ) || "Royal defence Academy",
+        ) || "india",
       keywords:
-        replaceLocation(course[0]?.meta_keyword) || "Royal defence Academy",
+        replaceLocation(course[0]?.meta_keyword) || "india",
       openGraph: {
         title:
-          replaceLocation(course[0]?.meta_title) || "Royal defence Academy",
+          replaceLocation(course[0]?.meta_title) || "india",
         url: `${baseURL}/${slug.join("/")}`,
         siteName: "Royal Defence Academy",
         type: "website",
@@ -45,14 +45,14 @@ export async function generateMetadata({
             width: 1200,
             height: 630,
             alt:
-              replaceLocation(course[0]?.image_alt) || "Royal Defence Academy",
+              replaceLocation(course[0]?.image_alt) || "india",
           },
         ],
       },
       twitter: {
         card: "summary_large_image",
         title:
-          replaceLocation(course[0]?.meta_title) || "Royal defence Academy",
+          replaceLocation(course[0]?.meta_title) || "india",
         description:
           replaceLocation(course[0]?.meta_description) ||
           "Royal defence Academy",
@@ -100,7 +100,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     `${Constants.singlecourses}?slug_field=${slug[0].toLowerCase()}`
   );
   const baseURL = await fetchBaseUrl();
-
+  console.log(" [course?.image] [course?.image]", course);
   const faqs =
     course &&
     (await controller.getDataApi(`${Constants.faqsData}?course=${course?.id}`));
@@ -204,16 +204,16 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     image: course?.image,
     name: `Royal Defence Academy - ${
       course?.meta_title.replaceAll(
-        /\{location\}/gi,
+        /(?:\{location\}|\{Location\})/g,
         locationdata?.matchedItem?.title
-      ) || "Royal defence academy"
+      ) || "india"
     } `,
     url: `${baseURL}/${slug.join("/")}`,
     description:
       course?.meta_description.replaceAll(
-        /\{location\}/gi,
+        /(?:\{location\}|\{Location\})/g,
         locationdata?.matchedItem?.title
-      ) || "Royal defence academy",
+      ) || "india",
     provider: {
       "@type": "Organization",
       name: "Royal Defence Academy",
@@ -252,16 +252,16 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     "@id": `${baseURL}/${slug.join("/")}`,
     name: `Royal Defence Academy - ${
       course?.meta_title.replaceAll(
-        /\{location\}/gi,
+        /(?:\{location\}|\{Location\})/g,
         locationdata?.matchedItem?.title
-      ) || "Royal defence academy"
+      ) || "india"
     } `,
     logo: course?.image,
     description:
       course?.meta_description.replaceAll(
-        /\{location\}/gi,
+        /(?:\{location\}|\{Location\})/g,
         locationdata?.matchedItem?.title
-      ) || "Royal defence academy",
+      ) || "india",
     sameAs: [
       "https://www.youtube.com/@rdajaipur",
       "https://www.instagram.com/onlinesainikschoolcoaching/",
@@ -333,16 +333,23 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   };
   const loc = await controller.GetApi("http://ip-api.com/json/");
   const currentDate = new Date("04/02/2025");
-  // console.log("qazxcv",baseURL )
+
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Course",
     name:
-      course?.meta_title?.replaceAll(/\{location\}/gi, location) ||
+      course?.meta_title?.replaceAll(/(?:\{location\}|\{Location\})/g, location) ||
       "Royal defence academy",
-    url: `${baseURL}/${slug[0]}`,
+    url: `${baseURL}/${slug?.join("/")}`,
 
-    image: course?.image,
+    image: course?.images.map((imageObj) => ({
+      "@type": "ImageObject",
+      url: imageObj.image,
+      caption: imageObj.image_alt.replace(
+        /(?:\{location\}|\{Location\})/g,
+        location || "india"
+      ),
+    })),
     description: course?.meta_description?.replaceAll(
       /(?:\{location\}|\{Location\})/g,
       `${
@@ -368,7 +375,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     offers: {
       "@type": "Offer",
       category:
-        course?.title?.replaceAll(/\{location\}/gi, location) ||
+        course?.title?.replaceAll(/(?:\{location\}|\{Location\})/g, location) ||
         "Royal defence academy",
       url: `${baseURL}/${slug?.join("/")}`,
       price: "Paid",
@@ -384,10 +391,10 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       {
         "@type": "CourseInstance",
         name:
-          course?.meta_title?.replaceAll(/\{location\}/gi, location) ||
+          course?.meta_title?.replaceAll(/(?:\{location\}|\{Location\})/g, location) ||
           "Royal defence academy",
         description:
-          course?.meta_keyword?.replaceAll(/\{location\}/gi, location) ||
+          course?.meta_keyword?.replaceAll(/(?:\{location\}|\{Location\})/g, location) ||
           "Royal defence academy",
         instructor: {
           "@type": "Person",
@@ -395,7 +402,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         },
         location: {
           "@type": "Place",
-          name: matchingState?.title || "Royal defence academy",
+          name: matchingState?.title || "india",
           address: {
             "@type": "PostalAddress",
             addressLocality: matchingState?.title || "india",
@@ -430,6 +437,25 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     },
   };
 
+  const image_list_schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: course.images.map((item) => ({
+      "@type": "ImageObject",
+      contentUrl: item.image,
+      author: {
+        "@type": "Person",
+        name: item.image_alt,
+        url: item.image_alt,
+      },
+
+      // "datePublished": image.datePublished,
+      description: item.meta_keyword,
+      name: item.meta_title,
+    })),
+  };
+
+  console.log("firstschemaData", schemaData);
   const schemaData2 = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -461,7 +487,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     name: course?.title.replaceAll(/(?:\{location\}|\{Location\})/g, ""),
     description: course?.meta_description.replaceAll(
       /(?:\{location\}|\{Location\})/g,
-      ""
+      "india"
     ),
     inLanguage: "en", // Replace with actual language if available
     image: course?.multiple_imagess?.slice(0, 30).map((item: any) => ({
@@ -495,10 +521,15 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       .split(","),
   };
 
-  console.log("servicesschema", servicesschema);
   return (
     baseURL && (
       <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(image_list_schema),
+          }}
+        />
         <Head>
           <link rel="canonical" href={`${baseURL}/${slug.join("/")}`} />
         </Head>
@@ -531,11 +562,11 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
                 "@type": "EducationalOrganization",
                 name:
                   course?.short_title?.replaceAll(
-                    /\{location\}/gi,
+                    /(?:\{location\}|\{Location\})/g,
                     item?.title
-                  ) || "Royal defence academy",
+                  ) || "india",
                 description: course?.meta_description.replaceAll(
-                  /\{location\}/gi,
+                  /(?:\{location\}|\{Location\})/g,
                   item?.title
                 ),
                 url: `${baseURL}/${slug[0]}/${item?.title}`,
@@ -607,11 +638,11 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
                 "@type": "EducationalOrganization",
                 name:
                   course?.short_title?.replaceAll(
-                    /\{location\}/gi,
+                    /(?:\{location\}|\{Location\})/g,
                     item?.title
-                  ) || "Royal defence academy",
+                  ) || "india",
                 description: course?.meta_description.replaceAll(
-                  /\{location\}/gi,
+                  /(?:\{location\}|\{Location\})/g,
                   item?.title
                 ),
                 url: `${baseURL}/${slug[0]}/${item?.title}`,
@@ -685,11 +716,11 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
                 "@type": "EducationalOrganization",
                 name:
                   course?.short_title?.replaceAll(
-                    /\{location\}/gi,
+                    /(?:\{location\}|\{Location\})/g,
                     item?.title
-                  ) || "Royal defence academy",
+                  ) || "india",
                 description: course?.meta_description.replaceAll(
-                  /\{location\}/gi,
+                  /(?:\{location\}|\{Location\})/g,
                   item?.title
                 ),
                 url: `${baseURL}/${slug[0]}/${item?.title}`,
@@ -749,7 +780,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
             "@context": "https://schema.org",
             "@type": "EducationalOrganization",
             name:
-              course?.title?.replaceAll(/\{location\}/gi, location) ||
+              course?.title?.replaceAll(/(?:\{location\}|\{Location\})/g, location) ||
               "Royal defence academy",
             description: course?.meta_description,
             url: `${baseURL}/${slug[0]}`,

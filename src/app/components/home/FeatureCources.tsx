@@ -11,6 +11,8 @@ import CourseTable from "../courses/CourseTable";
 export default function FeatureCourses({ data }: any) {
   // console.log("testdata", data);
   const [show, setShow] = useState(false);
+  const [showdetails, setShowdetails] = useState(false);
+
   useEffect(() => {
     setTimeout(() => {
       setShow(true);
@@ -51,14 +53,22 @@ export default function FeatureCourses({ data }: any) {
               ""
             )}
           </p>
+          <div
+            className="font-Montserrat text-lg "
+            onClick={() => setShowdetails(!showdetails)}
+          >
+            {data.short_description} Details :
+            {showdetails && (
+              <CourseTable
+                locationdatas={locationdatas}
+                course={data}
+                currentLocation={"india"}
+                newDate={dateArr.newDate}
+                startDate={dateArr.startDate}
+              />
+            )}
+          </div>
 
-          <CourseTable
-            locationdatas={locationdatas}
-            course={data}
-            currentLocation={"india"}
-            newDate={dateArr.newDate}
-            startDate={dateArr.startDate}
-          />
           <div className=" w-full mt-5  mx-auto overflow-hidden ">
             {show ? (
               <MainSlider
