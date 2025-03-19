@@ -99,7 +99,7 @@ export default function Header({ cityList, seodata, courselist }: any) {
                 href={item.href}
                 className="text-base font-medium hover:underline  transition-colors"
               >
-                {item.title.replaceAll(/\{location\}/gi, "")}
+                {item.title.replaceAll(/\{location\}/gi, "india")}
               </a>
 
               {item.hasDropdown && showDropdown === index && (
@@ -110,7 +110,7 @@ export default function Header({ cityList, seodata, courselist }: any) {
                       href={`/${subItem?.slug_field}`}
                       className="block px-4 py-2 text-sm border-b  text-blue-800 font-poppins hover:bg-blue-800 hover:text-white transition"
                     >
-                      {subItem.title.replaceAll(/{(location|Location)}/g, "")}
+                      {subItem.title.replaceAll(/{(location|Location)}/g, "india")}
                     </a>
                   ))}
                 </div>

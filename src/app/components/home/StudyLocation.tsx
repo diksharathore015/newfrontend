@@ -85,8 +85,8 @@ const StudyLocation = ({ data }) => {
                       >
                         {" "}
                         {item?.short_title
-                          .replaceAll("{Location}", "")
-                          .replaceAll("{location}", "")}{" "}
+                          .replaceAll("{Location}", "india")
+                          .replaceAll("{location}", "india")}{" "}
                         in {data[index]?.title}
                       </div>
                     ))}

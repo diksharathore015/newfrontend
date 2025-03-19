@@ -508,7 +508,7 @@ export default async function Home() {
           <div className="md:w-[100%] pt-10 md:mx-auto mx-1">
             <CourseDescription
               description={homepagecontent[0].details}
-              currentLocation={""}
+              currentLocation={"india"}
             />
           </div>
         )}

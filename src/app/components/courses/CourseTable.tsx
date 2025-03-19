@@ -84,7 +84,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
           <td className="border p-3 text-sm sm:text-gray-500 text-gray-600">
             {course?.short_description.replaceAll(
               /(?:\{location\}|\{Location\})/g,
-              `${currentLocation || ""}`
+              `${currentLocation || "india"}`
             )}
           </td>
         </tr>

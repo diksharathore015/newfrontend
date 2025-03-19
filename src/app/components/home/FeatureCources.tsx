@@ -43,21 +43,25 @@ export default function FeatureCourses({ data }: any) {
             href={`/${data?.slug_field}`}
             className=" font-Montserrat px-1 text-white hover:text-gray-50"
           >
-            {data?.title.replaceAll(/(?:\{location\}|\{Location\})/g, "")}
+            {data?.title.replaceAll(/(?:\{location\}|\{Location\})/g, "india")}
           </Link>
         </div>
         <div>
           <p className=" text-gray-400 md:w-[50%]   text-sm pb-4">
             {data?.short_description.replaceAll(
               /(?:\{location\}|\{Location\})/g,
-              ""
+              "india"
             )}
           </p>
           <div
             className="font-Montserrat text-lg "
             onClick={() => setShowdetails(!showdetails)}
           >
-            {data.short_description} Details :
+            {data.short_description.replaceAll(
+              /(?:\{location\}|\{Location\})/g,
+              "india"
+            )}{" "}
+            Details :
             {showdetails && (
               <CourseTable
                 locationdatas={locationdatas}
@@ -111,16 +115,16 @@ export default function FeatureCourses({ data }: any) {
                       blurDataURL={""}
                       title={item?.title?.replaceAll(
                         /(?:\{location\}|\{Location\})/g,
-                        ""
+                        "india"
                       )}
                       description={
                         item?.description?.replaceAll(
                           /(?:\{location\}|\{Location\})/g,
-                          ""
+                          "india"
                         ) ||
                         item?.meta_title?.replaceAll(
                           /(?:\{location\}|\{Location\})/g,
-                          ""
+                          "india"
                         )
                       }
                     />
