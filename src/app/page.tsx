@@ -50,7 +50,7 @@ export async function generateMetadata({ params, searchParams }) {
   const seoData = await get(Constants.seo);
   const baseURL = await fetchBaseUrl();
 
-  <link rel="icon" href={seoData[0]?.image} type="image/x-icon" sizes="any" />;
+  <link rel="icon" href={seoData[0]?.logo} type="image/x-icon" sizes="any" />;
   // <link rel="canonical" href={seoData[0]?.canonical_url} />;
   // console.log("firstfirstfirstfirstfirst",seoData[0])
   return {
@@ -110,9 +110,9 @@ export async function generateMetadata({ params, searchParams }) {
       follow: true, // or false
     },
 
-    // alternates: {
-    //   canonical: seoData[0]?.canonical_url || baseURL, // Replace with your default canonical URL
-    // },
+    alternates: {
+      canonical: seoData[0]?.canonical_url || baseURL, // Replace with your default canonical URL
+    },
   };
 }
 
@@ -146,7 +146,7 @@ export default async function Home() {
     controller.getDataApi(Constants.homepagefeaturecourses),
   ]);
   // const loc = await controller.GetApi("http://ip-api.com/json/");
-  // console.log("seoDataseoData", seoData);
+  console.log("seoDataseoData", seoData[0].logo);
   const baseURL = await fetchBaseUrl();
   // const homepageSchema = {
   //   "@context": "https://schema.org",
@@ -174,10 +174,10 @@ export default async function Home() {
   const localBusiness = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    image: seoData[0]?.image || AppAssets.logo,
+    image: seoData[0]?.logo || AppAssets.logo,
     "@id": seoData[0]?.canonical_url,
     name: "Royal Defence Academy",
-    logo: seoData[0]?.image,
+    logo: seoData[0]?.logo,
     description: seoData[0]?.description,
     sameAs: [
       "https://www.youtube.com/@rdajaipur",
@@ -231,55 +231,9 @@ export default async function Home() {
     },
   };
 
-  const images = coursesData.map((item: any) => item.images).flat();
-
   // console.log("coursesData", images);
 
-  const instagramsnippt = {
-    "@context": "https://schema.org",
-    "@graph": images.map((image) => ({
-      "@type": "ImageObject",
-      contentUrl: image.image,
-      author: {
-        "@type": "Person",
-        name: image.image_alt,
-        url: image.image_alt,
-      },
-      // "datePublished": image.datePublished,
-      // "description": image.description,
-      name: image.meta_title,
-    })),
-  };
-  const instagramsnippt2 = coursesData.map((course) => ({
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: course.name, // Dynamic course name
-    description: course.description, // Dynamic course description
-    hasPart: course.images.map((image) => ({
-      "@type": "ImageObject",
-      contentUrl: image.image,
-      author: {
-        "@type": "Person",
-        name: "Royal Defence Academy",
-        url: image.instagram_link || "",
-      },
-      description: image.image_alt,
-      name: image.meta_title,
-    })),
-  }));
-  const data2 = coursesData.map((item) =>
-    item?.images?.map((item2) => ({
-      "@type": "ImageObject",
-      contentUrl: item2.image,
-      author: {
-        "@type": "Person",
-        name: item2.image_alt,
-        url: item2.image_alt,
-      },
-    }))
-  );
-
-  console.log("coursesDatacoursesData", data2);
+  // console.log("coursesDatacoursesData", data2);
   const structuredData = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -291,7 +245,7 @@ export default async function Home() {
         "@type": "Course",
         name: course.meta_title?.replaceAll(
           /(?:\{location\}|\{Location\})/g,
-         "india"
+          "india"
         ),
         url: `${baseURL}`,
         image: course.image || AppAssets.logo,
@@ -378,25 +332,6 @@ export default async function Home() {
       },
     })),
   };
-  const image_list_schema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: coursesData.map((item) =>
-      item?.images?.map((item) => ({
-        "@type": "ImageObject",
-        contentUrl: item.image,
-        author: {
-          "@type": "Person",
-          name: item.image_alt,
-          url: item.image_alt,
-        },
-
-        // "datePublished": image.datePublished,
-        description: item.meta_keyword,
-        name: item.meta_title,
-      }))
-    ),
-  };
 
   return (
     <>
@@ -413,7 +348,7 @@ export default async function Home() {
                 description: seoData[0]?.description,
                 logo: {
                   "@type": "ImageObject",
-                  url: seoData[0]?.image, // Replace with the correct logo URL
+                  url: seoData[0]?.logo, // Replace with the correct logo URL
                   width: 512, // Optional, provide actual dimensions if available
                   height: 512, // Optional, provide actual dimensions if available
                 },
@@ -435,20 +370,7 @@ export default async function Home() {
               }),
             }}
           />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(image_list_schema),
-            }}
-          />
 
-          {instagramsnippt2.map((item: any, i: any) => (
-            <script
-              key={i}
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
-            />
-          ))}
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -459,12 +381,7 @@ export default async function Home() {
                 url: baseURL,
                 description:
                   "High-quality education for future defense professionals.",
-                logo: {
-                  "@type": "ImageObject",
-                  url: seoData[0]?.image, // Replace with the correct logo URL
-                  width: 512, // Optional, provide actual dimensions if available
-                  height: 512, // Optional, provide actual dimensions if available
-                },
+                logo: seoData[0]?.logo,
 
                 address: {
                   "@type": "PostalAddress",
@@ -480,12 +397,6 @@ export default async function Home() {
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(instagramsnippt),
-            }}
           />
 
           <script

@@ -7,7 +7,7 @@ import HomeInfo from "../components/home/HomeInfo";
 export async function generateMetadata({ params, searchParams }) {
   const seoData = await get(Constants.seo);
   const baseURL = fetchBaseUrl();
-  <link rel="icon" href={seoData[0]?.image} type="image/x-icon" sizes="any" />;
+  <link rel="icon" href={seoData[0]?.logo} type="image/x-icon" sizes="any" />;
   <link rel="canonical" href={seoData[0]?.canonical_url} />;
   // console.log("firstfirstfirstfirstfirst",seoData[0])
   return {
@@ -68,8 +68,7 @@ export async function generateMetadata({ params, searchParams }) {
     },
 
     alternates: {
-      canonical:
-        seoData[0]?.canonical_url || baseURL, // Replace with your default canonical URL
+      canonical: seoData[0]?.canonical_url || baseURL, // Replace with your default canonical URL
     },
   };
 }
