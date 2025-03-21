@@ -100,7 +100,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     `${Constants.singlecourses}?slug_field=${slug[0].toLowerCase()}`
   );
   const baseURL = await fetchBaseUrl();
-
+  console.log("coursecourse", course);
   const faqs =
     course &&
     (await controller.getDataApi(`${Constants.faqsData}?course=${course?.id}`));
@@ -274,7 +274,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         locationdata?.matchedItem.title || "4&10, C.B. Nagar, Khatipura,",
       addressRegion: locationdata?.stateName || "Jaipur",
       postalCode: locationdata?.matchedItem?.pincode || "302012",
-      addressCountry: "India",
+      addressCountry: "IN",
     },
 
     // aggregateRating: {
@@ -333,7 +333,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   };
   const loc = await controller.GetApi("http://ip-api.com/json/");
   const currentDate = new Date("04/02/2025");
-  // console.log("qazxcv",baseURL )
+  console.log("matchingState", matchingState);
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Course",
@@ -356,7 +356,9 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       "@type": "Organization",
       name: "Royal Defence Academy",
       url: `${
-        baseURL ? `${baseURL}/${slug?.join("/")}` : "https://royaldefenceacademy.in"
+        baseURL
+          ? `${baseURL}/${slug?.join("/")}`
+          : "https://royaldefenceacademy.in"
       }/${slug?.join("/")}`,
     },
 
@@ -757,10 +759,10 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
             priceRange: "₹₹₹",
             address: {
               "@type": "PostalAddress",
-              streetAddress: location || "India",
+              streetAddress: matchingState?.title || location || "India",
               addressLocality: location || "India",
               addressRegion: location || "India",
-
+              postalCode: matchingState?.pincode || "110001",
               addressCountry: "IN",
             },
             // geo: {

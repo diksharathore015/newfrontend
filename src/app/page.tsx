@@ -296,6 +296,7 @@ export default async function Home() {
                 "@type": "PostalAddress",
                 addressLocality: "india",
                 addressRegion: "india",
+                
               },
             },
             courseMode: "blended",
