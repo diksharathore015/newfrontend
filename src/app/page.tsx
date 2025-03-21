@@ -233,7 +233,7 @@ export default async function Home() {
 
   // console.log("coursesData", images);
 
-  // console.log("coursesDatacoursesData", data2);
+  console.log("coursesDatacoursesData", coursesData[0]);
   const structuredData = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -247,7 +247,7 @@ export default async function Home() {
           /(?:\{location\}|\{Location\})/g,
           "india"
         ),
-        url: `${baseURL}`,
+        url: `${baseURL}/${course?.slug_field}`,
         image: course.image || AppAssets.logo,
         description: course.meta_description?.replaceAll(
           /(?:\{location\}|\{Location\})/g,
