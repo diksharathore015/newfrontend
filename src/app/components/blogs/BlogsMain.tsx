@@ -76,7 +76,6 @@ export default function BlogsMain({ filterdata, data, type }: any) {
 
             <div className="mb-6">
               <Image
-                unoptimized
                 title={maindata?.title ?? "Image"}
                 src={maindata?.image}
                 alt={maindata?.title ?? "Image"}

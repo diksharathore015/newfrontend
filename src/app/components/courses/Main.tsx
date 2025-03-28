@@ -265,7 +265,6 @@ export default function Main({
                   <div className="group overflow-hidden flex flex-col items-center justify-center w-full text-center relative">
                     <div className="relative w-full md:w-64 md:h-64 bg-transparent  ">
                       <Image
-                        unoptimized
                         priority={false} // Lazy loading
                         quality={100}
                         title={
@@ -446,7 +445,6 @@ export default function Main({
                         <div className="relative mb-2 md:px-3 w-full  bg-transparent -lg transform md:hover:scale-105 -lg">
                           {
                             <Image
-                              unoptimized
                               priority={false} // Keep `false` for lazy loading
                               quality={100}
                               title={
@@ -600,7 +598,6 @@ export default function Main({
                           <div className="relative mb-5 md:mb-2    md:mx-2 bg-transparent -lg transform md:hover:scale-105  ">
                             {
                               <Image
-                                unoptimized
                                 priority={false} // Keep `false` for lazy loading
                                 quality={100}
                                 title={

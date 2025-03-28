@@ -7,7 +7,6 @@ const StudentsCard = ({ data }) => {
       <div className="w-36 h-36  bg-green-100 flex items-center justify-center">
         {data.Image && (
           <Image
-            unoptimized
             title={data.image_alt || "img"}
             src={data.Image}
             alt={data.image_alt || "img"}

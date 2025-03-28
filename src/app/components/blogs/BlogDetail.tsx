@@ -25,7 +25,6 @@ const BlogDetail = ({ blog }: any) => {
         {blog.image && (
           <div className="w-[40%] flex-shrink-0">
             <Image
-              unoptimized
               title={blog.title ?? "Image"}
               src={blog.image}
               alt={blog.title ?? "Image"}

@@ -14,7 +14,6 @@ const SocialMediaIcons = ({ data }: any) => {
         className="social-icon"
       >
         <Image
-          unoptimized
           src={require("../../../../public/socialmedia/icons8-facebook-circled.gif")}
           width={60}
           height={60}
@@ -29,7 +28,6 @@ const SocialMediaIcons = ({ data }: any) => {
         className="social-icon"
       >
         <Image
-          unoptimized
           src={require("../../../../public/socialmedia/icons8-instagram-logo.gif")}
           width={60}
           height={60}
@@ -39,7 +37,6 @@ const SocialMediaIcons = ({ data }: any) => {
       </a>
       <a href={`tel:${data?.contact_number}`} className="social-icon bg- ">
         <Image
-          unoptimized
           src={require("../../../../public/socialmedia/call.gif")}
           width={60}
           height={60}
@@ -53,7 +50,6 @@ const SocialMediaIcons = ({ data }: any) => {
         className="social-icon  "
       >
         <Image
-          unoptimized
           src={require("../../../../public/socialmedia/whatsapp.gif")}
           width={60}
           height={60}

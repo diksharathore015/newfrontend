@@ -20,7 +20,6 @@ export default async function page() {
         <h1 className="md:text-4xl text-base md:font-extrabold flex items-center  bg-gray-200 -md">
           <span className="inline-block">
             <Image
-              unoptimized
               src={AppAssets.logo}
               alt="Royal Defence Academy"
               width={400}
