@@ -1,4 +1,5 @@
 import Main from "@/app/components/courses/Main";
+import { sanik_school_review } from "@/app/data/review";
 import { AppAssets } from "@/Constants/assets";
 import { Constants, fetchBaseUrl } from "@/Constants/urls";
 import apiDataController from "@/controllers/RequestController";
@@ -100,7 +101,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     `${Constants.singlecourses}?slug_field=${slug[0].toLowerCase()}`
   );
   const baseURL = await fetchBaseUrl();
-  console.log("coursecourse", course);
+  // console.log("coursecourse", course);
   const faqs =
     course &&
     (await controller.getDataApi(`${Constants.faqsData}?course=${course?.id}`));
@@ -331,9 +332,28 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     .find((item: any) => decodeStr(item?.title) === decodeStr(location))) || {
     title: "India",
   };
+  const reviewData = sanik_school_review?.slice(
+    (locationdata?.matchedItem?.id || 0) % 91,
+    ((locationdata?.matchedItem?.id || 0) % 91) + 10
+  );
+  const imagearr = course?.images.slice(
+    0,
+    Math.min(course?.images?.length || 0, 10)
+  );
+  const mappedReviews = reviewData?.map((review: any, i: any) => {
+    return {
+      //
+      ...review,
+      image: imagearr[i]?.image,
+
+      reviewBody: review?.reviewBody
+        .replaceAll("{location}", location)
+        .replaceAll("{Location}", location),
+    };
+  });
   const loc = await controller.GetApi("http://ip-api.com/json/");
   const currentDate = new Date("04/02/2025");
-  console.log("matchingState", matchingState);
+  // console.log("matchingState", matchingState);
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Course",
@@ -360,13 +380,9 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
           ? `${baseURL}/${slug?.join("/")}`
           : "https://royaldefenceacademy.in"
       }/${slug?.join("/")}`,
-    },
+    }, 
 
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.5",
-      reviewCount: "33",
-    },
+    review: mappedReviews,
     offers: {
       "@type": "Offer",
       category:
@@ -496,8 +512,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       )
       .split(","),
   };
-
-  console.log("servicesschema", servicesschema);
+  // console.log("servicesschema", servicesschema);
   return (
     baseURL && (
       <>
