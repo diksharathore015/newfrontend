@@ -148,7 +148,7 @@ export default async function Home() {
   // const loc = await controller.GetApi("http://ip-api.com/json/");
   // console.log("seoDataseoData", seoData[0].logo);
   const baseURL = await fetchBaseUrl();
-  
+
   const localBusiness = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -226,7 +226,16 @@ export default async function Home() {
           "india"
         ),
         url: `${baseURL}/${course?.slug_field}`,
-        image: course.image || AppAssets.logo,
+        image: course?.images?.map((img) => ({
+          "@type": "ImageObject",
+          url: img.image,
+          caption: img?.meta_keyword.replaceAll(
+            /(?:\{location\}|\{Location\})/g,
+            "india"
+          ),
+          width: 400, // Default width if not provided
+          height: 400, // Default height if not provided
+        })),
         description: course.meta_description?.replaceAll(
           /(?:\{location\}|\{Location\})/g,
           "india"
@@ -274,7 +283,6 @@ export default async function Home() {
                 "@type": "PostalAddress",
                 addressLocality: "india",
                 addressRegion: "india",
-                
               },
             },
             courseMode: "blended",

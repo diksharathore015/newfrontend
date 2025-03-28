@@ -362,7 +362,16 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       "Royal defence academy",
     url: `${baseURL}/${slug?.join("/")}`,
 
-    image: course?.image,
+    image: course?.images?.map((img) => ({
+      "@type": "ImageObject",
+      url: img.image,
+      caption: img?.meta_keyword.replaceAll(
+        /(?:\{location\}|\{Location\})/g,
+        location || "india"
+      ),
+      width: 400, // Default width if not provided
+      height: 400, // Default height if not provided
+    })),
     description: course?.meta_description?.replaceAll(
       /(?:\{location\}|\{Location\})/g,
       `${
