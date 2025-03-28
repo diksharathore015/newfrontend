@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
       "43.204.144.192"
     ],
     // : true,
-    unoptimized : true
+ 
   
   },  
   typescript: {
