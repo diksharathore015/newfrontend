@@ -58,20 +58,29 @@ export default function Header({ cityList, seodata, courselist }: any) {
           : "bg-blue-800 text-white "
       }`}
     >
-      <div className="flex items-center justify-between px-4 py-3 md:px-8 md:py-4">
+      <div className="flex items-center justify-between px-4 pt-3 md:px-8 md:py-4">
         {/* Logo Section */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-start gap-4">
           <Image
             unoptimized
             onClick={() => router.push("/")}
             src={logo || AppAssets.logo}
             alt="Royal Defence Academy Logo"
-            width={50}
-            height={50}
-            className="cursor-pointer object-contain"
+            width={65}
+            height={65}
+            className="cursor-pointer object-contain -mt-2"
           />
           <h1 className="text-lg font-bold uppercase font-Tinos tracking-wide md:text-2xl">
             Royal Defence Academy
+            <span
+              style={{ lineHeight: "14px" }}
+              className=" text-[10px] md:text-sm py-2 animate-pulse text-white   font-normal capitalize md:block hidden tracking-tight"
+            >
+             
+              Best AISSEE coaching for Sainik School, Military School, RIMC, RMS
+              2025. Royal Defence Academy offers expert guidance, e-counseling
+              2025, interview prep, Join now!
+            </span>
           </h1>
         </div>
 

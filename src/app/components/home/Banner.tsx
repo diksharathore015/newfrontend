@@ -29,15 +29,11 @@ export default function Banner({ data }: any) {
           {mainData?.map((slide, index) => (
             <div key={index} className="relative w-full h-[18vh] md:h-[70vh]">
               {slide?.Image && (
-                <Image
-                  unoptimized
+                <img
                   src={slide.Image}
                   alt={slide.image_alt || slide.title}
                   title={slide.image_alt || slide.title}
-                  layout="fill"
-                  className="object-cover bg-white"
-                  priority
-                  quality={25}
+                  className="object-cover bg-white w-full"
                 />
               )}
 
