@@ -34,8 +34,7 @@ export default function Banner({ data }: any) {
                   alt={slide.image_alt || slide.title}
                   title={slide.image_alt || slide.title}
                   layout="fill"
-                  className="object-cover bg-white"
-                  priority
+                  className="object-cover bg-white w-full"
                   quality={25}
                 />
               )}
