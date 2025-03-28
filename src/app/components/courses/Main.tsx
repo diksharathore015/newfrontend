@@ -17,6 +17,7 @@ import MainSlider from "../UI/MainSlider";
 import FAQ from "../home/Faqs";
 
 export default function Main({
+  coursepagemetatitle,
   faqs = "",
   data,
   currentDate,
@@ -211,7 +212,27 @@ export default function Main({
   return (
     <>
       <div className="bg-white overflow-x-hidden">
-        <Breadbrumbs />
+      <Breadbrumbs
+          location={newLocation}
+          imagearr={data?.images}
+          coursemaintitle={data?.title}
+          coursepagemetatitle={coursepagemetatitle}
+          title={randomTitle
+            .replaceAll(
+              /(?:\{location\}|\{Location\}|\{royal defence \})/g,
+              `${locationType?.matchedItem?.title ? newLocation : "india"}`
+            )
+            .replaceAll(
+              /(?:\{State\}|\{state\}|\{royal defence \})/g,
+
+              `${locationType.cityName || ""} ${
+                (locationType.type != "locality" && locationType.stateName) ||
+                ""
+              }` ||
+                "" ||
+                ""
+            )}
+        />
 
         {!isLoading ? (
           <div>

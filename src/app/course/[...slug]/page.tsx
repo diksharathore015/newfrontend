@@ -278,12 +278,12 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       addressCountry: "IN",
     },
 
-    // aggregateRating: {
-    //   "@type": "AggregateRating",
-    //   ratingValue: "5",
-    //   bestRating: "5",
-    //   ratingCount: "505",
-    // },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      bestRating: "5",
+      ratingCount: "705",
+    },
     geo: {
       "@type": "GeoCoordinates",
       latitude: locationdata?.matchedItem?.latitude,
@@ -297,7 +297,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       telephone: course?.contact_number,
     },
     areaServed: { "@type": "Country", name: "India" },
-    priceRange: "₹500-₹20000",
+    priceRange: "₹600-₹21000",
     keywords: course.meta_keyword
       .replaceAll(
         /(?:\{location\}|\{Location\})/g,
@@ -389,8 +389,12 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
           ? `${baseURL}/${slug?.join("/")}`
           : "https://royaldefenceacademy.in"
       }/${slug?.join("/")}`,
-    }, 
-
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.5",
+      reviewCount: "54",
+    },
     review: mappedReviews,
     offers: {
       "@type": "Offer",
@@ -521,7 +525,13 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       )
       .split(","),
   };
-  // console.log("servicesschema", servicesschema);
+   
+  const courseseodata = await fetch(`${Constants.coursesSeoData}`).then(
+    (res) => {
+      if (!res.ok) throw new Error("Failed to fetch  metadata");
+      return res.json();
+    }
+  );
   return (
     baseURL && (
       <>
@@ -833,13 +843,14 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         {course && (
           <div className="pb-20">
             <Main
-              locationdatas={locationdata}
-              faqs={faqs}
-              data={course}
-              params={para}
-              loc={loc}
-              currentDate={currentDate}
-              matchinglocation={matchingState?.title || "india"}
+            coursepagemetatitle={courseseodata[0]?.meta_title}
+            locationdatas={locationdata}
+            faqs={faqs}
+            data={course}
+            params={para}
+            loc={loc}
+            currentDate={currentDate}
+            matchinglocation={matchingState?.title || "india"}
             />
           </div>
         )}

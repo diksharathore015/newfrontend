@@ -246,11 +246,11 @@ export default async function Home() {
           name: "Royal defence academy",
           url: `${baseURL}`,
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.5",
-          reviewCount: "33",
-        },
+        // aggregateRating: {
+        //   "@type": "AggregateRating",
+        //   ratingValue: "4.5",
+        //   reviewCount: "33",
+        // },
         offers: {
           "@type": "Offer",
           category: course?.title?.replaceAll(

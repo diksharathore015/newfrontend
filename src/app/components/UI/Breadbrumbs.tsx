@@ -1,123 +1,277 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
-import Link from "next/link";
+// import a from "next/a";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa"; // Icon for separator
 
 import Jdata from "../../data/Jdata.json";
 import LineSkeleton from "../skeleton/LineSkeleton";
-import { fetchBaseUrl } from "@/Constants/urls";
 
-export default function Breadcrumbs() {
+export default function Breadcrumbs({
+  location = "india",
+  imagearr,
+  title,
+  coursepagemetatitle = "sainik school coaching",
+  coursemaintitle = "_",
+}: any) {
   const path = usePathname();
-  const baseURL = async () =>
-    await fetchBaseUrl().then((res) => {
-      // console.log("qqqqqqqqqqqqqq", res);
-      setMainUrl(res);
-    });
-  const [mainUrl, setMainUrl] = useState<any>("https://royaldefenceacademy.in");
-
-  useEffect(() => {
-    baseURL();
-    // console.log("mainUrl", mainUrl);
-  }, [mainUrl]);
-
+  // const test = path.split("/");
+  const imagearray = imagearr?.slice(0, 4);
+  // console.log("imagearrimagearr", imagearr?.slice(0, 4));
   // Generate breadcrumb paths dynamically
+
   const segments = path.split("/").splice(1);
-  const breadcrumbList = [
-    ...(segments.includes("course")
-      ? []
-      : [
+  console.log("location...", segments);
+
+  // const breadcrumbList2 = [
+  //   // Home breadcrumb
+  //   {
+  //     "@type": "ListItem",
+  //     position: 1,
+  //     name: Jdata?.home?.title,
+  //     item: "https://www.royaldefenceacademy.com/",
+  //     image: imagearray[0]?.image || "", // Assign the first image
+  //   },
+  //   // Courses breadcrumb (if not on "/course")
+  //   ...(segments[0] !== "course"
+  //     ? [
+  //         {
+  //           "@type": "EducationalCourse",
+  //           position: 2,
+  //           name: coursepagemetatitle, // Use the same variable as in displayed breadcrumbs
+  //           item: "https://www.royaldefenceacademy.com/course",
+  //           image: imagearray[1]?.image || "", // Assign the second image
+  //         },
+  //       ]
+  //     : []),
+  //   // Dynamic breadcrumbs for path segments
+  //   ...segments.map((segment, index) => {
+  //     const name =
+  //       index === 0
+  //         ? title || decodeURIComponent(segment.replaceAll("-", " ")) // Match displayed breadcrumb
+  //         : decodeURIComponent(segment.replaceAll("-", " ")); // Match displayed breadcrumb for other segments
+
+  //     return {
+  //       "@type": "EducationalCourse",
+  //       position: segments[0] !== "course" ? index + 3 : index + 2,
+  //       name:
+  //         index === segments.length - 1
+  //           ? coursemaintitle?.replaceAll(
+  //               /(?:\{location\}|\{Location\}|\{royal defence \})/g,
+  //               `${location || "india"}`
+  //             )
+  //           : decodeURIComponent(segments.slice(0, index + 1).join("/")),
+
+  //       item: `https://www.royaldefenceacademy.com/${segments
+  //         .slice(0, index + 1)
+  //         .join("/")}`,
+  //       image: imagearray[index + 2]?.image || "", // Assign remaining images dynamically
+  //     };
+  //   }),
+  // ];
+  // const breadcrumbSchema = {
+  //   "@context": "https://schema.org",
+  //   "@type": "BreadcrumbList",
+  //   itemListElement: breadcrumbList2,
+  // };
+  const breadcrumbList2 = [
+    // Home breadcrumb
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: Jdata?.home?.title?.replaceAll("-", " ") || "Home",
+      item: "https://www.royaldefenceacademy.com/",
+      image: imagearray[0]?.image || "", // Assign the first image
+    },
+    // Courses breadcrumb (if not on "/course")
+    ...(segments[0] !== "course"
+      ? [
           {
             "@type": "ListItem",
             position: 2,
-            name: "Course",
-            item: `${mainUrl}/course`,
+            name: coursepagemetatitle?.replaceAll("-", " ") || "Courses",
+            item: "https://www.royaldefenceacademy.com/course",
+            image: imagearray[1]?.image || "", // Assign the second image
           },
-        ]),
-    ...segments.map((segment, index) => ({
-      "@type": "ListItem",
-      position: segments.includes("course") ? index + 2 : index + 3, // Adjust position based on whether "Course" is added
-      name: decodeURIComponent(segment),
-      item: `${mainUrl}/${segments.slice(0, index + 1).join("/")}`,
-    })),
+        ]
+      : []),
+    // Dynamic breadcrumbs for path segments
+    ...segments.map((segment, index) => {
+      return {
+        "@type": "ListItem",
+        position: segments[0] !== "course" ? index + 3 : index + 2,
+        name:
+          index === segments.length - 1
+            ? coursemaintitle?.replaceAll(
+                /(?:\{location\}|\{Location\}|\{royal defence \})/g,
+                `${location || "india"}`
+              )
+            : decodeURIComponent(
+                segments
+                  .slice(0, index + 1)
+                  .join("/")
+                  .replaceAll("-", " ")
+              ),
+        item: `https://www.royaldefenceacademy.com/${segments
+          .slice(0, index + 1)
+          .join("/")}`,
+        image: imagearray[index + 2]?.image || "",
+      };
+    }),
   ];
 
-  // Add "Home" as the first item in the breadcrumb
-  breadcrumbList.unshift({
-    "@type": "ListItem",
-    position: 1,
-    name: Jdata?.home?.title,
-    item: `${mainUrl}`,
-  });
-
+  // Create JSON-LD schema
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: breadcrumbList,
+    itemListElement: breadcrumbList2,
   };
+  // const breadcrumbList = [
+  //   ...(segments.includes("course")
+  //     ? []
+  //     : [
+  //         {
+  //           "@type": "EducationalCourse",
+  //           position: 3,
+  //           name: coursemaintitle?.replaceAll(
+  //             /(?:\{location\}|\{Location\}|\{royal defence \})/g,
+  //             `india`
+  //           ),
+  //           item: "https://www.royaldefenceacademy.com/course",
+  //         },
+  //         {
+  //           "@type": "EducationalCourse",
+  //           position: 3,
+  //           name: coursemaintitle?.replaceAll(
+  //             /(?:\{location\}|\{Location\}|\{royal defence \})/g,
+  //             `india`
+  //           ),
+  //           item: "https://www.royaldefenceacademy.com/course",
+  //         },
+  //       ]),
+
+  //   // ...segments.map((segment, index) => ({
+  //   //   "@type": "ListItem",
+  //   //   position: segments.includes("course") ? index + 2 : index + 3, // Adjust position based on whether "Course" is added
+  //   //   name: `${title} , ${index} , ${path[path.length - 1]}`,
+  //   //   item: `https://www.royaldefenceacademy.com/${segments
+  //   //     .slice(0, index + 1)
+  //   //     .join("/")}`,
+  //   // })),
+  // ];
+
+  // Add "Home" as the first item in the breadcrumb
+  // breadcrumbList.unshift({
+  //   "@type": "ListItem",
+  //   position: 1,
+  //   name: Jdata?.home?.title,
+  //   item: "https://www.royaldefenceacademy.com/",
+  // });
+
   const [show, setShow] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setShow(true);
     }, 300);
   }, []);
-  // console.log("breadcrumbSchema", breadcrumbSchema);
+  // console.log("breadcrumbList2", breadcrumbList);
+  console.log("breadcrumbList2", breadcrumbList2);
   return (
-    mainUrl != null && (
-      <>
-        {/* Inject JSON-LD for rich snippet */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        />
+    <>
+      {/* Inject JSON-LD for rich snippet */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
-        {show ? (
-          <div className="w-full md:w-[100%] mx-auto  mt-4  ">
-            <nav className=" inline items-center space-x-2 text-xs md:text-lg text-gray-700">
-              {/* Home Link */}
-              <Link
+      {show ? (
+        <div className="w-full md:w-[98%] mx-auto  mt-4 md:ml-8 bg-gray-100 px-2 md:py-1 ">
+          <nav className=" inline items-center ms:space-x-2 text-[2px]     text-gray-700">
+            {/* Home a */}
+            <a
+              hrefLang="en"
+              href="/"
+              className="text-blue-600 inline hover:text-blue-800 hover:font-semibold hover:underline  md:mt-0  leading-2 md:font-semibold transition-all ease-in-out text-xs md:text-sm tracking-tight  capitalize"
+            >
+              {Jdata?.home?.title}
+            </a>
+            {segments[0] != "course" && (
+              <a
                 hrefLang="en"
-                href="/"
-                className="text-blue-600 inline hover:text-blue-800 font-semibold transition-all ease-in-out text-sm md:text-xl capitalize"
+                href="/course"
+                className="text-blue-600 inline hover:text-blue-800 hover:font-semibold hover:underline md:mt-0 -mt-2 md:font-semibold transition-all ease-in-out text-xs md:text-sm tracking-tight  capitalize"
               >
-                {Jdata?.home?.title}
-              </Link>
-              {segments[0] != "course" && (
-                <Link
-                  hrefLang="en"
-                  href="/course"
-                  className="text-blue-600 inline hover:text-blue-800 font-semibold transition-all ease-in-out text-sm md:text-xl capitalize"
-                >
-                  <FaChevronRight className="text-blue-700      font-bold mt-1 text-sm md:text-xl md:-mt-1 inline" />
-                  courses
-                </Link>
+                <FaChevronRight className="text-blue-700 px-1  font-bold  text-xs md:text-sm tracking-tight  md:-mt-1 inline" />
+                {coursepagemetatitle}
+              </a>
+            )}
+            {/*  */}
+            {/* india url */}
+            <a
+              hrefLang="en"
+              href={`/${segments[0]}`}
+              className="text-blue-600 inline hover:text-blue-800 hover:font-semibold hover:underline md:mt-0 -mt-2  leading-2 md:font-semibold transition-all ease-in-out text-xs md:text-sm tracking-tight  capitalize"
+            >
+              <FaChevronRight className="text-blue-700 px-1  font-bold  text-xs md:text-sm tracking-tight  md:-mt-1 inline" />
+
+              {coursemaintitle?.replaceAll(
+                /(?:\{location\}|\{Location\}|\{royal defence \})/g,
+                `india`
               )}
+            </a>
+            {segments.length === 1 && segments[0] === "course" && (
+              <label
+                htmlFor=""
+                className="text-blue-600 inline hover:text-blue-800 hover:font-semibold hover:underline md:mt-0 -mt-2 leading-2 md:font-semibold transition-all ease-in-out text-xs md:text-sm tracking-tight capitalize"
+              >
+                course
+              </label>
+            )}
+            {/* {
+              <a
+                hrefLang="en"
+                href={`/course`}
+                className="text-blue-600 hover:text-blue-800 hover:font-semibold hover:underline md:mt-0 -mt-2  leading-2 inline md:font-semibold transition-all ease-in-out text-xs md:text-sm tracking-tight "
+              >
+                courses
+              </a>
+            } */}
+            {/* Dynamic Breadcrumbs */}
 
-              <FaChevronRight className="text-blue-700 mt-1 md:-mt-1 inline" />
-
-              {/* Dynamic Breadcrumbs */}
-              {segments.map((item: string, i: number) => (
+            {/* {segments.length < 1 && (
+              <FaChevronRight className="text-blue-700 px-1  font-bold md:-mt-2 -mt-2 text-xs md:text-sm tracking-tight   inline" />
+            )} */}
+            {/* Dynamic Breadcrumbs */}
+            {segments.length != 1 && (
+              <FaChevronRight className="text-blue-700 px-1  font-bold  text-xs md:text-sm tracking-tight  -mt-2 inline" />
+            )}
+            {segments.length > 1 &&
+              segments.slice(0, 1).map((item: string, i: number) => (
                 <React.Fragment key={i}>
-                  <Link
+                  <a
                     hrefLang="en"
-                    href={`/${segments.slice(0, i + 1).join("/")}`}
-                    className="text-blue-600 hover:text-blue-800  inline font-semibold transition-all ease-in-out text-sm md:text-xl"
+                    href={`/${segments.join("/")}`}
+                    className="text-blue-600 hover:text-blue-800 hover:font-semibold hover:underline   leading-2 inline md:font-semibold transition-all ease-in-out text-xs md:text-sm tracking-tight "
                   >
-                    {decodeURIComponent(item.replaceAll("-", " "))}
-                  </Link>
+                    {i == 0
+                      ? title
+                        ? title
+                        : decodeURIComponent(item.replaceAll("-", " "))
+                      : ""}
+                    {i != 0 && decodeURIComponent(item.replaceAll("-", " "))}
+                  </a>
+
                   {/* Display separator unless it's the last breadcrumb */}
-                  {i < segments.length - 1 && (
-                    <FaChevronRight className="text-blue-700   mt-1 text-sm md:text-xl font-semibold  md:-mt-1 inline" />
-                  )}
+                  {/* {i < segments.length - 1 && (
+                )} */}
                 </React.Fragment>
               ))}
-            </nav>
-          </div>
-        ) : (
-          <LineSkeleton />
-        )}
-      </>
-    )
+          </nav>
+        </div>
+      ) : (
+        <LineSkeleton />
+      )}
+    </>
   );
 }

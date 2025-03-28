@@ -4,7 +4,7 @@ import type { MetadataRoute } from 'next'
 export default function robots(): MetadataRoute.Robots {
    const baseURL =async ()=> await fetchBaseUrl();
    
-   console.log("fffffffffff",baseURL)
+  //  console.log("fffffffffff",baseURL)
   return {
     rules: [
       {

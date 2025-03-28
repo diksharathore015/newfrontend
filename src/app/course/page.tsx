@@ -231,7 +231,13 @@ export default async function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
       />
-      <div className="px-10"><Breadbrumbs /></div>
+      <div className="px-10">
+      <Breadbrumbs
+        location={"india"}
+        imagearr={data[0]?.images}
+        coursepagemetatitle={seodata[0]?.meta_title}
+      />
+</div>
 
       <Settitle data={seodata[0]?.meta_title} />
       {data &&

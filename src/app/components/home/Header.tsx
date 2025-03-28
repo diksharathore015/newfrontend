@@ -75,9 +75,8 @@ export default function Header({ cityList, seodata, courselist }: any) {
               style={{ lineHeight: "14px" }}
               className=" text-[10px] md:text-sm py-2 animate-pulse text-white   font-normal capitalize md:block hidden tracking-tight"
             >
-              Best AISSEE coaching for Sainik School, Military School, RIMC, RMS
-              2025. Royal Defence Academy offers expert guidance, e-counseling
-              2025, interview prep, Join now!
+              Best Boarding School Coaching for Boys and Girls: AISSEE, Sainik
+              School, Military School, RIMC, and RMS 2025.
             </span>
           </h1>
         </div>
