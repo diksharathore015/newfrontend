@@ -90,11 +90,7 @@ export default async function Page() {
           name: "Royal defence academy",
           url: baseURL,
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.5",
-          reviewCount: "33",
-        },
+       
         offers: {
           "@type": "Offer",
           category: course?.title?.replaceAll(
@@ -191,12 +187,7 @@ export default async function Page() {
         postalCode: "302012",
         addressCountry: "India",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5",
-        bestRating: "5",
-        ratingCount: "505",
-      },
+    
       geo: {
         "@type": "GeoCoordinates",
         latitude: 26.93392,
