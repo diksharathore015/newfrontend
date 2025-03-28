@@ -21,6 +21,8 @@ const nextConfig: NextConfig = {
       "rdabucket.s3.amazonaws.com" ,
       "43.204.144.192"
     ],
+    unoptimized: true,
+  
   },  
   typescript: {
     ignoreBuildErrors: true, 

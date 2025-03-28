@@ -30,6 +30,7 @@ export default function Banner({ data }: any) {
             <div key={index} className="relative w-full h-[18vh] md:h-[70vh]">
               {slide?.Image && (
                 <Image
+                  unoptimized
                   src={slide.Image}
                   alt={slide.image_alt || slide.title}
                   title={slide.image_alt || slide.title}

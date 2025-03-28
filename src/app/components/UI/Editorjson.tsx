@@ -66,6 +66,7 @@ const EditorJsonComponent = ({
                 {block?.data?.file?.url && (
                   <div key={index} className="mb-4 mt-2">
                     <Image
+                      unoptimized
                       alt="ok"
                       src={block.data.file.url}
                       className={`w-full  mt-4 rounded-md shadow-md ${
@@ -182,7 +183,7 @@ const EditorJsonComponent = ({
           case "Link":
             return (
               <div className=" pt-5 px-4   flex justify-start items-start">
-                <a 
+                <a
                   className="text-sm text-wrap-design  text-four font-semibold underline pl-1  "
                   target="_blank"
                   href={block.data.link}
@@ -258,6 +259,7 @@ const EditorJsonComponent = ({
                     "gif" ? (
                       <div className="mb-5 mt-5 bg-red-500 h-10">
                         <Image
+                          unoptimized
                           alt="ok"
                           src={block.data.file.url}
                           className={`w-[100%] lg:w-[50%]  mt-4 rounded-md shadow-md ${
@@ -271,7 +273,7 @@ const EditorJsonComponent = ({
                     ) : (
                       <>
                         <div className="py-4 px-4   flex justify-start items-start">
-                          <a 
+                          <a
                             className="text-sm   text-four font-semibold underline pl-1  "
                             target="_blank"
                             href={block.data.file.url}

@@ -26,11 +26,10 @@ const CourseTopSection = ({ data }: any) => {
     store.dispatch(setHomepageTitle(data.title));
   }, [data]);
 
-  
   return (
     <div className="flex items-start mt-8 justify-start gap-3 w-[95%] mx-auto">
       {/* Course Image */}
-      {/* <Image
+      {/* <Image unoptimized 
         width={700}
         height={400}
         src={data.image}
@@ -83,6 +82,7 @@ const CourseTopSection = ({ data }: any) => {
                     <div className="relative   h-[170px] w-[170px]  md:w-42 md:h-48 bg-transparent shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 rounded-md flex items-center justify-center">
                       {
                         <Image
+                          unoptimized
                           title={
                             item?.image_alt ||
                             item?.title ||
@@ -131,7 +131,7 @@ const CourseTopSection = ({ data }: any) => {
             //       <div className="group flex flex-col items-center justify-center w-full text-center relative">
             //         <div className="relative   h-[170px] w-[170px]  md:w-42 md:h-48 bg-transparent shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 rounded-md flex items-center justify-center">
             //           {
-            //             <Image
+            //             <Image unoptimized
             //               title={
             //                 item?.image_alt ||
             //                 item?.title ||

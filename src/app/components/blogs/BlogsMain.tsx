@@ -8,7 +8,7 @@ import BannerSkeleton from "../skeleton/BannerSkeleton";
 import HeadingSkeleton from "../skeleton/HeadingSkeleton";
 import RawHtmlRenderer from "../UI/RawHtmlRendererProps";
 
-export default function BlogsMain({ filterdata ,data, type }: any) {
+export default function BlogsMain({ filterdata, data, type }: any) {
   const [maindata, setMainData] = useState<any>(filterdata);
 
   // Memoize JSON-LD data for better performance
@@ -76,6 +76,7 @@ export default function BlogsMain({ filterdata ,data, type }: any) {
 
             <div className="mb-6">
               <Image
+                unoptimized
                 title={maindata?.title ?? "Image"}
                 src={maindata?.image}
                 alt={maindata?.title ?? "Image"}
@@ -94,12 +95,12 @@ export default function BlogsMain({ filterdata ,data, type }: any) {
             <h2 className="text-xl font-semibold text-gray-800 mb-4 capitalize">
               {type && `${type} List`}
             </h2>
-              <ul className="space-y-4 w-full">
+            <ul className="space-y-4 w-full">
               {data &&
                 data?.map((blog: any, i: number) => (
                   <BlogDetail blog={blog} key={i} />
                 ))}
-            </ul>  
+            </ul>
           </div>
         </div>
       </div>

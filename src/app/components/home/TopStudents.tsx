@@ -104,6 +104,7 @@ export default function TopStudents({ students }: any) {
                     <div className="relative   w-full  h-96    md:w-64 md:h-64 bg-transparent shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105   flex items-center justify-center overflow-hidden">
                       {item.Image && (
                         <Image
+                          unoptimized
                           title={
                             item.image_alt ||
                             item.title.replaceAll(

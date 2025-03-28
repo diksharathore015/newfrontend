@@ -22,6 +22,7 @@ export default async function page() {
           <span className="inline-block">
             {" "}
             <Image
+              unoptimized
               src={AppAssets.logo}
               alt="Royal Defence Academy"
               width={400}

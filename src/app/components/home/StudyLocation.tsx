@@ -25,6 +25,7 @@ const StudyLocation = ({ data }) => {
         </h2>
         <div className="absolute md:block hidden -z-1 top-24">
           <Image
+            unoptimized
             src={AppAssets.indiamap}
             width={1900}
             height={1900}
@@ -52,6 +53,7 @@ const StudyLocation = ({ data }) => {
               >
                 {hub?.Image && (
                   <Image
+                    unoptimized
                     title={hub?.image_alt || hub?.title}
                     src={hub?.Image}
                     alt={hub?.image_alt || hub?.title}

@@ -146,31 +146,9 @@ export default async function Home() {
     controller.getDataApi(Constants.homepagefeaturecourses),
   ]);
   // const loc = await controller.GetApi("http://ip-api.com/json/");
-  console.log("seoDataseoData", seoData[0].logo);
+  // console.log("seoDataseoData", seoData[0].logo);
   const baseURL = await fetchBaseUrl();
-  // const homepageSchema = {
-  //   "@context": "https://schema.org",
-  //   "@type": "Organization",
-  //   name: "Sainik School Coaching RIMC RMS Entrance Exam Coaching Center Military School Exam Coaching 2025-2026. Join The Royal Defence Academy for expert coaching in Sainik School, Military School, and RIMC entrance exams.",
-  //   url: baseURL,
-  //   description:
-  //     "Sainik School Coaching RIMC RMS Entrance Exam Coaching Center Military School Exam Coaching 2025-2026. Join The Royal Defence Academy for expert coaching in Sainik School, Military School, and RIMC entrance exams.",
-  //   address: {
-  //     "@type": "PostalAddress",
-  //     addressLocality: "Jaipur",
-  //     addressRegion: "Rajasthan",
-  //   },
-  //   telephone: "8769422006",
-  //   email: "info@royaldefenceacademy.com",
-  //   sameAs: [
-  //     "https://www.facebook.com/royaldefence",
-  //     "https://www.instagram.com/royaldefence",
-  //     "https://www.youtube.com/royaldefence",
-  //   ],
-  //   keywords:
-  //     "Sainik School coaching, Military School coaching, RMS coaching, RIMC coaching, Sainik School entrance exam coaching, Military School entrance exam coaching, RMS entrance exam coaching, RIMC entrance exam coaching, Best Sainik School coaching in India, Best Military School coaching in India, Best RMS coaching in India, Best RIMC coaching in India, Sainik School coaching near me, Military School coaching near me, RMS coaching near me",
-  // };
-
+  
   const localBusiness = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -233,7 +211,7 @@ export default async function Home() {
 
   // console.log("coursesData", images);
 
-  console.log("coursesDatacoursesData", coursesData[0]);
+  // console.log("coursesDatacoursesData", coursesData[0]);
   const structuredData = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "ItemList",

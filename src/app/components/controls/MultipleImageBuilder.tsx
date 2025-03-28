@@ -176,6 +176,7 @@ export default function MultipleImageBuilder({
                     <div className="h-[24%] px-4 flex flex-col justify-center items-center bg-gray-100 py-4 rounded-md">
                       <div className="flex justify-center items-center gap-0">
                         <Image
+                          unoptimized
                           src={AppAssets.logo}
                           alt="image"
                           className="w-16"
@@ -193,6 +194,7 @@ export default function MultipleImageBuilder({
                     <div className="h-[24%] px-4 flex flex-col justify-center items-center bg-gray-100 py-4 rounded-md">
                       <div className="flex justify-center items-center gap-0">
                         <Image
+                          unoptimized
                           src={AppAssets.logo}
                           alt="image"
                           className="w-16"
@@ -217,24 +219,28 @@ export default function MultipleImageBuilder({
                     <div className="flex justify-center items-center gap-0">
                       {file.type.startsWith("image/") ? (
                         <Image
+                          unoptimized
                           src={AppAssets.logo}
                           alt="image"
                           className="w-[70%]"
                         />
                       ) : file.type.startsWith("video/") ? (
                         <Image
+                          unoptimized
                           src={AppAssets.logo}
                           alt="image"
                           className="w-[80%]"
                         />
                       ) : file.type.startsWith("audio/") ? (
                         <Image
+                          unoptimized
                           src={AppAssets.logo}
                           alt="image"
                           className="w-[70%]"
                         />
                       ) : file.type.startsWith("application/pdf") ? (
                         <Image
+                          unoptimized
                           src={AppAssets.logo}
                           alt="image"
                           className="w-[60%]"
@@ -243,6 +249,7 @@ export default function MultipleImageBuilder({
                           "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
                         file.type === "application/msword" ? (
                         <Image
+                          unoptimized
                           src={AppAssets.logo}
                           alt="image"
                           className="w-[60%]"
@@ -251,12 +258,14 @@ export default function MultipleImageBuilder({
                         file.type ===
                           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ? (
                         <Image
+                          unoptimized
                           src={AppAssets.logo}
                           alt="image"
                           className="w-[70%]"
                         />
                       ) : (
                         <Image
+                          unoptimized
                           src={AppAssets.logo}
                           alt="image"
                           className="w-[70%]"
@@ -279,7 +288,6 @@ export default function MultipleImageBuilder({
         >
           <input {...getInputProps()} className=" h-[65vh] w-[80vh]" />
           <label className="text-lg  flex flex-col justify-center items-center text-gray-400">
-            
             <FcAddImage className="w-32 h-32 text-gray-400" /> Select Photos
           </label>
         </div>

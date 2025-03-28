@@ -15,6 +15,7 @@ export default function BlogCard({ blog, type = "blog" }: any) {
     >
       {blog.image && (
         <Image
+          unoptimized
           src={blog.image}
           alt={blog.title}
           title={blog.title}

@@ -45,6 +45,7 @@ export default function ImageBuilder({
                 }  ${width ? `w-[${width}]` : "w-[30vh]"} `}
               >
                 <Image
+                  unoptimized
                   src={URL.createObjectURL(files)}
                   alt="image"
                   height={300}
@@ -82,7 +83,12 @@ export default function ImageBuilder({
               <>
                 <div className="flex flex-col justify-center py-4 items-center">
                   <div className="flex justify-center items-center gap-0">
-                    <Image src={AppAssets.logo} alt="image" className="w-16" />
+                    <Image
+                      unoptimized
+                      src={AppAssets.logo}
+                      alt="image"
+                      className="w-16"
+                    />
                   </div>
                   <p className="text-paragraph text-base font-semibold mt-2">
                     {files.name}
@@ -97,6 +103,7 @@ export default function ImageBuilder({
                   <div className="flex flex-col justify-center py-4 items-center">
                     <div className="flex justify-center items-center gap-0">
                       <Image
+                        unoptimized
                         src={AppAssets.logo}
                         alt="image"
                         className="w-16"
@@ -115,7 +122,12 @@ export default function ImageBuilder({
               >
                 <input {...getInputProps()} />
                 <div className="flex justify-center items-center gap-0">
-                  <Image src={AppAssets.logo} alt="image" className="w-16" />
+                  <Image
+                    unoptimized
+                    src={AppAssets.logo}
+                    alt="image"
+                    className="w-16"
+                  />
                 </div>
                 <p className="text-paragraph  text-lg font-semibold mt-2">
                   {files?.path} {files.name}

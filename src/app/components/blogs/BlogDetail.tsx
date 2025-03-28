@@ -25,13 +25,14 @@ const BlogDetail = ({ blog }: any) => {
         {blog.image && (
           <div className="w-[40%] flex-shrink-0">
             <Image
+              unoptimized
               title={blog.title ?? "Image"}
               src={blog.image}
               alt={blog.title ?? "Image"}
               width={140}
               height={140}
               className="rounded-lg object-cover mt-1 w-full h-full"
-               // Optimize loading by marking the image as high priority
+              // Optimize loading by marking the image as high priority
             />
           </div>
         )}

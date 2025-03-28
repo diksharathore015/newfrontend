@@ -84,6 +84,7 @@ const SubAreaList: React.FC<SubAreaProps> = ({
                   }
                 >
                   <Image
+                    unoptimized
                     width={140}
                     height={140}
                     src={

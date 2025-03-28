@@ -47,7 +47,7 @@
 //       onMouseLeave={handleMouseLeave}
 //     >
 //       {image && (
-//         <Image
+//         <Image unoptimized
 //           title={
 //             altText || title?.replaceAll(/(?:\{location\}|\{Location\})/g, "")
 //           }
@@ -175,6 +175,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
     >
       {image && (
         <Image
+          unoptimized
           title={sanitizedTitle}
           src={image}
           alt={sanitizedTitle}

@@ -62,6 +62,7 @@ export default function Header({ cityList, seodata, courselist }: any) {
         {/* Logo Section */}
         <div className="flex items-center gap-4">
           <Image
+            unoptimized
             onClick={() => router.push("/")}
             src={logo || AppAssets.logo}
             alt="Royal Defence Academy Logo"
@@ -110,7 +111,10 @@ export default function Header({ cityList, seodata, courselist }: any) {
                       href={`/${subItem?.slug_field}`}
                       className="block px-4 py-2 text-sm border-b  text-blue-800 font-poppins hover:bg-blue-800 hover:text-white transition"
                     >
-                      {subItem.title.replaceAll(/{(location|Location)}/g, "india")}
+                      {subItem.title.replaceAll(
+                        /{(location|Location)}/g,
+                        "india"
+                      )}
                     </a>
                   ))}
                 </div>
