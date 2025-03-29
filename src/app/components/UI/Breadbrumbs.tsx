@@ -11,20 +11,13 @@ import apiDataController from "@/controllers/RequestController";
 import { Constants } from "@/Constants/urls";
 
 export default function Breadcrumbs({
+  baseURL = "",
   location = "india",
   imagearr,
   title,
   coursepagemetatitle = "sainik school coaching",
-  coursemaintitle = "_",
+  coursemaintitle = "courses",
 }: any) {
-  const controller = new apiDataController();
-  const [baseurl, setBaseUrl] = useState<any>("");
-  const baseUrl = () =>
-    controller.GetApi(Constants.url).then((res) => setBaseUrl(res[0]?.url));
-  useEffect(() => {
-    baseUrl();
-  }, []);
-
   const path = usePathname();
   // const test = path.split("/");
   const imagearray = imagearr?.slice(0, 4);
@@ -40,7 +33,7 @@ export default function Breadcrumbs({
       "@type": "ListItem",
       position: 1,
       name: Jdata?.home?.title?.replaceAll("-", " ") || "Home",
-      item: baseurl,
+      item: baseURL,
       image: imagearray[0]?.image || "", // Assign the first image
     },
     // Courses breadcrumb (if not on "/course")
@@ -49,8 +42,8 @@ export default function Breadcrumbs({
           {
             "@type": "ListItem",
             position: 2,
-            name: coursepagemetatitle?.replaceAll("-", " ") || "Courses",
-            item: `${baseUrl}/course"`,
+            name: coursepagemetatitle?.replaceAll("-", " ") || coursemaintitle,
+            item: `${baseURL}/course"`,
             image: imagearray[1]?.image || "", // Assign the second image
           },
         ]
@@ -72,7 +65,7 @@ export default function Breadcrumbs({
                   .join("/")
                   .replaceAll("-", " ")
               ),
-        item: `${baseUrl}/${segments.slice(0, index + 1).join("/")}`,
+        item: `${baseURL}/${segments.slice(0, index + 1).join("/")}`,
         image: imagearray[index + 2]?.image || "",
       };
     }),
@@ -97,13 +90,17 @@ export default function Breadcrumbs({
     breadcrumbSchema && (
       <>
         {/* Inject JSON-LD for rich snippet */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        />
+        {
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(breadcrumbSchema),
+            }}
+          />
+        }
 
         {show ? (
-          <div className="w-full md:w-[98%] mx-auto  mt-4 md:ml-8 bg-gray-100 px-2 md:py-1 ">
+          <div className="w-full md:w-[100%] mx-auto  mt-4  bg-gray-100 px-2   ">
             <nav className=" inline items-center ms:space-x-2 text-[2px]     text-gray-700">
               {/* Home a */}
               <a
@@ -141,9 +138,7 @@ export default function Breadcrumbs({
                 <label
                   htmlFor=""
                   className="text-blue-600 inline hover:text-blue-800 hover:font-semibold hover:underline md:mt-0 -mt-2 leading-2 md:font-semibold transition-all ease-in-out text-xs md:text-sm tracking-tight capitalize"
-                >
-                  course
-                </label>
+                ></label>
               )}
 
               {/* Dynamic Breadcrumbs */}

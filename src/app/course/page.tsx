@@ -90,7 +90,7 @@ export default async function Page() {
           name: "Royal defence academy",
           url: baseURL,
         },
-       
+
         offers: {
           "@type": "Offer",
           category: course?.title?.replaceAll(
@@ -187,7 +187,7 @@ export default async function Page() {
         postalCode: "302012",
         addressCountry: "India",
       },
-    
+
       geo: {
         "@type": "GeoCoordinates",
         latitude: 26.93392,
@@ -232,12 +232,13 @@ export default async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
       />
       <div className="px-10">
-      <Breadbrumbs
-        location={"india"}
-        imagearr={data[0]?.images}
-        coursepagemetatitle={seodata[0]?.meta_title}
-      />
-</div>
+        <Breadbrumbs
+          baseURL={baseURL}
+          location={"india"}
+          imagearr={data[0]?.images}
+          coursepagemetatitle={seodata[0]?.meta_title}
+        />
+      </div>
 
       <Settitle data={seodata[0]?.meta_title} />
       {data &&

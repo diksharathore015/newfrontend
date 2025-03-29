@@ -843,7 +843,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         {course && (
           <div className="pb-20">
             <Main
-          
+          baseURL={baseURL}
             coursepagemetatitle={courseseodata[0]?.meta_title}
             locationdatas={locationdata}
             faqs={faqs}

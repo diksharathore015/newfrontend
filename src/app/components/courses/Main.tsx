@@ -17,6 +17,7 @@ import MainSlider from "../UI/MainSlider";
 import FAQ from "../home/Faqs";
 
 export default function Main({
+  baseURL ="" ,
   coursepagemetatitle,
   faqs = "",
   data,
@@ -214,6 +215,7 @@ export default function Main({
     <>
       <div className="bg-white overflow-x-hidden">
       <Breadbrumbs
+      baseURL={baseURL}
           location={newLocation}
           imagearr={data?.images}
           coursemaintitle={data?.title}
