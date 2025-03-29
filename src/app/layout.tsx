@@ -30,7 +30,7 @@ export default async function RootLayout({
           {bannerData && <SocialMediaIcons data={bannerData[0]} />}
           {courselist && <MainForm coursesData={courselist} loc={loc} />}
 
-          <div className=" md:mx-4 mx-0 pt-12">{children}</div>
+          <div className=" md:mx-4 mx-0 md:pt-12">{children}</div>
           {seodata[0] && (
             <Footer
               address={seodata[0]?.address}

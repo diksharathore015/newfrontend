@@ -10,7 +10,9 @@ import { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
-
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 export default function Header({ cityList, seodata, courselist }: any) {
   const [showDropdown, setShowDropdown] = useState<any>();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,6 +35,17 @@ export default function Header({ cityList, seodata, courselist }: any) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  const settings = {
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 0, // Set this to 0 for continuous movement
+    speed: 9000, // Adjust the speed for smooth scrolling
+    cssEase: "linear", // Linear easing for continuous effect
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    
+  };
 
   const navItems = [
     {
@@ -58,9 +71,9 @@ export default function Header({ cityList, seodata, courselist }: any) {
           : "bg-blue-800 text-white "
       }`}
     >
-      <div className="flex items-center justify-between px-4 pt-3 md:px-8 md:py-4">
+      <div className="flex items-start justify-between  pt-3 md:px-8 md:py-4">
         {/* Logo Section */}
-        <div className="flex items-start gap-4">
+        <div className="flex items-start md:gap-4">
           <Image
             onClick={() => router.push("/")}
             src={logo || AppAssets.logo}
@@ -69,20 +82,20 @@ export default function Header({ cityList, seodata, courselist }: any) {
             height={65}
             className="cursor-pointer object-contain -mt-2"
           />
-          <h1 className="text-lg font-bold uppercase font-Tinos tracking-wide md:text-2xl">
-            Royal Defence Academy
+          <h1 className="text-[15px] font-bold uppercase font-Tinos tracking-wide md:text-[24px]">
+            Royal Defence Academy <br />
             <span
-              style={{ lineHeight: "14px" }}
-              className=" text-[10px] md:text-sm py-2 animate-pulse text-white   font-normal capitalize md:block hidden tracking-tight"
+              style={{ lineHeight: "12px" }}
+              className=" text-[10px] md:text-sm md:py-2 animate-pulse text-white   font-normal capitalize md:block   tracking-tight"
             >
-              Best Boarding School Coaching for Boys and Girls: AISSEE, Sainik
-              School, Military School, RIMC, and RMS 2025.
+              Best Boarding School Coaching: AISSEE, Sainik School, Military
+              School, RIMC, RMS 2025 for Boys & Girls.
             </span>
           </h1>
         </div>
 
         {/* Mobile Menu Icon */}
-        <div className="flex items-center md:hidden">
+        <div className="flex items-center md:hidden mr-2">
           <BiMenu
             className={`h-6 w-6 cursor-pointer ${show ? "hidden" : "block"}`}
             onClick={() => setShow(true)}
@@ -199,6 +212,29 @@ export default function Header({ cityList, seodata, courselist }: any) {
             <hr />
           </a>
         ))}
+      </div>
+      <div className="w-full md:hidden">
+        <Slider {...settings}>
+          {courselist.map((subItem, subIndex) => (
+            <a
+              key={subIndex}
+              href={`/${subItem?.slug_field}`}
+              className={`block line-clamp-2 px-1   text-[10px] border-l border-r border-1 text-center capitalize text-blue-800 tracking-tight pt-1 hover:cursor-pointer font-semibold hover:bg-blue-800 hover:text-white transition-all ease-linear ${
+                isScrolled
+                  ? "bg-blue-800 text-white backdrop-blur-sm"
+                  : "bg-white text-blue-800"
+              }`}
+            >
+              <span
+                className="block whitespace-nowrap overflow-x-auto scrollbar-hide"
+                style={{ display: "inline-block" }}
+              >
+                {subItem.title.replaceAll(/(?:\{location\}|\{Location\})/g, "")}
+              </span>
+              <hr />
+            </a>
+          ))}
+        </Slider>
       </div>
     </header>
   );
