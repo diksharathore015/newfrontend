@@ -80,13 +80,17 @@ export default async function page() {
   const courselist = await controller.GetApi(Constants.headerCourses);
   // console.log("seodataseodata", seodata[0]);
   return (
-    <div>
-      <h1 className="text-center font-sans  font-bold text-5xl py-2   bg-gray-800 text-white">
+    <div className="py-10">
+      <h1 className="text-center font-baskervville  font-semibold text-5xl py-2 pt-4    text-blue-800">
         {" "}
         Royal Defence Academy - Contact Us
       </h1>
+      <h2 className="font-bold font-baskervville text-blue-900  text-center">
+        Best Boarding School Coaching for Boys and Girls: AISSEE, Sainik School,
+        Military School, RIMC, and RMS 2025.
+      </h2>
 
-      <div className="w-full -mt-12 mb-10">
+      <div className="w-full -mt-16 mb-10">
         <EnquiryForm coursesData={courselist} />
       </div>
       {<HomeInfo seoData={seodata[0]} />}

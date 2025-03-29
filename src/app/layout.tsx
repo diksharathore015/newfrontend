@@ -29,8 +29,8 @@ export default async function RootLayout({
           )}
           {bannerData && <SocialMediaIcons data={bannerData[0]} />}
           {courselist && <MainForm coursesData={courselist} loc={loc} />}
-   
-          <div>{children}</div>
+
+          <div className=" md:mx-4 mx-0">{children}</div>
           {seodata[0] && (
             <Footer
               address={seodata[0]?.address}
@@ -45,7 +45,7 @@ export default async function RootLayout({
     </html>
   );
 }
-import { Constants, fetchBaseUrl } from "@/Constants/urls";
+import { Constants } from "@/Constants/urls";
 import apiDataController from "@/controllers/RequestController";
 import Providers from "@/store/Providers";
 import localFont from "next/font/local";

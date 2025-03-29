@@ -209,9 +209,7 @@ export default async function Home() {
     },
   };
 
-  // console.log("coursesData", images);
 
-  // console.log("coursesDatacoursesData", coursesData[0]);
   const structuredData = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "ItemList",
