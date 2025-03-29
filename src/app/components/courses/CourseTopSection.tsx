@@ -42,7 +42,7 @@ const CourseTopSection = ({ data }: any) => {
         <div className=" ">
           {/* Course Title */}
           <h1
-            onClick={() => console.log("first", imagesData)}
+            // onClick={() => console.log("first", imagesData)}
             className="text-5xl font-extrabold text-gray-900 capitalize"
           >
             {data.title}

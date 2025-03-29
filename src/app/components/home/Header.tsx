@@ -184,6 +184,22 @@ export default function Header({ cityList, seodata, courselist }: any) {
           ))}
         </nav>
       </div>
+      <div className="hidden md:flex items-stretch justify-start border-t border-b absolute  -z-10">
+        {courselist.map((subItem, subIndex) => (
+          <a
+            key={subIndex}
+            href={`/${subItem?.slug_field}`}
+            className={` block line-clamp-2  items-stretch px-1  text-[11px] border-l border-r border-1  text-center capitalize   text-blue-800 tracking-tight pt-1  hover:cursor-pointer font-semibold hover:bg-blue-800 hover:text-white transition-all ease-linear    ${
+              isScrolled
+                ? "bg-blue-800  text-white backdrop-blur-sm "
+                : "bg-white text-blue-800"
+            } `}
+          >
+            {subItem.title.replaceAll(/(?:\{location\}|\{Location\})/g, "")}
+            <hr />
+          </a>
+        ))}
+      </div>
     </header>
   );
 }

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 interface RawHtmlRendererProps {
@@ -10,15 +11,17 @@ const RawHtmlRenderer: React.FC<RawHtmlRendererProps> = ({
   currentLocation,
 }) => {
   return (
-    <div
-      className="raw-html-container "
-      dangerouslySetInnerHTML={{
-        __html: htmlContent?.replaceAll(
-          "{location}",
-          currentLocation ? decodeURIComponent(currentLocation) : ""
-        ),
-      }}
-    />
+    htmlContent && (
+      <div
+        className="raw-html-container "
+        dangerouslySetInnerHTML={{
+          __html: htmlContent?.replaceAll(
+            "{location}",
+            currentLocation ? decodeURIComponent(currentLocation) : ""
+          ),
+        }}
+      />
+    )
   );
 };
 

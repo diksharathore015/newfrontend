@@ -25,19 +25,16 @@ const CourseDescription: React.FC<DescriptionProps> = ({
     <div className="  mx-auto">
       <div
         onClick={handleToggle}
-        className={`${isExpanded ? "" : ""}  transition-all duration-300`}
+        className={`${
+          isExpanded ? "line-clamp-none" : "line-clamp-6"
+        }  transition-all duration-300`}
       >
         <RawHtmlRenderer
-          htmlContent={description.substring(0, count)}
+          htmlContent={description}
           currentLocation={currentLocation}
         />
       </div>
-      {/* <button
-        onClick={handleToggle}
-        className="text-blue-600 mt-2 underline text-sm font-bold"
-      >
-        {isExpanded ? "..." : "..."}
-      </button> */}
+     
     </div>
   );
 };

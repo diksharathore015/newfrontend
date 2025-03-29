@@ -63,7 +63,7 @@ export default async function page({ params }: { params: any }) {
     articleBody: blogsData.articleBody,
     url: blogsData.url,
   };
-  console.log("testblog", blogsData);
+  // console.log("testblog", blogsData);
   return (
     <>
       {jsonLd && (

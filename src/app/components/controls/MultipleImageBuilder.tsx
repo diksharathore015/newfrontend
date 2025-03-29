@@ -41,7 +41,7 @@ export default function MultipleImageBuilder({
     const isAnyFileExceedingLimit = acceptedFiles.filter(
       (file: any) => file.size <= 20971520 // 20 MB in bytes
     );
-    console.log(isAnyFileExceedingLimit);
+    // console.log(isAnyFileExceedingLimit);
 
     // if (isAnyFileExceedingLimit) {
     //   alert(

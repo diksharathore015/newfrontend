@@ -209,7 +209,6 @@ export default async function Home() {
     },
   };
 
-
   const structuredData = seoData[0] && {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -400,7 +399,7 @@ export default async function Home() {
       <div className="overflow-x-hidden">
         {bannerData && <Banner data={bannerData} />}
         {studentsData && <TopStudents students={studentsData} />}
-        {homepagecontent.length > 0 && (
+        {homepagecontent && homepagecontent.length > 0 && (
           <div className="md:w-[100%] pt-10 md:mx-auto mx-1">
             <CourseDescription
               description={homepagecontent[0].details}

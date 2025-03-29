@@ -92,7 +92,7 @@ export default function Breadcrumbs({
     }, 300);
   }, []);
   // console.log("breadcrumbList2", breadcrumbList);
-  console.log("breadcrumbList2", breadcrumbList2);
+  // console.log("breadcrumbList2", breadcrumbList2);
   return (
     breadcrumbSchema && (
       <>
