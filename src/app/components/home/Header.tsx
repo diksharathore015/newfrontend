@@ -40,11 +40,10 @@ export default function Header({ cityList, seodata, courselist }: any) {
     infinite: true,
     autoplay: true,
     autoplaySpeed: 0, // Set this to 0 for continuous movement
-    speed: 9000, // Adjust the speed for smooth scrolling
+    speed: 10000, // Adjust the speed for smooth scrolling
     cssEase: "linear", // Linear easing for continuous effect
     slidesToShow: 1,
     slidesToScroll: 1,
-    
   };
 
   const navItems = [
@@ -65,9 +64,9 @@ export default function Header({ cityList, seodata, courselist }: any) {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ease-in-out ${
+      className={`sticky md:top-0 z-50 w-full transition-all duration-300 ease-in-out ${
         isScrolled
-          ? "  bg-blue-700 text-white  shadow-lg"
+          ? "  bg-blue-900 text-white  top-12 shadow-lg"
           : "bg-blue-800 text-white "
       }`}
     >
@@ -219,11 +218,7 @@ export default function Header({ cityList, seodata, courselist }: any) {
             <a
               key={subIndex}
               href={`/${subItem?.slug_field}`}
-              className={`block line-clamp-2 px-1   text-[10px] border-l border-r border-1 text-center capitalize text-blue-800 tracking-tight pt-1 hover:cursor-pointer font-semibold hover:bg-blue-800 hover:text-white transition-all ease-linear ${
-                isScrolled
-                  ? "bg-blue-800 text-white backdrop-blur-sm"
-                  : "bg-white text-blue-800"
-              }`}
+              className={`block line-clamp-2 px-1   text-[10px] border-l border-r border-1 text-center capitalize text-blue-800  tracking-tight pt-1 hover:cursor-pointer font-semibold bg-white hover:text-white transition-all ease-linear `}
             >
               <span
                 className="block whitespace-nowrap overflow-x-auto scrollbar-hide"

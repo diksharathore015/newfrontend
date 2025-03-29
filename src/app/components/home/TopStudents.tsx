@@ -62,7 +62,7 @@ export default function TopStudents({ students }: any) {
           )}
         </Head>
 
-        <h2 className="text-2xl md:text-3xl font-extrabold text-center font-Montserrat italic capitalize  text-white bg-blue-800">
+        <h2 className="text-lg md:text-3xl font-extrabold text-center font-Montserrat italic capitalize  text-white bg-blue-800">
           {/*         Our Brightest Achievers */}
           {/* {data} */}
           &quot; {Jdata?.home?.title} &quot;
@@ -83,15 +83,15 @@ export default function TopStudents({ students }: any) {
                 },
                 {
                   breakpoint: 480,
-                  settings: { slidesToShow: 1, slidesToScroll: 1 },
+                  settings: { slidesToShow: 2, slidesToScroll: 1 },
                 },
                 {
                   breakpoint: 400,
-                  settings: { slidesToShow: 1, slidesToScroll: 1 },
+                  settings: { slidesToShow: 2, slidesToScroll: 1 },
                 },
                 {
                   breakpoint: 400,
-                  settings: { slidesToShow: 1, slidesToScroll: 1 },
+                  settings: { slidesToShow: 2, slidesToScroll: 1 },
                 },
               ]}
               slides={students.map((item: any, i: number) => (
@@ -101,7 +101,7 @@ export default function TopStudents({ students }: any) {
                 >
                   <div className="group flex flex-col items-center justify-center w-full text-center relative">
                     {/* Image Container */}
-                    <div className="relative   w-full  h-96    md:w-64 md:h-64 bg-transparent shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105   flex items-center justify-center overflow-hidden">
+                    <div className="relative   w-full  h-48    md:w-64 md:h-64 bg-transparent shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105   flex items-center justify-center overflow-hidden">
                       {item.Image && (
                         <Image
                           title={
@@ -121,7 +121,7 @@ export default function TopStudents({ students }: any) {
                           }
                           width={150}
                           height={150}
-                          className="object-fill h-96 p-1 bg-gradient-to-r from-red-400 to-pink-500  md:mt-0 mt-1 shadow-md transition-transform duration-300 ease-in-out transform hover:scale-105  w-full  md:w-64 md:h-64  mx-auto"
+                          className="object-cover h-48 mr-1 p-1 bg-gradient-to-r from-red-400 to-pink-500  md:mt-0 mt-1 shadow-md transition-transform duration-300 ease-in-out transform hover:scale-105  w-full  md:w-64 md:h-64  mx-auto"
                         />
                       )}
                       <p className="absolute inset-x-0 bottom-0 bg-blue-50 font-semibold leading-4   px-1 text-[8px] md:text-[12px] text-primary   opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out text-center capitalize">

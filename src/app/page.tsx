@@ -400,7 +400,7 @@ export default async function Home() {
         {bannerData && <Banner data={bannerData} />}
         {studentsData && <TopStudents students={studentsData} />}
         {homepagecontent && homepagecontent.length > 0 && (
-          <div className="md:w-[100%] pt-10 md:mx-auto mx-1">
+          <div className="md:w-[100%] md:pt-10 md:mx-auto mx-1 text-sm md:text-left text-center">
             <CourseDescription
               description={homepagecontent[0].details}
               currentLocation={"india"}

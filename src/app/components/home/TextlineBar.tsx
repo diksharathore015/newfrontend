@@ -87,12 +87,12 @@ export default function LineSlider({ data }: any) {
         />
       ))}
 
-      <div className=" py-16 md:mt-20 bg-blue-800 p-4  px-10   overflow-hidden">
+      <div className=" md:py-16 mt-8 py-5 md:mt-20 bg-blue-800 p-4  md:px-10   overflow-hidden">
         <Slider {...settings}>
           {data.map((item: any, i: any) => (
             <div
               key={i}
-              className="p-6 bg-transparent rounded-lg transform transition-all hover:shadow-xl"
+              className="md:p-6 bg-transparent rounded-lg transform transition-all hover:shadow-xl"
             >
               <script
                 type="application/ld+json"
@@ -114,7 +114,7 @@ export default function LineSlider({ data }: any) {
               <div className="text-center">
                 <a
                   href={item?.link}
-                  className="text-xl  text-white font-Montserrat capitalize hover:text-blue-600 transition-all duration-300 block tracking-tight leading-snug hover:underline"
+                  className="md:text-xl  text-white font-Montserrat capitalize hover:text-blue-600 transition-all duration-300 block tracking-tight leading-snug hover:underline"
                 >
                   {item?.title}
                 </a>

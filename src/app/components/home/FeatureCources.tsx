@@ -36,8 +36,8 @@ export default function FeatureCourses({ data }: any) {
   };
   return (
     <>
-      <div className="mt-20 py-20  w-full md:px-8 px-2 overflow-x-hidden bg-blue-800 text-white">
-        <div className="text-2xl md:text-4xl font-extrabold font-Montserrat italic capitalize    ">
+      <div className="mt-20 md:py-20  py-10 w-full md:px-8 px-2 overflow-x-hidden bg-blue-800 text-white">
+        <div className="text-xl md:text-4xl font-extrabold font-Montserrat italic capitalize    ">
           <Link
             target="_blank"
             href={`/${data?.slug_field}`}
