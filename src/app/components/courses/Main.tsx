@@ -23,6 +23,7 @@ export default function Main({
   currentDate,
   matchinglocation,
   locationdatas,
+ 
 }: any) {
   const pathname = usePathname();
   // console.log("current pathname is locationdatas", data);

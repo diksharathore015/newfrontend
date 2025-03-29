@@ -22,7 +22,7 @@ export default function Breadcrumbs({
   // Generate breadcrumb paths dynamically
 
   const segments = path.split("/").splice(1);
-  console.log("location...", segments);
+  // console.log("location...", segments);
 
   // const breadcrumbList2 = [
   //   // Home breadcrumb
@@ -30,7 +30,7 @@ export default function Breadcrumbs({
   //     "@type": "ListItem",
   //     position: 1,
   //     name: Jdata?.home?.title,
-  //     item: "https://www.royaldefenceacademy.com/",
+  //     item: "https://royaldefenceacademy.in/",
   //     image: imagearray[0]?.image || "", // Assign the first image
   //   },
   //   // Courses breadcrumb (if not on "/course")
@@ -40,7 +40,7 @@ export default function Breadcrumbs({
   //           "@type": "EducationalCourse",
   //           position: 2,
   //           name: coursepagemetatitle, // Use the same variable as in displayed breadcrumbs
-  //           item: "https://www.royaldefenceacademy.com/course",
+  //           item: "https://royaldefenceacademy.in/course",
   //           image: imagearray[1]?.image || "", // Assign the second image
   //         },
   //       ]
@@ -63,7 +63,7 @@ export default function Breadcrumbs({
   //             )
   //           : decodeURIComponent(segments.slice(0, index + 1).join("/")),
 
-  //       item: `https://www.royaldefenceacademy.com/${segments
+  //       item: `https://royaldefenceacademy.in/${segments
   //         .slice(0, index + 1)
   //         .join("/")}`,
   //       image: imagearray[index + 2]?.image || "", // Assign remaining images dynamically
@@ -81,7 +81,7 @@ export default function Breadcrumbs({
       "@type": "ListItem",
       position: 1,
       name: Jdata?.home?.title?.replaceAll("-", " ") || "Home",
-      item: "https://www.royaldefenceacademy.com/",
+      item: "https://royaldefenceacademy.in",
       image: imagearray[0]?.image || "", // Assign the first image
     },
     // Courses breadcrumb (if not on "/course")
@@ -91,7 +91,7 @@ export default function Breadcrumbs({
             "@type": "ListItem",
             position: 2,
             name: coursepagemetatitle?.replaceAll("-", " ") || "Courses",
-            item: "https://www.royaldefenceacademy.com/course",
+            item: "https://royaldefenceacademy.in/course",
             image: imagearray[1]?.image || "", // Assign the second image
           },
         ]
@@ -113,7 +113,7 @@ export default function Breadcrumbs({
                   .join("/")
                   .replaceAll("-", " ")
               ),
-        item: `https://www.royaldefenceacademy.com/${segments
+        item: `https://royaldefenceacademy.in/${segments
           .slice(0, index + 1)
           .join("/")}`,
         image: imagearray[index + 2]?.image || "",
@@ -138,7 +138,7 @@ export default function Breadcrumbs({
   //             /(?:\{location\}|\{Location\}|\{royal defence \})/g,
   //             `india`
   //           ),
-  //           item: "https://www.royaldefenceacademy.com/course",
+  //           item: "https://royaldefenceacademy.in/course",
   //         },
   //         {
   //           "@type": "EducationalCourse",
@@ -147,7 +147,7 @@ export default function Breadcrumbs({
   //             /(?:\{location\}|\{Location\}|\{royal defence \})/g,
   //             `india`
   //           ),
-  //           item: "https://www.royaldefenceacademy.com/course",
+  //           item: "https://royaldefenceacademy.in/course",
   //         },
   //       ]),
 
@@ -155,7 +155,7 @@ export default function Breadcrumbs({
   //   //   "@type": "ListItem",
   //   //   position: segments.includes("course") ? index + 2 : index + 3, // Adjust position based on whether "Course" is added
   //   //   name: `${title} , ${index} , ${path[path.length - 1]}`,
-  //   //   item: `https://www.royaldefenceacademy.com/${segments
+  //   //   item: `https://royaldefenceacademy.in/${segments
   //   //     .slice(0, index + 1)
   //   //     .join("/")}`,
   //   // })),
@@ -166,7 +166,7 @@ export default function Breadcrumbs({
   //   "@type": "ListItem",
   //   position: 1,
   //   name: Jdata?.home?.title,
-  //   item: "https://www.royaldefenceacademy.com/",
+  //   item: "https://royaldefenceacademy.in/",
   // });
 
   const [show, setShow] = useState(false);
