@@ -92,18 +92,20 @@ export default function Header({
             height={65}
             className="cursor-pointer object-contain "
           />
-          <h1 className="text-[12px] font-bold uppercase font-Tinos tracking-wide md:text-[24px]">
+          <h1 className="text-[14px] font-bold uppercase font-Tinos tracking-wide md:text-[20px]">
             {pathname.length < 2 &&
               " Military Schools Coaching- ROYAL DEFENCE ACADEMY"}{" "}
             {pathname.split("/").join(" ").replaceAll("-", " ")}
             <br />
             <span
               style={{ lineHeight: "18px" }}
-              className=" text-[14px] md:text-sm md: animate-pulse text-white   font-normal capitalize md:block   tracking-tight"
+              className=" text-[20px] font-Tinos md:text-sm md: animate-pulse text-white   font-normal capitalize md:block   tracking-tight"
             >
-              <span className="tracking-wider underline capitalize py-4">
-                Military Schools Coaching-Royal Defence Academy <br />
-              </span>{" "}
+              {pathname.length > 2 && (
+                <span className="tracking-wider  font-Tinos text-[20px]  uppercase py-4 ">
+                  Military Schools Coaching-Royal Defence Academy <br />
+                </span>
+              )}
               Best Boarding School Coaching: AISSEE, Sainik School, Military
               School, RIMC, RMS 2025 for Boys & Girls.
             </span>
