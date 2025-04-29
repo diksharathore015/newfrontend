@@ -7,6 +7,7 @@ import { store, useAppSelector } from "@/store";
 import { CgClose } from "react-icons/cg";
 import { usePathname } from "next/navigation";
 import { setShowForm } from "@/store/homepageSlice";
+import { get } from "@/actions/actions";
 
 export default function EnquiryForm({
   setShowFlyOut,
@@ -34,7 +35,7 @@ export default function EnquiryForm({
   };
 
   const loc = async () => {
-    await controller.GetApi("http://ip-api.com/json/").then((res) => {
+    await get("http://ip-api.com/json/").then((res) => {
       setLocationData(res);
       // console.log("location", res);
     });
