@@ -18,7 +18,7 @@ import { AppAssets } from "@/Constants/assets";
 
 // export const dynamic = "force-dynamic"; // Ensure the page is SSR only
 
-export const revalidate = 600;
+export const revalidate = 86400;
 const Banner = dynamic(() => import("./components/home/Banner"));
 const Blogs = dynamic(() => import("./components/home/Blogs"));
 const FeatureCourses = dynamic(

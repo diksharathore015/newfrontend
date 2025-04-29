@@ -1,7 +1,7 @@
 import { Constants, fetchBaseUrl } from '@/Constants/urls';
 import apiDataController from '@/controllers/RequestController';
 import type { MetadataRoute } from 'next';
-export const revalidate = 600; 
+export const revalidate = 86400; 
 export const dynamicParams = true; // or false, to 404 on unknown paths
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

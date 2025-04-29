@@ -7,7 +7,7 @@ import { AppAssets } from "@/Constants/assets";
 import { Metadata } from "next";
 import Image from "next/image";
 // import Redirectblog from "../components/blogs/Redirectblog";
-export const revalidate = 600;
+export const revalidate = 86400;
 export const dynamicParams = true; // or false, to 404 on unknown paths
 
 export default async function page() {

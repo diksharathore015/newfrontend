@@ -70,7 +70,7 @@ export async function generateMetadata({
     }
   );
 }
-export const revalidate = 600;
+export const revalidate = 86400;
 
 export const dynamicParams = true; // or false, to 404 on unknown paths
 
@@ -525,7 +525,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       )
       .split(","),
   };
-   
+
   const courseseodata = await fetch(`${Constants.coursesSeoData}`).then(
     (res) => {
       if (!res.ok) throw new Error("Failed to fetch  metadata");
@@ -843,15 +843,15 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         {course && (
           <div className="pb-20">
             <Main
-          baseURL={baseURL}
-            coursepagemetatitle={courseseodata[0]?.meta_title}
-            locationdatas={locationdata}
-            faqs={faqs}
-            data={course}
-            params={para}
-            loc={loc}
-            currentDate={currentDate}
-            matchinglocation={matchingState?.title || "india"}
+              baseURL={baseURL}
+              coursepagemetatitle={courseseodata[0]?.meta_title}
+              locationdatas={locationdata}
+              faqs={faqs}
+              data={course}
+              params={para}
+              loc={loc}
+              currentDate={currentDate}
+              matchinglocation={matchingState?.title || "india"}
             />
           </div>
         )}

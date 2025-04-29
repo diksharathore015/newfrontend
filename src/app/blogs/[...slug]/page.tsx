@@ -4,7 +4,7 @@ import apiDataController from "@/controllers/RequestController";
 // import { store } from "@/store";
 // import { setHomepageTitle } from "@/store/homepageSlice";
 export const dynamic = "force-static";
-export const revalidate = 600;
+export const revalidate = 86400;
 // export const dynamicParams = true; // or false, to 404 on unknown paths
 // export async function generateStaticParams({ params, searchParams }: any) {
 //   const controller = new apiDataController();
