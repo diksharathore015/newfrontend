@@ -387,7 +387,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       url: `${
         baseURL
           ? `${baseURL}/${slug?.join("/")}`
-          : "https://royaldefenceacademy.in"
+          : "https://militaryschoolscoaching.com"
       }/${slug?.join("/")}`,
     },
     aggregateRating: {

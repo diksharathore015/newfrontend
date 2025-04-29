@@ -9,7 +9,8 @@ export default async function RootLayout({
   const courselist = await controller.GetApi(Constants.headerCourses);
   const loc = await controller.GetApi("http://ip-api.com/json/");
   const bannerData = await controller.GetApi(Constants.bannerData);
-
+const baseURL =  await fetchBaseUrl();
+ 
   return (
     <html lang="en">
       {seodata?.scripts && (
@@ -22,6 +23,7 @@ export default async function RootLayout({
         <Providers>
           {cityList && seodata[0] && courselist && (
             <Header
+            baseURL={baseURL}
               cityList={cityList}
               seodata={seodata[0]}
               courselist={courselist}
@@ -30,7 +32,9 @@ export default async function RootLayout({
           {bannerData && <SocialMediaIcons data={bannerData[0]} />}
           {courselist && <MainForm coursesData={courselist} loc={loc} />}
 
-          <div className=" md:mx-4 mx-0 md:pt-12">{children}</div>
+          <div className=" md:mx-4 mx-0 md:pt-12 overflow-x-hidden w-full">
+            {children}
+          </div>
           {seodata[0] && (
             <Footer
               address={seodata[0]?.address}
@@ -45,7 +49,7 @@ export default async function RootLayout({
     </html>
   );
 }
-import { Constants } from "@/Constants/urls";
+import { Constants, fetchBaseUrl } from "@/Constants/urls";
 import apiDataController from "@/controllers/RequestController";
 import Providers from "@/store/Providers";
 import localFont from "next/font/local";

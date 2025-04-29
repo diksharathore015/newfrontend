@@ -13,12 +13,23 @@ import { FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-export default function Header({ cityList, seodata, courselist }: any) {
+import { fetchBaseUrl } from "@/Constants/urls";
+export default function Header({
+  cityList,
+  seodata,
+  courselist,
+  baseURL,
+}: any) {
   const [showDropdown, setShowDropdown] = useState<any>();
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
+  const url = `${baseURL}/${pathname}`;
+  console.log("firsturl", baseURL);
+  const hostname = new URL(url).hostname;
+  console.log("hostname", hostname);
+  const domain = hostname.split(".")[0];
   useEffect(() => {
     store.dispatch(setHomepageTitle(seodata.title));
   }, []);
@@ -66,7 +77,7 @@ export default function Header({ cityList, seodata, courselist }: any) {
     <header
       className={`sticky md:top-0 z-50 w-full transition-all duration-300 ease-in-out ${
         isScrolled
-          ? "  bg-blue-900 text-white  top-12 shadow-lg"
+          ? "  bg-blue-900 text-white  top-0 shadow-lg"
           : "bg-blue-800 text-white "
       }`}
     >
@@ -79,14 +90,18 @@ export default function Header({ cityList, seodata, courselist }: any) {
             alt="Royal Defence Academy Logo"
             width={65}
             height={65}
-            className="cursor-pointer object-contain -mt-2"
+            className="cursor-pointer object-contain "
           />
-          <h1 className="text-[15px] font-bold uppercase font-Tinos tracking-wide md:text-[24px]">
-            Royal Defence Academy <br />
+          <h1 className="text-[12px] font-bold uppercase font-Tinos tracking-wide md:text-[24px]">
+            {pathname.length < 2 && "ROYAL DEFENCE ACADEMY"}{" "}
+            {pathname.split("/").join(" ").replaceAll("-", " ")} <br />
             <span
-              style={{ lineHeight: "12px" }}
-              className=" text-[10px] md:text-sm md:py-2 animate-pulse text-white   font-normal capitalize md:block   tracking-tight"
+              style={{ lineHeight: "18px" }}
+              className=" text-[12px] md:text-sm md: animate-pulse text-white   font-normal capitalize md:block   tracking-tight"
             >
+              <span className="tracking-wider underline capitalize py-4">
+                {hostname}-Royal Defence Academy <br />
+              </span>{" "}
               Best Boarding School Coaching: AISSEE, Sainik School, Military
               School, RIMC, RMS 2025 for Boys & Girls.
             </span>
@@ -212,7 +227,7 @@ export default function Header({ cityList, seodata, courselist }: any) {
           </a>
         ))}
       </div>
-      <div className="w-full md:hidden">
+      <div className="w-full md:hidden overflow-hidden">
         <Slider {...settings}>
           {courselist.map((subItem, subIndex) => (
             <a
