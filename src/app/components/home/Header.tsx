@@ -26,9 +26,9 @@ export default function Header({
   const router = useRouter();
 
   const url = `${baseURL}/${pathname}`;
-  console.log("firsturl", baseURL);
+  // console.log("firsturl", baseURL);
   const hostname = new URL(url).hostname;
-  console.log("hostname", hostname);
+  // console.log("hostname", hostname);
   const domain = hostname.split(".")[0];
   useEffect(() => {
     store.dispatch(setHomepageTitle(seodata.title));

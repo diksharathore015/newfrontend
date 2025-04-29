@@ -1,3 +1,4 @@
+import { get } from "@/actions/actions";
 import Main from "@/app/components/courses/Main";
 import { sanik_school_review } from "@/app/data/review";
 import { AppAssets } from "@/Constants/assets";
@@ -16,9 +17,7 @@ export async function generateMetadata({
   const slug = await parm?.slug;
   const location = (await slug[1]) || "";
   const controller = new apiDataController();
-  const course = await controller.getDataApi(
-    `${Constants.singlecourses}?slug_field=${slug[0]}`
-  );
+  const course = await get(`${Constants.singlecourses}?slug_field=${slug[0]}`);
   const baseURL = await fetchBaseUrl();
   const replaceLocation = (str: string) =>
     str?.replaceAll(/\{location\}/gi, location);
@@ -103,8 +102,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   const baseURL = await fetchBaseUrl();
   // console.log("coursecourse", course);
   const faqs =
-    course &&
-    (await controller.getDataApi(`${Constants.faqsData}?course=${course?.id}`));
+    course && (await get(`${Constants.faqsData}?course=${course?.id}`));
 
   const findMatchingState = () => {
     const matchedState = course?.states.find(
@@ -351,7 +349,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         .replaceAll("{Location}", location),
     };
   });
-  const loc = await controller.GetApi("http://ip-api.com/json/");
+  const loc = await get("http://ip-api.com/json/");
   const currentDate = new Date("04/02/2025");
   // console.log("matchingState", matchingState);
   const schemaData = {

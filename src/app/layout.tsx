@@ -4,10 +4,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const controller = new apiDataController();
-  const cityList = await controller.getDataApi(Constants.city);
-  const seodata: any = await controller.getDataApi(Constants.seo);
-  const courselist = await controller.GetApi(Constants.headerCourses);
-  const loc = await controller.GetApi("http://ip-api.com/json/");
+  const cityList = await get(Constants.city);
+  const seodata: any = await get(Constants.seo);
+  const courselist = await get(Constants.headerCourses);
+  const loc = await get("http://ip-api.com/json/");
   const bannerData = await controller.GetApi(Constants.bannerData);
 const baseURL =  await fetchBaseUrl();
  
@@ -60,6 +60,7 @@ import MainForm from "./components/home/MainForm";
 import ErrorBoundary from "./components/home/ErrorBoundary";
 import SocialMediaIcons from "./components/home/TopOffers";
 import Banner from "./components/home/Banner";
+import { get } from "@/actions/actions";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
