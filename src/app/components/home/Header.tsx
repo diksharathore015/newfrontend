@@ -94,13 +94,14 @@ export default function Header({
           />
           <h1 className="text-[12px] font-bold uppercase font-Tinos tracking-wide md:text-[24px]">
             {pathname.length < 2 && "ROYAL DEFENCE ACADEMY"}{" "}
-            {pathname.split("/").join(" ").replaceAll("-", " ")} <br />
+            {pathname.split("/").join(" ").replaceAll("-", " ")}
+            <br />
             <span
               style={{ lineHeight: "18px" }}
               className=" text-[12px] md:text-sm md: animate-pulse text-white   font-normal capitalize md:block   tracking-tight"
             >
               <span className="tracking-wider underline capitalize py-4">
-                {hostname}-Royal Defence Academy <br />
+                Militry Schools Coaching-Royal Defence Academy <br />
               </span>{" "}
               Best Boarding School Coaching: AISSEE, Sainik School, Military
               School, RIMC, RMS 2025 for Boys & Girls.
@@ -130,6 +131,7 @@ export default function Header({
               onMouseLeave={() => item.hasDropdown && setShowDropdown(null)}
             >
               <a
+                target="__blank"
                 href={item.href}
                 className="text-base font-medium hover:underline  transition-colors"
               >
@@ -140,6 +142,7 @@ export default function Header({
                 <div className="absolute left-0 top-full -mt-1 w-96 bg-white   ">
                   {item.submenu.map((subItem, subIndex) => (
                     <a
+                      target="__blank"
                       key={subIndex}
                       href={`/${subItem?.slug_field}`}
                       className="block px-4 py-2 text-sm border-b  text-blue-800 font-poppins hover:bg-blue-800 hover:text-white transition"
