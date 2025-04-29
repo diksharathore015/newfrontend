@@ -101,7 +101,7 @@ export default function Header({
               className=" text-[12px] md:text-sm md: animate-pulse text-white   font-normal capitalize md:block   tracking-tight"
             >
               <span className="tracking-wider underline capitalize py-4">
-                Militry Schools Coaching-Royal Defence Academy <br />
+                Military Schools Coaching-Royal Defence Academy <br />
               </span>{" "}
               Best Boarding School Coaching: AISSEE, Sainik School, Military
               School, RIMC, RMS 2025 for Boys & Girls.
