@@ -32,8 +32,8 @@ const nextConfig: NextConfig = {
     return [
       // Rule 1: Map `/course/:slug` to `/slug`
       // {
-      //   source: "https://royaldefenceacademy.com/:path*",
-      //   destination: "https://www.royalfenceacademy.com/:path*",
+      //   source: "https://militaryschoolscoaching.com/:path*",
+      //   destination: "https://militaryschoolscoaching.com/:path*",
       //   permanent: true, // 301 redirect
       // },
       {
