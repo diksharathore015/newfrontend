@@ -83,7 +83,7 @@ export default function Header({
     >
       <div className="flex items-start justify-between  pt-3 md:px-8 md:py-4">
         {/* Logo Section */}
-        <div className="flex items-start md:gap-4">
+        <div className="flex items-start md:gap-3">
           <Image
             onClick={() => router.push("/")}
             src={logo || AppAssets.logo}
@@ -92,18 +92,26 @@ export default function Header({
             height={65}
             className="cursor-pointer object-contain "
           />
-          <h1 className="text-[14px] font-bold uppercase font-Tinos tracking-wide md:text-[20px]">
+          <h1 className="  font-bold capitalize md:text-left   text-center font-Tinos tracking-wide md:text-[20px] text-[10px]">
             {pathname.length < 2 &&
-              " Military Schools Coaching- ROYAL DEFENCE ACADEMY"}{" "}
-            {pathname.split("/").join(" ").replaceAll("-", " ")}
+              " Military Schools Coaching ROYAL DEFENCE ACADEMY"}{" "}
+            {pathname
+              .split("/")
+              .join(" ")
+              .replaceAll("-", " ")
+              .replaceAll("course", " ")}
             <br />
             <span
               style={{ lineHeight: "18px" }}
-              className=" text-[20px] font-Tinos md:text-sm md: animate-pulse text-white   font-normal capitalize md:block   tracking-tight"
+              className="  font-Tinos  text-[10px]md:text-center md:text-[20px]  animate-pulse text-white   font-normal capitalize md:block   tracking-tight"
             >
               {pathname.length > 2 && (
-                <span className="tracking-wider  font-Tinos text-[20px]  uppercase py-4 ">
-                  Military Schools Coaching-Royal Defence Academy <br />
+                <span className="tracking-wider w-full md:ml-0  text-yellow-400 text-center font-Tinos md:text-[20px] text-[16px] uppercase py-2 md:py-4 ">
+                  Military Schools Coaching <br className="md:hidden" />
+                  <span className="    text-[18px] ">
+                    Royal Defence Academy
+                  </span>
+                  <br />
                 </span>
               )}
               Best Boarding School Coaching: AISSEE, Sainik School, Military
