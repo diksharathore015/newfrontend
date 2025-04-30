@@ -72,7 +72,11 @@ export default function Header({
 
   const [show, setShow] = useState(false);
   const logo = useAppSelector((state) => state.HomepageReducer.seoData.logo);
-
+  const headertitle = pathname
+    .split("/")
+    .join(" ")
+    .replaceAll("-", " ")
+    .replaceAll("course", " ");
   return (
     <header
       className={`sticky md:top-0 z-50 w-full transition-all duration-300 ease-in-out ${
@@ -92,18 +96,24 @@ export default function Header({
             height={65}
             className="cursor-pointer object-contain "
           />
-          <h1 className="  font-bold capitalize md:text-left   text-center font-Tinos tracking-wide md:text-[20px] text-[10px]">
+          <h1
+            className={`  font-bold capitalize md:text-left   text-center font-Tinos tracking-wide md:text-[36px] ${
+              headertitle.includes("rimc")
+                ? "text-[12px]"
+                : headertitle.length > 30
+                ? "text-[16px]"
+                : headertitle.length > 16
+                ? "text-[22px]"
+                : "text-[20px]"
+            }   md:leading-8 leading-5`}
+          >
             {pathname.length < 2 &&
               " Military Schools Coaching ROYAL DEFENCE ACADEMY"}{" "}
-            {pathname
-              .split("/")
-              .join(" ")
-              .replaceAll("-", " ")
-              .replaceAll("course", " ")}
+            {headertitle}
             <br />
             <span
               style={{ lineHeight: "18px" }}
-              className="  font-Tinos  text-[10px]md:text-center md:text-[20px]  animate-pulse text-white   font-normal capitalize md:block   tracking-tight"
+              className="  font-Tinos  text-[12px] md:text-left md:text-[20px]  animate-pulse text-white   font-normal capitalize md:block   tracking-tight"
             >
               {pathname.length > 2 && (
                 <span className="tracking-wider w-full md:ml-0  text-yellow-400 text-center font-Tinos md:text-[20px] text-[16px] uppercase py-2 md:py-4 ">
